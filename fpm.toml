@@ -1,0 +1,17 @@
+name = "Fortran-Icon-Refined"
+version = "1.0.0"
+license = "MIT"
+maintainer = "htang2@alaska.edu"
+author = "Han Tang"
+copyright = "Copyright 2022"
+description = "Fortran Logo"
+keywords = ["Fortran", "Logo"]
+# homepage = "https://github.com/han190/Yan"
+
+[ library ]
+source-dir = "src"
+
+[[ executable ]]
+name = "icon"
+source-dir = "src"
+main = "icon.f90"
