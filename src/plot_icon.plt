@@ -39,6 +39,7 @@ unset multiplot
 
 set terminal svg size 1000, 1000 dynamic enhanced
 set output './data/icon.svg'
+unset pixmap
 unset border
 unset tics
 plot './data/icon.dat' with lines linestyle 2
