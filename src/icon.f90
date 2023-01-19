@@ -41,21 +41,22 @@ program main
 
       call execute_command_line("mkdir -p ./data/")
       open (newunit=u, file='./data/plot_icon.plt')
-      write (u, "(a)") "set terminal png size 750, 750 transparent truecolor"
+      ! write (u, "(a)") "set terminal png size 750, 750 transparent truecolor"
+      write (u, "(a)") "set terminal svg size 750, 750"
       write (u, "(a)") "set key noautotitle"
       write (u, "(a)") "light_color = '#6d5192'"
       write (u, "(a)") "dark_color = '#d79921'"
       write (u, "(a)") "color = dark_color"
       write (u, "(a)") "set xrange [-3.5:3.5]"
       write (u, "(a)") "set yrange [-3.5:3.5]"
-      write (u, "(a)") "set style line 1 linewidth 3 linecolor rgb color"
+      write (u, "(a)") "set style line 1 linewidth 2 linecolor rgb color"
       write (u, "(a)") "set style line 2 linewidth 1 linecolor rgb color linetype 0"
       write (u, "(a)") "set style line 3 linewidth 1.5 linecolor rgb color linetype 0"
       write (u, "(a)") "set style line 4 linecolor rgb color pointtype 6 pointsize 2"
       write (u, "(a)") "set tics format ''"
-      ! write (u, "(a)") "set pixmap 1 './data/f1954.png' at first -3, -3 size first 6, 6 behind"
+      ! write (u, "(a)") "set pixmap 1 './data/f1954.svg' at first -3, -3 size first 6, 6 behind"
 
-      write (u, "(a)") "set output './data/icon_dark.png'"
+      write (u, "(a)") "set output './data/icon_dark.svg'"
       write (u, "(a)") "unset border"
       write (u, "(a)") "set tics scale 0"
 
@@ -120,7 +121,7 @@ program main
          end do
       end do
 
-      write (u, "(a)") "set output './data/icon_light.png'"
+      write (u, "(a)") "set output './data/icon_light.svg'"
       write (u, "(a)") "color = light_color"
       write (u, "(a)") "replot"
 
