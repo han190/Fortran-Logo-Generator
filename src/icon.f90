@@ -4,21 +4,16 @@ program main
    implicit none
 
    type(point_type), allocatable :: piles(:), curve(:), temp(:)
-   type(point_type) :: point, c
+   type(point_type) :: point, center
    integer :: n, u
-   real :: x(3, 3), y(3, 3)
+   real :: x(3, 3), y(3, 3), c(2)
+   namelist /parameters/ n, c, x, y
 
-   c = point_type(-1.2800, +0.1247)
-   n = 50
+   open (newunit=u, file='parameters.nml')
+   read (unit=u, nml=parameters)
+   close (u)
 
-   x = reshape([[-3.00, -2.30, -1.90], &
-      & [+3.00, +2.30, +1.25], &
-      & [+0.00, +0.60, +1.25]], [3, 3])
-
-   y = reshape([[-3.00, -2.30, -1.75], &
-      & [+3.00, +0.60, +2.30], &
-      & [+0.45, +1.50, +1.75]], [3, 3])
-
+   center = c
    piles = [ &
       & point_type(x(3, 1), y(1, 1)), &
       & point_type(x(1, 1), y(1, 1)), &
@@ -27,7 +22,7 @@ program main
       & point_type(x(3, 1), y(2, 1)), &
       & point_type(x(3, 1), y(3, 1))]
    temp = [piles(1:3), bezier_curve(piles(4:6), n)]
-   curve = [mirror(temp, dim=1, level=c%x, reverse=.true.), &
+   curve = [mirror(temp, dim=1, level=center%x, reverse=.true.), &
       & temp, mirror(temp, dim=2, reverse=.true.)]
 
    point = curve(1)
@@ -51,7 +46,7 @@ program main
       & point_type(x(3, 3), y(3, 3))]
    temp = [piles(1), bezier_curve(piles(2:4), n), piles(5:6)]
    curve = [curve, temp, &
-      & mirror(temp, dim=2, level=c%y, reverse=.true.), curve(1)]
+      & mirror(temp, dim=2, level=center%y, reverse=.true.), curve(1)]
 
    open (newunit=u, file='./data/icon.dat')
    write (u, "('#', a11, 1x, a12)") "x", "y"
