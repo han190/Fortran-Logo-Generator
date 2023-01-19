@@ -3,6 +3,7 @@ module module_geometry
    implicit none
 
    public :: point_type
+   public :: points_type
    public :: assignment(=)
    public :: operator(+)
    public :: operator(-)
@@ -16,6 +17,11 @@ module module_geometry
       real :: x
       real :: y
    end type point_type
+
+   !> Points type
+   type :: points_type
+      type(point_type), allocatable :: points(:)
+   end type points_type
 
    interface assignment(=)
       module procedure :: init_point_real

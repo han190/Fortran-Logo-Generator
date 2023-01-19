@@ -41,6 +41,60 @@
 <g fill="none" color="white" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(247.38,900.18)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >1</tspan></text>
+	</g>
+	<g transform="translate(97.49,900.18)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >2</tspan></text>
+	</g>
+	<g transform="translate(97.49,803.66)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >3</tspan></text>
+	</g>
+	<g transform="translate(192.88,843.26)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >4</tspan></text>
+	</g>
+	<g transform="translate(247.38,803.66)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >5</tspan></text>
+	</g>
+	<g transform="translate(247.38,727.82)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >6</tspan></text>
+	</g>
+	<g transform="translate(891.59,117.85)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >7</tspan></text>
+	</g>
+	<g transform="translate(891.59,403.78)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >8</tspan></text>
+	</g>
+	<g transform="translate(819.69,403.78)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >9</tspan></text>
+	</g>
+	<g transform="translate(819.69,169.37)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >10</tspan></text>
+	</g>
+	<g transform="translate(676.62,169.37)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >11</tspan></text>
+	</g>
+	<g transform="translate(416.35,169.37)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >12</tspan></text>
+	</g>
+	<g transform="translate(416.35,464.07)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >13</tspan></text>
+	</g>
+	<g transform="translate(506.29,464.07)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >14</tspan></text>
+	</g>
+	<g transform="translate(588.04,464.07)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >15</tspan></text>
+	</g>
+	<g transform="translate(588.04,319.28)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >16</tspan></text>
+	</g>
+	<g transform="translate(588.04,245.21)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >17</tspan></text>
+	</g>
+	<g transform="translate(676.62,245.21)" stroke="none" fill="rgb(215,153,33)" font-family="Arial" font-size="12.00"  text-anchor="start">
+		<text><tspan font-family="Arial" >18</tspan></text>
+	</g>
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb(215, 153,  33)' stroke-dasharray='2,4'  d='M89.11,928.06 L89.11,73.15  '/></g>
