@@ -54,6 +54,50 @@ program main
    close (u)
 
    call execute_command_line("mkdir -p ./data/")
-   call execute_command_line("gnuplot ./src/plot_icon.plt")
+   open (newunit=u, file='./data/plot_icon.plt')
+   write (u, *) "set terminal png size 1000, 500 transparent truecolor"
+   write (u, *) "set size 1, 1"
+   write (u, *) "set key noautotitle"
+   write (u, *) "light_color = '#6d5192'"
+   write (u, *) "dark_color = '#d79921'"
+   write (u, *) "color = light_color"
+   write (u, *) "set xrange [-3.5:3.5]"
+   write (u, *) "set yrange [-3.5:3.5]"
+   write (u, *) "set style line 1 linewidth 3 linecolor rgb dark_color"
+   write (u, *) "set style line 2 linewidth 3 linecolor rgb light_color"
+   write (u, *) "set tics format ''"
+   write (u, *) "set pixmap 1 './data/f1954.png' at first -3, -3 size first 6, 6 behind"
+   write (u, "('set xtics', 1x, '(', 9(f6.2, ','), tl1, ')')") x
+   write (u, "('set ytics', 1x, '(', 9(f6.2, ','), tl1, ')')") y
+
+   write (u, *) "set output './data/icon_dark.png'"
+   write (u, *) "set multiplot layout 1, 2"
+   write (u, *) "set border linestyle 1"
+   write (u, *) "set grid linecolor rgb dark_color"
+   write (u, *) "plot './data/icon.dat' with lines linestyle 1"
+   ! write (u, *) "unset grid"
+   write (u, *) "set tics scale 0"
+   write (u, *) "plot './data/icon.dat' with lines linestyle 1"
+   write (u, *) "unset multiplot"
+
+   write (u, *) "set output './data/icon_light.png'"
+   write (u, *) "set multiplot layout 1, 2"
+   write (u, *) "set border linestyle 2"
+   write (u, *) "set grid linecolor rgb light_color"
+   write (u, *) "plot './data/icon.dat' with lines linestyle 2"
+   ! write (u, *) "unset grid"
+   write (u, *) "set tics scale 0"
+   write (u, *) "plot './data/icon.dat' with lines linestyle 2"
+   write (u, *) "unset multiplot"
+
+   write (u, *) "set terminal svg size 1000, 1000 dynamic enhanced"
+   write (u, *) "set output './data/icon.svg'"
+   write (u, *) "unset pixmap"
+   write (u, *) "unset border"
+   write (u, *) "unset tics"
+   write (u, *) "plot './data/icon.dat' with lines linestyle 2"
+   close (u)
+
+   call execute_command_line("gnuplot ./data/plot_icon.plt")
 
 end program main
