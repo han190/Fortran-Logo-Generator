@@ -13,12 +13,19 @@ set grid linecolor rgb color
 
 set xrange [-3.5:3.5]
 set yrange [-3.5:3.5]
-set style line 2 linewidth 4
+set style line 1 linewidth 4 linecolor rgb dark_color
+set style line 2 linewidth 4 linecolor rgb light_color
 
 set output './data/icon_dark.png'
-set border linewidth 4 linecolor rgb dark_color
-plot './data/icon.dat' with lines linestyle 2 linecolor rgb dark_color
+set border linestyle 1
+plot './data/icon.dat' with lines linestyle 1
 
 set output './data/icon_light.png'
-set border linewidth 4 linecolor rgb light_color
-plot './data/icon.dat' with lines linestyle 2 linecolor rgb light_color
+set border linestyle 2
+plot './data/icon.dat' with lines linestyle 2
+
+set terminal svg size 1000, 1000 dynamic enhanced
+set output './data/icon.svg'
+unset border
+unset tics
+plot './data/icon.dat' with lines linestyle 2
