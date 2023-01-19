@@ -1,4 +1,4 @@
-set terminal png size 1000, 1000 transparent truecolor
+set terminal png size 1000, 500 transparent truecolor
 set size 1, 1
 set key noautotitle
 light_color = '#6d5192'
@@ -8,7 +8,7 @@ color = light_color
 set tics format ''
 set xtics (-3.00, -2.30, -1.90, 0.00, 0.60, 1.25, 2.30, 3.00)
 set ytics (-3.00, -2.30, -1.75, 0.45, 0.60, 1.50, 1.75, 2.30, 3.00)
-# set pixmap 1 "./data/f1954.png" at first -3, -3 size first 6, 6 behind
+set pixmap 1 "./data/f1954.png" at first -3, -3 size first 6, 6 behind
 
 set xrange [-3.5:3.5]
 set yrange [-3.5:3.5]
@@ -16,14 +16,26 @@ set style line 1 linewidth 4 linecolor rgb dark_color
 set style line 2 linewidth 4 linecolor rgb light_color
 
 set output './data/icon_dark.png'
+set multiplot layout 1, 2
 set border linestyle 1
 set grid linecolor rgb dark_color
 plot './data/icon.dat' with lines linestyle 1
 
+unset grid
+set tics scale 0
+plot './data/icon.dat' with lines linestyle 1
+unset multiplot
+
 set output './data/icon_light.png'
+set multiplot layout 1, 2
 set border linestyle 2
 set grid linecolor rgb light_color
 plot './data/icon.dat' with lines linestyle 2
+
+unset grid
+set tics scale 0
+plot './data/icon.dat' with lines linestyle 2
+unset multiplot
 
 set terminal svg size 1000, 1000 dynamic enhanced
 set output './data/icon.svg'
