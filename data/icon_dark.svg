@@ -112,6 +112,9 @@
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(241.13,355.88)" stroke="none" fill="rgb(215,153,33)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >C</tspan></text>
+	</g>
 	<g transform="translate(183.90,623.95)" stroke="none" fill="rgb(215,153,33)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
 		<text><tspan font-family="Cascadia Mono" >1</tspan></text>
 	</g>

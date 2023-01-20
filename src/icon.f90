@@ -6,7 +6,7 @@ implicit none
 
 type(icon_type) :: icon
 
-call icon%read_parameters()
+call icon%read_parameters('parameters.nml')
 call icon%compute_curve()
 call icon%blue_print()
 call icon%blue_print(dark_mode=.false.)

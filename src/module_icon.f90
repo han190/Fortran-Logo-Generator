@@ -30,15 +30,14 @@ subroutine read_parameters(self, filename)
   integer :: n
   namelist /parameters/ n, c, x, y
   integer :: unit
-  character(:), allocatable :: file
   logical :: exist
 
   if (present(filename)) then
 
-    inquire (file=file, exist=exist)
+    inquire (file=filename, exist=exist)
     if (.not. exist) error stop "Parameters.nml not found."
 
-    open (newunit=unit, file='parameters.nml')
+    open (newunit=unit, file=filename)
     read (unit=unit, nml=parameters)
     close (unit)
 
@@ -225,6 +224,7 @@ subroutine blue_print(self, dark_mode)
     msg = "'y_c'"
     write (unit, trim(fmt(1))) msg, -bdy, c%y
 
+    write (unit, fmt(4)) "set label 'C' at ", c, 1.2, -0.6
     deallocate (msg)
     allocate (character(len=20) :: msg)
 
