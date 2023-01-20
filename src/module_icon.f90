@@ -31,9 +31,11 @@ contains
 subroutine read_parameters(self, filename)
   class(icon_type), intent(inout) :: self
   character(*), intent(in), optional :: filename
-  real :: c(2), x(3, 3), y(3, 3), s, r
-  integer :: n
-  namelist /parameters/ n, s, r, c, x, y
+  real :: center(2), x(3, 3), y(3, 3)
+  real :: side_length, corner_radius
+  integer :: num_curves
+  namelist /parameters/ num_curves, side_length, &
+    & corner_radius, center, x, y
   integer :: unit
   logical :: exist
 
@@ -46,18 +48,18 @@ subroutine read_parameters(self, filename)
     read (unit=unit, nml=parameters)
     close (unit)
 
-    self%num_curves = n
-    self%side_length = s
-    self%corner_radius = r
-    self%center = c
+    self%num_curves = num_curves
+    self%side_length = side_length
+    self%corner_radius = corner_radius
+    self%center = center
     self%x = x
     self%y = y
 
   else
 
     self%num_curves = 50
-    self%side_length = 7.0
-    self%corner_radius = 0.5
+    self%side_length = 7.4
+    self%corner_radius = 0.7
     self%center = [-1.2800, +0.1247]
     self%x = reshape([ &
        & -3.00, -2.30, -1.90, &
