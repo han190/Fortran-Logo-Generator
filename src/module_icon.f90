@@ -257,10 +257,11 @@ subroutine blue_print(self, dark_mode)
         bdy = self%side_length/2
         write (unit, trim(fmt(2))) 'from', x(i, j), -bdy, 'to', x(i, j), bdy
         write (unit, trim(fmt(2))) 'from', -bdy, y(i, j), 'to', bdy, y(i, j)
-        write (msg, "(a, i0, '', i0, a)") '"X', i, j, '"'
+        write (msg, "(a, i0, ',', i0, a)") '"X(', i, j, ')"'
 
-        bdy = merge(-4.0, 4.0, mod((j - 1)*3 + i, 2) == 1)
+        bdy = merge(-3.85, 3.85, mod((j - 1)*3 + i, 2) == 1)
         write (unit, trim(fmt(1))) msg, x(i, j), bdy
+        bdy = merge(-4.05, 4.05, mod((j - 1)*3 + i, 2) == 1)
         msg(2:2) = 'Y'
         write (unit, trim(fmt(1))) msg, bdy, y(i, j)
 
@@ -276,7 +277,7 @@ subroutine blue_print(self, dark_mode)
     write (unit, trim(fmt(3))) 'from', c%x, -bdy, 'to', c%x, bdy
     write (unit, trim(fmt(3))) 'from', -bdy, c%y, 'to', bdy, c%y
 
-    bdy = 4.0
+    bdy = 3.85
     msg = "'XC'"
     write (unit, trim(fmt(1))) msg, c%x, -bdy
     msg = "'YC'"
@@ -313,6 +314,8 @@ subroutine blue_print(self, dark_mode)
       select case (i)
       case (2)
         offset = [-1.4, -0.6]
+      case (4:6)
+        offset = [-1.4, +0.6]
       case (7, 9)
         offset = [-1.4, -0.6]
       case (10:12)
