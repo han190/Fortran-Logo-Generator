@@ -9,7 +9,7 @@ type :: icon_type
   integer :: num_curves
   real :: side_length
   real :: corner_radius
-  type(point_type) :: center
+  type(point_type) :: reference_point
   real, allocatable :: x(:, :)
   real, allocatable :: y(:, :)
   type(points_type) :: letter_piles(3)
@@ -31,11 +31,11 @@ contains
 subroutine read_parameters(self, filename)
   class(icon_type), intent(inout) :: self
   character(*), intent(in), optional :: filename
-  real :: center(2), x(3, 3), y(3, 3)
+  real :: reference_point(2), x(3, 3), y(3, 3)
   real :: side_length, corner_radius
   integer :: num_curves
   namelist /parameters/ num_curves, side_length, &
-    & corner_radius, center, x, y
+    & corner_radius, reference_point, x, y
   integer :: unit
   logical :: exist
 
@@ -51,7 +51,7 @@ subroutine read_parameters(self, filename)
     self%num_curves = num_curves
     self%side_length = side_length
     self%corner_radius = corner_radius
-    self%center = center
+    self%reference_point = reference_point
     self%x = x
     self%y = y
 
@@ -60,7 +60,7 @@ subroutine read_parameters(self, filename)
     self%num_curves = 50
     self%side_length = 7.4
     self%corner_radius = 0.7
-    self%center = [-1.2800, +0.1247]
+    self%reference_point = [-1.2800, +0.1247]
     self%x = reshape([ &
        & -3.00, -2.30, -1.90, &
        & +3.00, +2.30, +1.25, &
@@ -84,7 +84,7 @@ subroutine compute_curve(self, output)
   integer :: unit, i
 
   associate ( &
-    c => self%center, &
+    c => self%reference_point, &
     n => self%num_curves, &
     x => self%x, &
     y => self%y)
@@ -182,7 +182,7 @@ subroutine compute_curve(self, output)
     do i = 1, size(self%letter_piles)
       write (unit, fmt) self%letter_piles(i)%points
     end do
-    write (unit, fmt) self%center
+    write (unit, fmt) self%reference_point
     close (unit)
 
     open (newunit=unit, file='./data/boundary_pile.dat')
@@ -219,7 +219,7 @@ subroutine blue_print(self, dark_mode)
   end if
 
   associate ( &
-    n => self%num_curves, c => self%center, &
+    n => self%num_curves, c => self%reference_point, &
     x => self%x, y => self%y)
 
     open (newunit=unit, file='./data/.plot.plt')
@@ -280,12 +280,12 @@ subroutine blue_print(self, dark_mode)
     write (unit, trim(fmt(3))) 'from', -bdy, c%y, 'to', bdy, c%y
 
     bdy = 3.85
-    msg = "'XC'"
+    msg = "'RX'"
     write (unit, trim(fmt(1))) msg, c%x, -bdy
-    msg = "'YC'"
+    msg = "'RY'"
     write (unit, trim(fmt(1))) msg, -bdy, c%y
 
-    write (unit, fmt(4)) "set label 'C' at ", c, 1.2, -0.6
+    write (unit, fmt(4)) "set label 'R' at ", c, 1.2, -0.6
     deallocate (msg)
     allocate (character(len=20) :: msg)
 
@@ -304,7 +304,7 @@ subroutine blue_print(self, dark_mode)
           offset = [+1.4, +0.6]
         end select
 
-        write (msg, "(a, i0, a)") "set label 'P", k, "' at "
+        write (msg, "(a, i0, a)") "set label 'F", k, "' at "
         write (unit, trim(fmt(4))) msg, &
           & self%letter_piles(i)%points(j), offset
         k = k + 1
