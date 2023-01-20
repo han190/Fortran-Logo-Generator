@@ -222,7 +222,7 @@ subroutine blue_print(self, dark_mode)
 
     open (newunit=unit, file='./data/.plot.plt')
 
-    call write_("set terminal svg size 800, 800 font 'Cascadia Mono, 15'")
+    call write_("set terminal svg size 900, 900 font 'Cascadia Mono, 15'")
     call write_("set key noautotitle")
     call write_("light_color = '#6d5192'")
     call write_("dark_color = '#d79921'")
@@ -257,11 +257,11 @@ subroutine blue_print(self, dark_mode)
         bdy = self%side_length/2
         write (unit, trim(fmt(2))) 'from', x(i, j), -bdy, 'to', x(i, j), bdy
         write (unit, trim(fmt(2))) 'from', -bdy, y(i, j), 'to', bdy, y(i, j)
-        write (msg, "(a, i0, ',', i0, a)") '"x_{', i, j, '}"'
+        write (msg, "(a, i0, '', i0, a)") '"X', i, j, '"'
 
         bdy = merge(-4.0, 4.0, mod((j - 1)*3 + i, 2) == 1)
         write (unit, trim(fmt(1))) msg, x(i, j), bdy
-        msg(2:2) = 'y'
+        msg(2:2) = 'Y'
         write (unit, trim(fmt(1))) msg, bdy, y(i, j)
 
       end do
@@ -277,9 +277,9 @@ subroutine blue_print(self, dark_mode)
     write (unit, trim(fmt(3))) 'from', -bdy, c%y, 'to', bdy, c%y
 
     bdy = 4.0
-    msg = "'x_c'"
+    msg = "'XC'"
     write (unit, trim(fmt(1))) msg, c%x, -bdy
-    msg = "'y_c'"
+    msg = "'YC'"
     write (unit, trim(fmt(1))) msg, -bdy, c%y
 
     write (unit, fmt(4)) "set label 'C' at ", c, 1.2, -0.6
@@ -292,17 +292,18 @@ subroutine blue_print(self, dark_mode)
 
         select case (k)
         case (7)
-          offset = [-1.2, -0.6]
+          offset = [-1.4, -0.6]
         case (8)
-          offset = [-1.2, +0.6]
+          offset = [-1.4, +0.6]
         case (4:5, 13:16)
-          offset = [+1.2, -0.6]
+          offset = [+1.4, -0.6]
         case default
-          offset = [+1.2, +0.6]
+          offset = [+1.4, +0.6]
         end select
 
         write (msg, "(a, i0, a)") "set label 'P", k, "' at "
-        write (unit, fmt(4)) msg, self%letter_piles(i)%points(j), offset
+        write (unit, trim(fmt(4))) msg, &
+          & self%letter_piles(i)%points(j), offset
         k = k + 1
 
       end do
@@ -311,17 +312,18 @@ subroutine blue_print(self, dark_mode)
     do i = 1, size(self%boundary_piles)
       select case (i)
       case (2)
-        offset = [-1.2, -0.6]
+        offset = [-1.4, -0.6]
       case (7, 9)
-        offset = [-1.2, -0.6]
+        offset = [-1.4, -0.6]
       case (10:12)
         offset = [+1.8, -0.6]
       case default
-        offset = [+1.2, +0.6]
+        offset = [+1.4, +0.6]
       end select
 
       write (msg, "(a, i0, a)") "set label 'B", i, "' at "
-      write (unit, fmt(4)) msg, self%boundary_piles(i), offset
+      write (unit, trim(fmt(4))) msg, &
+        & self%boundary_piles(i), offset
     end do
 
     call write_("plot './data/letter_F.dat' with lines linestyle 1, \")
