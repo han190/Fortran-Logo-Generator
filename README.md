@@ -8,12 +8,14 @@ The "F" logo designed by Jacobs William (@jacobwilliams) and Milan Curcic (@mila
 
 The whole "F" letter could be parameterized by four parameters:
 
-* `n`, the number of points used when drawing curves.
-* `c`, the center of the logo.
+* `num_curves`, the number of points used when drawing curves.
+* `side_length`, the side length of the logo.
+* `corner_radius`, the radius of the rounded corner.
+* `center`, the center of the logo.
 * `x`, a 3 x 3 matrix for storing essential horizontal coordinates.
 * `y`, a 3 x 3 matrix for storing essential vertical coordinates.
 
-As shown in the diagram below, these parameters are then converted into 19 coordinates, which can be further categorized into three groups: (1) Point 1 - 6, (2) Point 7 - 12, and (3) Point 13 - 18. The whole logo could be quickly drawn by mirroring group 1 with respect to `yc` and `xc`, and mirroring group 3 with `yc`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve).
+As shown in the diagram below, these parameters are then converted into 19 coordinates, which can be further categorized into three groups: (1) P1 - P6, (2) P7 - P12, and (3) P13 - P18. The whole logo could be quickly drawn by mirroring group 1 with respect to `YC` and `XC`, and mirroring group 3 with `YC`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve).
 
 ![](data/blueprint_dark.svg#gh-dark-mode-only)
 ![](data/blueprint_light.svg#gh-light-mode-only)
