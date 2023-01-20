@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"  standalone="no"?>
 <svg 
- width="700" height="700"
- viewBox="0 0 700 700"
+ width="800" height="800"
+ viewBox="0 0 800 800"
  xmlns="http://www.w3.org/2000/svg"
  xmlns:xlink="http://www.w3.org/1999/xlink"
 >
@@ -11,24 +11,24 @@
 
 <g id="gnuplot_canvas">
 
-<rect x="0" y="0" width="700" height="700" fill="none"/>
+<rect x="0" y="0" width="800" height="800" fill="none"/>
 <defs>
 
 	<circle id='gpDot' r='0.5' stroke-width='0.5' stroke='currentColor'/>
-	<path id='gpPt0' stroke-width='0.190' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
-	<path id='gpPt1' stroke-width='0.190' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
-	<path id='gpPt2' stroke-width='0.190' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
-	<rect id='gpPt3' stroke-width='0.190' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
-	<rect id='gpPt4' stroke-width='0.190' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
-	<circle id='gpPt5' stroke-width='0.190' stroke='currentColor' cx='0' cy='0' r='1'/>
+	<path id='gpPt0' stroke-width='0.178' stroke='currentColor' d='M-1,0 h2 M0,-1 v2'/>
+	<path id='gpPt1' stroke-width='0.178' stroke='currentColor' d='M-1,-1 L1,1 M1,-1 L-1,1'/>
+	<path id='gpPt2' stroke-width='0.178' stroke='currentColor' d='M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1'/>
+	<rect id='gpPt3' stroke-width='0.178' stroke='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<rect id='gpPt4' stroke-width='0.178' stroke='currentColor' fill='currentColor' x='-1' y='-1' width='2' height='2'/>
+	<circle id='gpPt5' stroke-width='0.178' stroke='currentColor' cx='0' cy='0' r='1'/>
 	<use xlink:href='#gpPt5' id='gpPt6' fill='currentColor' stroke='none'/>
-	<path id='gpPt7' stroke-width='0.190' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
+	<path id='gpPt7' stroke-width='0.178' stroke='currentColor' d='M0,-1.33 L-1.33,0.67 L1.33,0.67 z'/>
 	<use xlink:href='#gpPt7' id='gpPt8' fill='currentColor' stroke='none'/>
 	<use xlink:href='#gpPt7' id='gpPt9' stroke='currentColor' transform='rotate(180)'/>
 	<use xlink:href='#gpPt9' id='gpPt10' fill='currentColor' stroke='none'/>
 	<use xlink:href='#gpPt3' id='gpPt11' stroke='currentColor' transform='rotate(45)'/>
 	<use xlink:href='#gpPt11' id='gpPt12' fill='currentColor' stroke='none'/>
-	<path id='gpPt13' stroke-width='0.190' stroke='currentColor' d='M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z'/>
+	<path id='gpPt13' stroke-width='0.178' stroke='currentColor' d='M0,1.330 L1.265,0.411 L0.782,-1.067 L-0.782,-1.076 L-1.265,0.411 z'/>
 	<use xlink:href='#gpPt13' id='gpPt14' fill='currentColor' stroke='none'/>
 	<filter id='textbox' filterUnits='objectBoundingBox' x='0' y='0' height='1' width='1'>
 	  <feFlood flood-color='white' flood-opacity='1' result='bgnd'/>
@@ -42,176 +42,240 @@
 <g fill="none" color="white" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,632.00 M670.62,632.00  '/>	<g transform="translate(14.68,636.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,735.56 M768.49,735.56  '/>	<g transform="translate(15.75,740.44)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,538.00 M670.62,538.00  '/>	<g transform="translate(14.68,542.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,651.67 M768.49,651.67  '/>	<g transform="translate(15.75,656.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,444.00 M670.62,444.00  '/>	<g transform="translate(14.68,448.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,567.78 M768.49,567.78  '/>	<g transform="translate(15.75,572.66)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,350.00 M670.62,350.00  '/>	<g transform="translate(14.68,354.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,483.89 M768.49,483.89  '/>	<g transform="translate(15.75,488.77)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,256.01 M670.62,256.01  '/>	<g transform="translate(14.68,260.56)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,400.00 M768.49,400.00  '/>	<g transform="translate(15.75,404.88)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,162.01 M670.62,162.01  '/>	<g transform="translate(14.68,166.56)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,316.12 M768.49,316.12  '/>	<g transform="translate(15.75,321.00)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M24.47,68.01 M670.62,68.01  '/>	<g transform="translate(14.68,72.56)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="end">
+	<path stroke='black'  d='M26.25,232.23 M768.49,232.23  '/>	<g transform="translate(15.75,237.11)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M70.62,679.00 M70.62,21.01  '/>	<g transform="translate(70.62,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M26.25,148.34 M768.49,148.34  '/>	<g transform="translate(15.75,153.22)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M162.93,679.00 M162.93,21.01  '/>	<g transform="translate(162.93,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M26.25,64.45 M768.49,64.45  '/>	<g transform="translate(15.75,69.33)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="end">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M255.24,679.00 M255.24,21.01  '/>	<g transform="translate(255.24,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M67.49,777.50 M67.49,22.51  '/>	<g transform="translate(67.49,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M347.55,679.00 M347.55,21.01  '/>	<g transform="translate(347.55,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M149.96,777.50 M149.96,22.51  '/>	<g transform="translate(149.96,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M439.85,679.00 M439.85,21.01  '/>	<g transform="translate(439.85,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M232.43,777.50 M232.43,22.51  '/>	<g transform="translate(232.43,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M532.16,679.00 M532.16,21.01  '/>	<g transform="translate(532.16,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M314.90,777.50 M314.90,22.51  '/>	<g transform="translate(314.90,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='black'  d='M624.47,679.00 M624.47,21.01  '/>	<g transform="translate(624.47,704.55)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M397.37,777.50 M397.37,22.51  '/>	<g transform="translate(397.37,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(241.13,355.88)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
+	<path stroke='black'  d='M479.84,777.50 M479.84,22.51  '/>	<g transform="translate(479.84,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M562.31,777.50 M562.31,22.51  '/>	<g transform="translate(562.31,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M644.78,777.50 M644.78,22.51  '/>	<g transform="translate(644.78,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='black'  d='M727.25,777.50 M727.25,22.51  '/>	<g transform="translate(727.25,804.87)" stroke="none" fill="black" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text></text>
+	</g>
+</g>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<g transform="translate(304.41,408.32)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
 		<text><tspan font-family="Cascadia Mono" >C</tspan></text>
 	</g>
-	<g transform="translate(183.90,623.95)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >1</tspan></text>
+	<g transform="translate(253.27,643.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P1</tspan></text>
 	</g>
-	<g transform="translate(82.36,623.95)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >2</tspan></text>
+	<g transform="translate(162.56,643.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P2</tspan></text>
 	</g>
-	<g transform="translate(82.36,558.15)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >3</tspan></text>
+	<g transform="translate(162.56,584.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P3</tspan></text>
 	</g>
-	<g transform="translate(146.98,583.35)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >4</tspan></text>
+	<g transform="translate(220.29,611.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P4</tspan></text>
 	</g>
-	<g transform="translate(183.90,583.35)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >5</tspan></text>
+	<g transform="translate(253.27,611.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P5</tspan></text>
 	</g>
-	<g transform="translate(183.90,506.45)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >6</tspan></text>
+	<g transform="translate(253.27,538.19)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P6</tspan></text>
 	</g>
-	<g transform="translate(612.73,85.16)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >7</tspan></text>
+	<g transform="translate(632.18,166.72)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P7</tspan></text>
 	</g>
-	<g transform="translate(612.73,285.56)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >8</tspan></text>
+	<g transform="translate(632.18,341.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P8</tspan></text>
 	</g>
-	<g transform="translate(571.59,285.56)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >9</tspan></text>
+	<g transform="translate(599.65,341.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P9</tspan></text>
 	</g>
-	<g transform="translate(571.59,125.76)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >10</tspan></text>
+	<g transform="translate(599.65,198.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P10</tspan></text>
 	</g>
-	<g transform="translate(474.67,125.76)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >11</tspan></text>
+	<g transform="translate(513.06,198.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P11</tspan></text>
 	</g>
-	<g transform="translate(298.36,125.76)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >12</tspan></text>
+	<g transform="translate(355.54,198.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P12</tspan></text>
 	</g>
-	<g transform="translate(298.36,324.86)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >13</tspan></text>
+	<g transform="translate(355.54,380.64)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P13</tspan></text>
 	</g>
-	<g transform="translate(359.29,324.86)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >14</tspan></text>
+	<g transform="translate(409.97,380.64)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P14</tspan></text>
 	</g>
-	<g transform="translate(414.67,324.86)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >15</tspan></text>
+	<g transform="translate(459.45,380.64)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P15</tspan></text>
 	</g>
-	<g transform="translate(414.67,226.16)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >16</tspan></text>
+	<g transform="translate(459.45,292.55)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P16</tspan></text>
 	</g>
-	<g transform="translate(414.67,177.46)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >17</tspan></text>
+	<g transform="translate(459.45,244.58)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P17</tspan></text>
 	</g>
-	<g transform="translate(474.67,177.46)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >18</tspan></text>
+	<g transform="translate(513.06,244.58)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >P18</tspan></text>
+	</g>
+	<g transform="translate(162.56,701.77)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B1</tspan></text>
+	</g>
+	<g transform="translate(79.63,728.77)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B2</tspan></text>
+	</g>
+	<g transform="translate(104.83,643.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B3</tspan></text>
+	</g>
+	<g transform="translate(104.83,139.72)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B4</tspan></text>
+	</g>
+	<g transform="translate(104.83,81.00)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B5</tspan></text>
+	</g>
+	<g transform="translate(162.56,81.00)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B6</tspan></text>
+	</g>
+	<g transform="translate(632.18,108.00)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B7</tspan></text>
+	</g>
+	<g transform="translate(715.11,81.00)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B8</tspan></text>
+	</g>
+	<g transform="translate(689.91,166.72)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B9</tspan></text>
+	</g>
+	<g transform="translate(721.41,670.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B10</tspan></text>
+	</g>
+	<g transform="translate(721.41,728.77)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B11</tspan></text>
+	</g>
+	<g transform="translate(663.68,728.77)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >B12</tspan></text>
 	</g>
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M70.63,641.39 L70.63,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M149.97,710.38 L149.97,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,631.99 L633.71,631.99  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,651.66 L702.52,651.66  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M135.25,641.39 L135.25,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M207.70,710.38 L207.70,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,566.19 L633.71,566.19  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,592.94 L702.52,592.94  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M172.17,641.39 L172.17,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M240.68,710.38 L240.68,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,514.49 L633.71,514.49  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,546.80 L702.52,546.80  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M624.48,641.39 L624.48,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M644.79,710.38 L644.79,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,68.00 L633.71,68.00  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,148.33 L702.52,148.33  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M559.86,641.39 L559.86,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M587.06,710.38 L587.06,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,293.60 L633.71,293.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,349.66 L702.52,349.66  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M462.94,641.39 L462.94,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M500.47,710.38 L500.47,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,133.80 L633.71,133.80  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,207.05 L702.52,207.05  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M347.56,641.39 L347.56,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M397.38,710.38 L397.38,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,307.70 L633.71,307.70  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,362.25 L702.52,362.25  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M402.94,641.39 L402.94,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M446.86,710.38 L446.86,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,209.00 L633.71,209.00  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,274.16 L702.52,274.16  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M462.94,641.39 L462.94,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M500.47,710.38 L500.47,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,185.50 L633.71,185.50  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,253.19 L702.52,253.19  '/></g>
 <g fill="none" color="gray" stroke="rgb(109,  81, 146)" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M229.40,641.39 L229.40,58.60  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,710.38 L92.24,89.61  '/></g>
 <g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M61.40,338.72 L633.71,338.72  '/></g>
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M702.52,710.38 L702.52,89.61  '/></g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,710.38 L702.52,710.38  '/></g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,89.61 L702.52,89.61  '/></g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M291.82,710.38 L291.82,89.61  '/></g>
+<g fill="none" color="gray" stroke="currentColor" stroke-width="1.50" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(109,  81, 146)' stroke-dasharray='2,4'  d='M92.24,389.93 L702.52,389.93  '/></g>
 <g fill="none" color="gray" stroke="rgb(109,  81, 146)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
@@ -220,135 +284,180 @@
 <g fill="none" color="white" stroke="black" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<path stroke='rgb(109,  81, 146)'  d='M286.62,514.50 L286.64,516.55 L286.68,518.56 L286.76,520.52 L286.86,522.44 L286.99,524.33 L287.15,526.17 L287.35,527.96
-		L287.57,529.72 L287.82,531.44 L288.10,533.11 L288.41,534.75 L288.75,536.34 L289.12,537.89 L289.52,539.40 L289.95,540.87
-		L290.40,542.30 L290.89,543.68 L291.41,545.03 L291.95,546.33 L292.53,547.59 L293.14,548.81 L293.77,549.99 L294.44,551.13
-		L295.13,552.22 L295.85,553.28 L296.61,554.29 L297.39,555.26 L298.20,556.19 L299.04,557.08 L299.91,557.93 L300.82,558.74
-		L301.75,559.50 L302.71,560.23 L303.70,560.91 L304.71,561.55 L305.76,562.15 L306.84,562.71 L307.95,563.22 L309.09,563.70
-		L310.25,564.13 L311.45,564.53 L312.68,564.88 L313.93,565.19 L315.22,565.46 L316.53,565.68 L317.87,565.87 L319.25,566.02
-		L320.65,566.12 L322.08,566.18 L323.55,566.20 L388.16,566.20 L388.16,632.00 L286.62,632.00 L172.16,632.00 L70.62,632.00
-		L70.62,566.20 L135.24,566.20 L136.70,566.18 L138.13,566.12 L139.54,566.02 L140.91,565.87 L142.25,565.68 L143.57,565.46
-		L144.85,565.19 L146.11,564.88 L147.33,564.53 L148.53,564.13 L149.70,563.70 L150.83,563.22 L151.94,562.71 L153.02,562.15
-		L154.07,561.55 L155.09,560.91 L156.08,560.23 L157.04,559.50 L157.97,558.74 L158.87,557.93 L159.74,557.08 L160.58,556.19
-		L161.39,555.26 L162.18,554.29 L162.93,553.28 L163.65,552.22 L164.35,551.13 L165.01,549.99 L165.65,548.81 L166.25,547.59
-		L166.83,546.33 L167.38,545.03 L167.89,543.68 L168.38,542.30 L168.84,540.87 L169.27,539.40 L169.67,537.89 L170.03,536.34
-		L170.37,534.75 L170.68,533.11 L170.97,531.44 L171.22,529.72 L171.44,527.96 L171.63,526.17 L171.79,524.33 L171.93,522.44
-		L172.03,520.52 L172.10,518.56 L172.15,516.55 L172.16,514.50 L172.16,185.51 L172.15,183.46 L172.10,181.45 L172.03,179.49
-		L171.93,177.57 L171.79,175.68 L171.63,173.84 L171.44,172.05 L171.22,170.29 L170.97,168.57 L170.68,166.90 L170.37,165.26
-		L170.03,163.67 L169.67,162.12 L169.27,160.61 L168.84,159.14 L168.38,157.71 L167.89,156.33 L167.38,154.98 L166.83,153.68
-		L166.25,152.42 L165.65,151.20 L165.01,150.02 L164.35,148.88 L163.65,147.79 L162.93,146.73 L162.18,145.72 L161.39,144.75
-		L160.58,143.82 L159.74,142.93 L158.87,142.08 L157.97,141.27 L157.04,140.51 L156.08,139.78 L155.09,139.10 L154.07,138.46
-		L153.02,137.86 L151.94,137.30 L150.83,136.79 L149.70,136.31 L148.53,135.88 L147.33,135.48 L146.11,135.13 L144.85,134.82
-		L143.57,134.55 L142.25,134.33 L140.91,134.14 L139.54,133.99 L138.13,133.89 L136.70,133.83 L135.24,133.81 L70.62,133.81
-		L70.62,68.01 L172.16,68.01 L624.47,68.01 L624.47,293.61 L559.85,293.61 L559.81,287.28 L559.70,281.08 L559.50,275.01
-		L559.23,269.06 L558.88,263.24 L558.46,257.56 L557.95,251.99 L557.37,246.56 L556.71,241.26 L555.97,236.08 L555.16,231.03
-		L554.27,226.11 L553.30,221.31 L552.25,216.65 L551.13,212.11 L549.93,207.70 L548.65,203.42 L547.29,199.26 L545.86,195.23
-		L544.34,191.34 L542.75,187.56 L541.09,183.92 L539.34,180.41 L537.52,177.02 L535.62,173.76 L533.64,170.63 L531.59,167.62
-		L529.46,164.75 L527.25,162.00 L524.96,159.38 L522.59,156.88 L520.15,154.52 L517.63,152.28 L515.03,150.17 L512.36,148.19
-		L509.61,146.34 L506.78,144.61 L503.87,143.01 L500.88,141.54 L497.82,140.20 L494.68,138.99 L491.46,137.90 L488.17,136.94
-		L484.79,136.11 L481.34,135.41 L477.82,134.83 L474.21,134.38 L470.53,134.06 L466.77,133.87 L462.93,133.81 L286.62,133.81
-		L286.62,307.71 L347.55,307.71 L349.74,307.67 L351.89,307.55 L353.99,307.35 L356.05,307.07 L358.07,306.72 L360.04,306.28
-		L361.97,305.77 L363.85,305.18 L365.69,304.51 L367.48,303.76 L369.23,302.93 L370.94,302.02 L372.60,301.03 L374.22,299.97
-		L375.79,298.82 L377.32,297.60 L378.80,296.30 L380.24,294.91 L381.64,293.45 L382.99,291.91 L384.30,290.30 L385.56,288.60
-		L386.78,286.82 L387.95,284.97 L389.08,283.03 L390.17,281.02 L391.21,278.93 L392.21,276.75 L393.16,274.50 L394.07,272.17
-		L394.93,269.77 L395.75,267.28 L396.53,264.71 L397.26,262.07 L397.94,259.34 L398.59,256.54 L399.19,253.66 L399.74,250.70
-		L400.25,247.66 L400.71,244.54 L401.13,241.34 L401.51,238.06 L401.84,234.71 L402.13,231.27 L402.38,227.76 L402.57,224.17
-		L402.73,220.50 L402.84,216.75 L402.91,212.92 L402.93,209.01 L402.93,185.51 L462.93,185.51 L462.93,491.06 L402.93,491.06
-		L402.93,467.56 L402.91,463.65 L402.84,459.82 L402.73,456.07 L402.57,452.40 L402.38,448.81 L402.13,445.29 L401.84,441.86
-		L401.51,438.50 L401.13,435.23 L400.71,432.03 L400.25,428.91 L399.74,425.87 L399.19,422.91 L398.59,420.03 L397.94,417.22
-		L397.26,414.50 L396.53,411.85 L395.75,409.29 L394.93,406.80 L394.07,404.39 L393.16,402.06 L392.21,399.81 L391.21,397.64
-		L390.17,395.55 L389.08,393.54 L387.95,391.60 L386.78,389.75 L385.56,387.97 L384.30,386.27 L382.99,384.65 L381.64,383.11
-		L380.24,381.65 L378.80,380.27 L377.32,378.97 L375.79,377.74 L374.22,376.60 L372.60,375.53 L370.94,374.55 L369.23,373.64
-		L367.48,372.81 L365.69,372.06 L363.85,371.39 L361.97,370.80 L360.04,370.28 L358.07,369.85 L356.05,369.49 L353.99,369.22
-		L351.89,369.02 L349.74,368.90 L347.55,368.86 L286.62,368.86 L286.62,514.50  '/></g>
+	<path stroke='rgb(109,  81, 146)'  d='M342.94,546.81 L342.95,548.64 L342.99,550.43 L343.06,552.18 L343.15,553.90 L343.27,555.57 L343.41,557.22 L343.59,558.82
+		L343.78,560.39 L344.01,561.92 L344.26,563.42 L344.54,564.88 L344.84,566.30 L345.17,567.68 L345.53,569.03 L345.91,570.34
+		L346.32,571.61 L346.75,572.85 L347.21,574.05 L347.70,575.21 L348.22,576.34 L348.76,577.43 L349.33,578.48 L349.92,579.49
+		L350.54,580.47 L351.19,581.41 L351.86,582.32 L352.56,583.18 L353.28,584.01 L354.04,584.81 L354.81,585.56 L355.62,586.28
+		L356.45,586.97 L357.31,587.61 L358.19,588.22 L359.10,588.79 L360.04,589.33 L361.00,589.83 L361.99,590.29 L363.01,590.71
+		L364.05,591.10 L365.12,591.45 L366.22,591.77 L367.34,592.04 L368.49,592.28 L369.66,592.49 L370.86,592.65 L372.09,592.78
+		L373.34,592.87 L374.62,592.93 L375.93,592.95 L433.66,592.95 L433.66,651.67 L342.94,651.67 L240.67,651.67 L149.96,651.67
+		L149.96,592.95 L207.69,592.95 L208.99,592.93 L210.27,592.87 L211.53,592.78 L212.75,592.65 L213.95,592.49 L215.13,592.28
+		L216.28,592.04 L217.40,591.77 L218.49,591.45 L219.56,591.10 L220.60,590.71 L221.62,590.29 L222.61,589.83 L223.57,589.33
+		L224.51,588.79 L225.42,588.22 L226.31,587.61 L227.16,586.97 L227.99,586.28 L228.80,585.56 L229.58,584.81 L230.33,584.01
+		L231.06,583.18 L231.75,582.32 L232.43,581.41 L233.07,580.47 L233.69,579.49 L234.29,578.48 L234.86,577.43 L235.40,576.34
+		L235.91,575.21 L236.40,574.05 L236.86,572.85 L237.30,571.61 L237.71,570.34 L238.09,569.03 L238.44,567.68 L238.77,566.30
+		L239.08,564.88 L239.36,563.42 L239.61,561.92 L239.83,560.39 L240.03,558.82 L240.20,557.22 L240.35,555.57 L240.46,553.90
+		L240.56,552.18 L240.62,550.43 L240.66,548.64 L240.67,546.81 L240.67,253.20 L240.66,251.37 L240.62,249.58 L240.56,247.83
+		L240.46,246.11 L240.35,244.44 L240.20,242.79 L240.03,241.19 L239.83,239.62 L239.61,238.09 L239.36,236.59 L239.08,235.13
+		L238.77,233.71 L238.44,232.33 L238.09,230.98 L237.71,229.67 L237.30,228.40 L236.86,227.16 L236.40,225.96 L235.91,224.80
+		L235.40,223.67 L234.86,222.58 L234.29,221.53 L233.69,220.52 L233.07,219.54 L232.43,218.60 L231.75,217.69 L231.06,216.83
+		L230.33,216.00 L229.58,215.20 L228.80,214.45 L227.99,213.73 L227.16,213.04 L226.31,212.40 L225.42,211.79 L224.51,211.22
+		L223.57,210.68 L222.61,210.18 L221.62,209.72 L220.60,209.30 L219.56,208.91 L218.49,208.56 L217.40,208.24 L216.28,207.97
+		L215.13,207.73 L213.95,207.52 L212.75,207.36 L211.53,207.23 L210.27,207.14 L208.99,207.08 L207.69,207.06 L149.96,207.06
+		L149.96,148.34 L240.67,148.34 L644.78,148.34 L644.78,349.67 L587.05,349.67 L587.02,344.03 L586.92,338.49 L586.74,333.07
+		L586.50,327.77 L586.19,322.58 L585.81,317.50 L585.36,312.54 L584.84,307.69 L584.25,302.95 L583.59,298.33 L582.86,293.83
+		L582.07,289.43 L581.20,285.16 L580.26,280.99 L579.26,276.94 L578.19,273.01 L577.04,269.18 L575.83,265.48 L574.55,261.88
+		L573.20,258.40 L571.78,255.04 L570.29,251.79 L568.73,248.65 L567.10,245.62 L565.40,242.72 L563.64,239.92 L561.80,237.24
+		L559.90,234.67 L557.92,232.22 L555.88,229.88 L553.77,227.66 L551.58,225.55 L549.33,223.55 L547.01,221.67 L544.62,219.90
+		L542.16,218.24 L539.63,216.70 L537.04,215.28 L534.37,213.97 L531.63,212.77 L528.83,211.68 L525.95,210.71 L523.01,209.86
+		L519.99,209.12 L516.91,208.49 L513.76,207.98 L510.54,207.58 L507.25,207.29 L503.89,207.12 L500.46,207.06 L342.94,207.06
+		L342.94,362.26 L397.37,362.26 L399.33,362.22 L401.25,362.11 L403.13,361.94 L404.97,361.69 L406.77,361.37 L408.53,360.99
+		L410.26,360.53 L411.94,360.00 L413.58,359.40 L415.18,358.73 L416.75,357.99 L418.27,357.18 L419.76,356.30 L421.20,355.35
+		L422.61,354.33 L423.97,353.24 L425.30,352.07 L426.58,350.84 L427.83,349.54 L429.04,348.16 L430.21,346.72 L431.33,345.20
+		L432.42,343.62 L433.47,341.96 L434.48,340.23 L435.45,338.44 L436.38,336.57 L437.27,334.63 L438.12,332.62 L438.94,330.55
+		L439.71,328.40 L440.44,326.18 L441.13,323.89 L441.79,321.53 L442.40,319.10 L442.97,316.59 L443.51,314.02 L444.00,311.38
+		L444.46,308.67 L444.87,305.88 L445.25,303.03 L445.59,300.10 L445.88,297.11 L446.14,294.04 L446.36,290.91 L446.54,287.70
+		L446.67,284.43 L446.77,281.08 L446.83,277.66 L446.85,274.17 L446.85,253.20 L500.46,253.20 L500.46,525.89 L446.85,525.89
+		L446.85,504.92 L446.83,501.43 L446.77,498.01 L446.67,494.66 L446.54,491.39 L446.36,488.18 L446.14,485.04 L445.88,481.98
+		L445.59,478.98 L445.25,476.06 L444.87,473.21 L444.46,470.42 L444.00,467.71 L443.51,465.07 L442.97,462.49 L442.40,459.99
+		L441.79,457.56 L441.13,455.20 L440.44,452.91 L439.71,450.69 L438.94,448.54 L438.12,446.46 L437.27,444.46 L436.38,442.52
+		L435.45,440.65 L434.48,438.85 L433.47,437.13 L432.42,435.47 L431.33,433.89 L430.21,432.37 L429.04,430.93 L427.83,429.55
+		L426.58,428.25 L425.30,427.02 L423.97,425.85 L422.61,424.76 L421.20,423.74 L419.76,422.79 L418.27,421.91 L416.75,421.10
+		L415.18,420.36 L413.58,419.69 L411.94,419.09 L410.26,418.56 L408.53,418.10 L406.77,417.71 L404.97,417.40 L403.13,417.15
+		L401.25,416.97 L399.33,416.87 L397.37,416.83 L342.94,416.83 L342.94,546.81  '/></g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>gnuplot_plot_2</title>
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<path stroke='rgb(109,  81, 146)'  d='M149.96,710.39 L147.67,710.37 L145.43,710.30 L143.24,710.18 L141.09,710.01 L138.99,709.80 L136.93,709.54 L134.92,709.24
+		L132.96,708.89 L131.04,708.49 L129.17,708.04 L127.35,707.55 L125.57,707.01 L123.84,706.42 L122.15,705.79 L120.51,705.10
+		L118.92,704.38 L117.37,703.60 L115.87,702.78 L114.42,701.91 L113.01,700.99 L111.65,700.03 L110.33,699.02 L109.06,697.96
+		L107.84,696.86 L106.66,695.71 L105.53,694.51 L104.44,693.27 L103.40,691.97 L102.41,690.64 L101.46,689.25 L100.56,687.82
+		L99.71,686.34 L98.90,684.81 L98.14,683.24 L97.42,681.62 L96.75,679.95 L96.13,678.23 L95.55,676.47 L95.02,674.66
+		L94.54,672.81 L94.10,670.91 L93.70,668.96 L93.36,666.96 L93.06,664.92 L92.80,662.83 L92.60,660.69 L92.43,658.50
+		L92.32,656.27 L92.25,653.99 L92.23,651.67 L92.23,148.34 L92.25,146.02 L92.32,143.74 L92.43,141.51 L92.60,139.32
+		L92.80,137.18 L93.06,135.09 L93.36,133.05 L93.70,131.05 L94.10,129.10 L94.54,127.20 L95.02,125.35 L95.55,123.54
+		L96.13,121.78 L96.75,120.06 L97.42,118.39 L98.14,116.77 L98.90,115.20 L99.71,113.67 L100.56,112.19 L101.46,110.76
+		L102.41,109.37 L103.40,108.04 L104.44,106.74 L105.53,105.50 L106.66,104.30 L107.84,103.15 L109.06,102.05 L110.33,100.99
+		L111.65,99.98 L113.01,99.02 L114.42,98.10 L115.87,97.23 L117.37,96.41 L118.92,95.63 L120.51,94.91 L122.15,94.22
+		L123.84,93.59 L125.57,93.00 L127.35,92.46 L129.17,91.97 L131.04,91.52 L132.96,91.12 L134.92,90.77 L136.93,90.47
+		L138.99,90.21 L141.09,90.00 L143.24,89.83 L145.43,89.71 L147.67,89.64 L149.96,89.62 L644.78,89.62 L647.07,89.64
+		L649.31,89.71 L651.50,89.83 L653.65,90.00 L655.75,90.21 L657.81,90.47 L659.82,90.77 L661.78,91.12 L663.70,91.52
+		L665.57,91.97 L667.39,92.46 L669.17,93.00 L670.90,93.59 L672.59,94.22 L674.23,94.91 L675.82,95.63 L677.37,96.41
+		L678.87,97.23 L680.32,98.10 L681.73,99.02 L683.09,99.98 L684.41,100.99 L685.68,102.05 L686.90,103.15 L688.08,104.30
+		L689.21,105.50 L690.30,106.74 L691.34,108.04 L692.33,109.37 L693.28,110.76 L694.18,112.19 L695.03,113.67 L695.84,115.20
+		L696.60,116.77 L697.32,118.39 L697.99,120.06 L698.61,121.78 L699.19,123.54 L699.72,125.35 L700.20,127.20 L700.64,129.10
+		L701.04,131.05 L701.38,133.05 L701.68,135.09 L701.94,137.18 L702.14,139.32 L702.31,141.51 L702.42,143.74 L702.49,146.02
+		L702.51,148.34 L702.51,651.67 L702.49,653.99 L702.42,656.27 L702.31,658.50 L702.14,660.69 L701.94,662.83 L701.68,664.92
+		L701.38,666.96 L701.04,668.96 L700.64,670.91 L700.20,672.81 L699.72,674.66 L699.19,676.47 L698.61,678.23 L697.99,679.95
+		L697.32,681.62 L696.60,683.24 L695.84,684.81 L695.03,686.34 L694.18,687.82 L693.28,689.25 L692.33,690.64 L691.34,691.97
+		L690.30,693.27 L689.21,694.51 L688.08,695.71 L686.90,696.86 L685.68,697.96 L684.41,699.02 L683.09,700.03 L681.73,700.99
+		L680.32,701.91 L678.87,702.78 L677.37,703.60 L675.82,704.38 L674.23,705.10 L672.59,705.79 L670.90,706.42 L669.17,707.01
+		L667.39,707.55 L665.57,708.04 L663.70,708.49 L661.78,708.89 L659.82,709.24 L657.81,709.54 L655.75,709.80 L653.65,710.01
+		L651.50,710.18 L649.31,710.30 L647.07,710.37 L644.78,710.39 L149.96,710.39  '/></g>
+	</g>
+	<g id="gnuplot_plot_3" ><title>gnuplot_plot_3</title>
 <g fill="none" color="white" stroke="rgb(109,  81, 146)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<use xlink:href='#gpPt6' transform='translate(172.16,632.00) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(70.62,632.00) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(70.62,566.20) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(135.24,566.20) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(172.16,566.20) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(172.16,514.50) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(624.47,68.01) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(624.47,293.61) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(559.85,293.61) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(559.85,133.81) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(462.93,133.81) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(286.62,133.81) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(286.62,307.71) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(347.55,307.71) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(402.93,307.71) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(402.93,209.01) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(402.93,185.51) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(462.93,185.51) scale(3.94)' color='rgb(109,  81, 146)'/>
-	<use xlink:href='#gpPt6' transform='translate(229.39,338.28) scale(3.94)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(240.67,651.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(149.96,651.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(149.96,592.95) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(207.69,592.95) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(240.67,592.95) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(240.67,546.81) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(644.78,148.34) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(644.78,349.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(587.05,349.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(587.05,207.06) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(500.46,207.06) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(342.94,207.06) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(342.94,362.26) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(397.37,362.26) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(446.85,362.26) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(446.85,274.17) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(446.85,253.20) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(500.46,253.20) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(291.81,389.54) scale(4.22)' color='rgb(109,  81, 146)'/>
+</g>
+	</g>
+	<g id="gnuplot_plot_4" ><title>gnuplot_plot_4</title>
+<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+	<use xlink:href='#gpPt6' transform='translate(149.96,710.39) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(92.23,710.39) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(92.23,651.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(92.23,148.34) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(92.23,89.62) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(149.96,89.62) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(644.78,89.62) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(702.51,89.62) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(702.51,148.34) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(702.51,651.67) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(702.51,710.39) scale(4.22)' color='rgb(109,  81, 146)'/>
+	<use xlink:href='#gpPt6' transform='translate(644.78,710.39) scale(4.22)' color='rgb(109,  81, 146)'/>
 </g>
 	</g>
 <g fill="none" color="white" stroke="rgb(109,  81, 146)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-	<g transform="translate(70.62,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(149.96,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,636.55)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,656.55)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(135.24,44.36)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(207.69,69.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(652.16,570.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(727.25,597.83)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(172.16,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(240.67,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,519.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,1</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,551.69)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,1</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(624.47,44.36)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(644.78,69.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(652.16,72.56)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(727.25,153.22)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(559.85,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(587.05,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,298.16)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,354.55)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(462.93,44.36)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(500.46,69.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(652.16,138.36)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,2</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(727.25,211.94)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,2</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(347.55,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(397.37,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,312.26)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">1,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,367.14)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">1,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(402.93,44.36)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(446.85,69.33)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(652.16,213.56)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">2,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(727.25,279.05)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">2,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(462.93,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(500.46,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,190.06)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">3,3</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,258.08)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">3,3</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(229.39,664.75)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">c</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(291.81,740.44)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >x</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">c</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
-	<g transform="translate(42.93,343.28)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="14.00"  text-anchor="middle">
-		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="11.2" dy="4.20px">c</tspan><tspan font-size="14.0" dy="-4.20"></tspan></text>
+	<g transform="translate(67.49,394.82)" stroke="none" fill="rgb(109,81,146)" font-family="Cascadia Mono" font-size="15.00"  text-anchor="middle">
+		<text><tspan font-family="Cascadia Mono" >y</tspan><tspan font-family="Cascadia Mono"  font-size="12.0" dy="4.50px">c</tspan><tspan font-size="15.0" dy="-4.50"></tspan></text>
 	</g>
 </g>
 <g fill="none" color="black" stroke="rgb(109,  81, 146)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
