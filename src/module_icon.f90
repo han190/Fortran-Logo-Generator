@@ -167,7 +167,7 @@ subroutine blue_print(self, dark_mode)
     x => self%x, &
     y => self%y)
 
-    open (newunit=unit, file='./data/plot_icon.plt')
+    open (newunit=unit, file='./data/.plot.plt')
 
     call write_("set terminal svg size 700, 700 font 'Cascadia Mono, 14'")
     call write_("set key noautotitle")
@@ -185,7 +185,7 @@ subroutine blue_print(self, dark_mode)
     call write_("set tics format ''")
     call write_("unset border")
     call write_("set tics scale 0")
-    call write_("set output './data/icon_"//mode//".svg'")
+    call write_("set output './data/blueprint_"//mode//".svg'")
 
     allocate (character(len=500) :: fmt(4))
     fmt(1) = "('set label', a, 1x, 'at', f6.2, ',', f6.2, "// &
@@ -255,7 +255,7 @@ subroutine blue_print(self, dark_mode)
   end associate
 
   close (unit)
-  call execute_command_line("gnuplot ./data/plot_icon.plt")
+  call execute_command_line("gnuplot ./data/.plot.plt")
 
 contains
   subroutine write_(message_)

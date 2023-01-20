@@ -15,8 +15,8 @@ The whole "F" letter could be parameterized by four parameters:
 
 As shown in the diagram below, these parameters are then converted into 19 coordinates, which can be further categorized into three groups: (1) Point 1 - 6, (2) Point 7 - 12, and (3) Point 13 - 18. The whole logo could be quickly drawn by mirroring group 1 with respect to `yc` and `xc`, and mirroring group 3 with `yc`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve).
 
-![](data/icon_dark.svg#gh-dark-mode-only)
-![](data/icon_light.svg#gh-light-mode-only)
+![](data/blueprint_dark.svg#gh-dark-mode-only)
+![](data/blueprint_light.svg#gh-light-mode-only)
 
 ## Quick start
 
