@@ -1,3 +1,4 @@
 build/
-data/plot_icon.plt
-data/icon.dat
+data/.plot.plot
+data/curve.dat
+data/pile.dat
