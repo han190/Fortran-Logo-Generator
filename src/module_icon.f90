@@ -1,10 +1,10 @@
-module module_icon
+module module_logo
 
 use module_geometry
 implicit none
 
 !> Icon type
-type :: icon_type
+type :: logo_type
 
   integer :: num_curves
   real :: side_length
@@ -21,15 +21,16 @@ contains
 
   procedure :: read_parameters
   procedure :: compute_curve
-  procedure :: blue_print
+  procedure :: blueprint
+  procedure, nopass :: draw
 
-end type icon_type
+end type logo_type
 
 contains
 
 !> Initialization
 subroutine read_parameters(self, filename)
-  class(icon_type), intent(inout) :: self
+  class(logo_type), intent(inout) :: self
   character(*), intent(in), optional :: filename
   real :: reference_point(2), x(3, 3), y(3, 3)
   real :: side_length, corner_radius
@@ -75,7 +76,7 @@ subroutine read_parameters(self, filename)
 end subroutine read_parameters
 
 subroutine compute_curve(self, output)
-  class(icon_type), intent(inout) :: self
+  class(logo_type), intent(inout) :: self
   logical, intent(in), optional :: output
   type(point_type), allocatable :: temp(:)
   type(point_type) :: point
@@ -197,8 +198,65 @@ subroutine compute_curve(self, output)
   end if
 end subroutine compute_curve
 
-subroutine blue_print(self, dark_mode)
-  class(icon_type), intent(in) :: self
+subroutine write_strs(unit, messages)
+  integer, intent(in) :: unit
+  character(*), intent(in) :: messages(:)
+  integer :: i
+
+  do i = 1, size(messages)
+    write (unit, "(a)") trim(messages(i))
+  end do
+end subroutine write_strs
+
+elemental function num_digits(val) result(ret)
+  integer, intent(in) :: val
+  integer :: ret
+
+  ret = floor(log10(real(val))) + 1
+end function num_digits
+
+pure function str(val) result(ret)
+  integer, intent(in) :: val
+  character(:), allocatable :: ret
+
+  allocate (character(len=num_digits(val)) :: ret)
+  write (ret, "(i0)") val
+end function str
+
+subroutine draw(size)
+  integer, intent(in), optional :: size
+  integer :: unit
+  character(:), allocatable :: messages(:)
+  character(:), allocatable :: size_
+
+  size_ = str(size)
+  messages = [character(len=80) :: &
+    & "set terminal svg size "//size_//","//size_, &
+    & "set key noenhanced", &
+    & "set key noautotitle", &
+    & "fortran_purple = '#6d5192'", &
+    & "fortran_white = '#FFFFFF'", &
+    & "set xrange [-4.5:4.5]", &
+    & "set yrange [-4.5:4.5]", &
+    & "unset border", &
+    & "unset tics", &
+    & "set style line 1 lw 2 lc rgb fortran_purple", &
+    & "set style line 2 lw 2 lc rgb fortran_white", &
+    & "set output './data/fortran_logo_"//size_//"x"//size_//".svg'", &
+    & "plot './data/boundary.dat' with filledcurves ls 1, \", &
+    & "  './data/letter_F.dat' with filledcurves ls 2", &
+    & "set output './data/fortran_logo_inverted_"//size_//"x"//size_//".svg'", &
+    & "plot './data/letter_F.dat' with filledcurves ls 1"]
+
+  open (newunit=unit, file='./data/.plot.plt')
+  call write_strs(unit, messages)
+  close (unit)
+
+  call execute_command_line("gnuplot ./data/.plot.plt")
+end subroutine draw
+
+subroutine blueprint(self, dark_mode)
+  class(logo_type), intent(in) :: self
   logical, intent(in), optional :: dark_mode
   real :: offset(2)
   integer :: unit
@@ -346,6 +404,6 @@ contains
 
     write (unit, "(a)") message_
   end subroutine write_
-end subroutine blue_print
+end subroutine blueprint
 
-end module module_icon
+end module module_logo

@@ -6,7 +6,7 @@ The "F" logo designed by Jacobs William (@jacobwilliams) and Milan Curcic (@mila
 
 ## Parameterization
 
-The whole "F" letter could be parameterized by four parameters:
+The whole "F" letter could be parameterized by six parameters:
 
 * `num_curves`, the number of points used when drawing curves.
 * `side_length`, the side length of the logo.
