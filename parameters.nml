@@ -1,5 +1,5 @@
 &parameters
-  num_curves      = 50
+  num_curves      = 100
   side_length     = 7.4
   corner_radius   = 0.7
   reference_point = -1.2800, +0.1247

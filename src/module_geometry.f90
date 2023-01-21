@@ -10,6 +10,7 @@ public :: operator(-)
 public :: operator(*)
 public :: bezier_curve
 public :: shift, mirror
+public :: centroid
 private
 
 !> Point type
@@ -313,5 +314,40 @@ pure function mirror_xy(points, dim, reverse, level) result(mirrored)
   if (reverse_) mirrored &
     & = mirrored(size(mirrored):1:-1)
 end function mirror_xy
+
+pure function centroid(points) result(center)
+  type(point_type), intent(in) :: points(0:)
+  type(point_type) :: center
+  real :: a
+  integer :: n, i, j
+
+  associate (p => points)
+    n = size(p) - 1
+    a = 0.0
+    do i = 0, n - 1
+      a = a + p(i)%x*p(i + 1)%y - p(i + 1)%x*p(i)%y
+    end do
+    a = 0.5*a
+
+    associate ( &
+      x => center%x, &
+      y => center%y)
+
+      x = 0.0
+      y = 0.0
+
+      do i = 0, n - 1
+        j = i + 1
+        x = x + (p(i)%x + p(j)%x)* &
+          & (p(i)%x*p(j)%y - p(j)%x*p(i)%y)
+        y = y + (p(i)%y + p(j)%y)* &
+          & (p(i)%x*p(j)%y - p(j)%x*p(i)%y)
+      end do
+
+      x = x/(6.0*a)
+      y = y/(6.0*a)
+    end associate
+  end associate
+end function centroid
 
 end module module_geometry

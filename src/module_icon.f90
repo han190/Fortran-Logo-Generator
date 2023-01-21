@@ -1,6 +1,7 @@
 module module_logo
 
 use module_geometry
+use module_utility
 implicit none
 
 !> Icon type
@@ -19,10 +20,10 @@ type :: logo_type
 
 contains
 
-  procedure :: read_parameters
-  procedure :: compute_curve
+  procedure :: read => read_parameters
+  procedure :: compute
   procedure :: blueprint
-  procedure, nopass :: draw
+  procedure :: draw
 
 end type logo_type
 
@@ -75,7 +76,7 @@ subroutine read_parameters(self, filename)
   end if
 end subroutine read_parameters
 
-subroutine compute_curve(self, output)
+subroutine compute(self, output)
   class(logo_type), intent(inout) :: self
   logical, intent(in), optional :: output
   type(point_type), allocatable :: temp(:)
@@ -196,57 +197,50 @@ subroutine compute_curve(self, output)
     write (unit, fmt) self%boundary
     close (unit)
   end if
-end subroutine compute_curve
+end subroutine compute
 
-subroutine write_strs(unit, messages)
-  integer, intent(in) :: unit
-  character(*), intent(in) :: messages(:)
-  integer :: i
-
-  do i = 1, size(messages)
-    write (unit, "(a)") trim(messages(i))
-  end do
-end subroutine write_strs
-
-elemental function num_digits(val) result(ret)
-  integer, intent(in) :: val
-  integer :: ret
-
-  ret = floor(log10(real(val))) + 1
-end function num_digits
-
-pure function str(val) result(ret)
-  integer, intent(in) :: val
-  character(:), allocatable :: ret
-
-  allocate (character(len=num_digits(val)) :: ret)
-  write (ret, "(i0)") val
-end function str
-
-subroutine draw(size)
+subroutine draw(self, size)
+  class(logo_type), intent(in) :: self
   integer, intent(in), optional :: size
   integer :: unit
-  character(:), allocatable :: messages(:)
-  character(:), allocatable :: size_
+  type(point_type) :: center
+  character(:), allocatable :: &
+    & messages(:), size_, set_output, &
+    & xrange_(:), yrange_(:)
 
   size_ = str(size)
+  center = point_type( &
+    & (self%x(1, 1) + self%x(1, 2))/2, &
+    & (self%y(1, 1) + self%y(1, 2))/2)
+  xrange_ = [character(len=10) :: &
+    & str(center%x - self%side_length/2), &
+    & str(center%x + self%side_length/2)]
+  yrange_ = [character(len=10) :: &
+    & str(center%y - self%side_length/2), &
+    & str(center%y + self%side_length/2)]
+
+  set_output = "set output './data/fortran_logo_"
+
   messages = [character(len=80) :: &
     & "set terminal svg size "//size_//","//size_, &
     & "set key noenhanced", &
     & "set key noautotitle", &
     & "fortran_purple = '#6d5192'", &
-    & "fortran_white = '#FFFFFF'", &
-    & "set xrange [-4.5:4.5]", &
-    & "set yrange [-4.5:4.5]", &
+    & "fortran_white  = '#FFFFFF'", &
+    & "set xrange ["//xrange_(1)//":"//xrange_(2)//"]", &
+    & "set yrange ["//yrange_(1)//":"//yrange_(2)//"]", &
     & "unset border", &
-    & "unset tics", &
+    & "unset tics"//new_line("(a)"), &
     & "set style line 1 lw 2 lc rgb fortran_purple", &
-    & "set style line 2 lw 2 lc rgb fortran_white", &
-    & "set output './data/fortran_logo_"//size_//"x"//size_//".svg'", &
+    & "set style line 2 lw 2 lc rgb fortran_white"//new_line("(a)"), &
+    & set_output//""//size_//"x"//size_//".svg'", &
     & "plot './data/boundary.dat' with filledcurves ls 1, \", &
     & "  './data/letter_F.dat' with filledcurves ls 2", &
-    & "set output './data/fortran_logo_inverted_"//size_//"x"//size_//".svg'", &
-    & "plot './data/letter_F.dat' with filledcurves ls 1"]
+    & set_output//"inverted_"//size_//"x"//size_//".svg'", &
+    & "plot './data/letter_F.dat' with filledcurves ls 1", &
+    & set_output//"trans_"//size_//"x"//size_//".svg'", &
+    & "plot './data/boundary.dat' with lines ls 1, \", &
+    & "  './data/letter_F.dat' with filledcurves ls 1"]
 
   open (newunit=unit, file='./data/.plot.plt')
   call write_strs(unit, messages)
