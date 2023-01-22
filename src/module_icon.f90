@@ -6,31 +6,44 @@ implicit none
 
 !> Icon type
 type :: logo_type
-
+  !> Number of points used when
+  !> drawing curves.
   integer :: num_curves
+  !> Side length of the logo.
+  !> (Assuming square canvas)
   real :: side_length
+  !> Radius of rounded corners.
   real :: corner_radius
+  !> A reference point
   type(point_type) :: reference_point
+  !> Essential horiozntal coordinates.
   real, allocatable :: x(:, :)
+  !> Essential vertical coordinates
   real, allocatable :: y(:, :)
-  type(points_type) :: letter_piles(3)
+  !> Piles for letter "F"
+  type(point_type), allocatable :: letter_piles(:)
+  !> The letter "F"
   type(point_type), allocatable :: letter_F(:)
+  !> Piles for the rounded corner square
   type(point_type), allocatable :: boundary_piles(:)
+  !> The rounded corner square
   type(point_type), allocatable :: boundary(:)
-
 contains
-
-  procedure :: read => read_parameters
+  !> Initialization
+  procedure :: initialize
+  !> Compute the logo
   procedure :: compute
+  !> Draw a blueprint based on
+  !> default parameters.
   procedure :: blueprint
+  !> Draw logo
   procedure :: draw
-
 end type logo_type
 
 contains
 
 !> Initialization
-subroutine read_parameters(self, filename)
+subroutine initialize(self, filename)
   class(logo_type), intent(inout) :: self
   character(*), intent(in), optional :: filename
   real :: reference_point(2), x(3, 3), y(3, 3)
@@ -59,6 +72,8 @@ subroutine read_parameters(self, filename)
 
   else
 
+    !> IF namelist is not provided, use
+    !> use default a parameter set.
     self%num_curves = 50
     self%side_length = 7.4
     self%corner_radius = 0.7
@@ -74,7 +89,7 @@ subroutine read_parameters(self, filename)
        & +0.45, +1.50, +1.75], [3, 3])
 
   end if
-end subroutine read_parameters
+end subroutine initialize
 
 subroutine compute(self, output)
   class(logo_type), intent(inout) :: self
@@ -85,54 +100,48 @@ subroutine compute(self, output)
   character(:), allocatable :: fmt
   integer :: unit, i
 
+  allocate (self%letter_piles(18))
   associate ( &
     c => self%reference_point, &
     n => self%num_curves, &
     x => self%x, &
     y => self%y)
 
-    associate (p => self%letter_piles(1))
-      p%points = [ &
-        & point_type(x(3, 1), y(1, 1)), &
+    associate (F => self%letter_piles(1:6))
+      F = [point_type(x(3, 1), y(1, 1)), &
         & point_type(x(1, 1), y(1, 1)), &
         & point_type(x(1, 1), y(2, 1)), &
         & point_type(x(2, 1), y(2, 1)), &
         & point_type(x(3, 1), y(2, 1)), &
         & point_type(x(3, 1), y(3, 1))]
-      temp = [p%points(1:3), &
-        & bezier_curve(p%points(4:6), n)]
+      temp = [F(1:3), bezier_curve(F(4:6), n)]
       self%letter_F = [ &
         & mirror(temp, 1, .true., c%x), &
         & temp, mirror(temp, 2, .true., 0.0)]
     end associate
 
-    associate (p => self%letter_piles(2))
+    associate (F => self%letter_piles(7:12))
       point = self%letter_F(1)
-      p%points = [ &
-        & point_type(x(1, 2), y(1, 2)), &
+      F = [point_type(x(1, 2), y(1, 2)), &
         & point_type(x(1, 2), y(2, 2)), &
         & point_type(x(2, 2), y(2, 2)), &
         & point_type(x(2, 2), y(3, 2)), &
         & point_type(x(3, 2), y(3, 2)), &
         & point_type(point%x, y(3, 2))]
-      temp = [p%points(1:2), &
-        & bezier_curve(p%points(3:5), n), &
-        & p%points(6)]
+      temp = [F(1:2), bezier_curve(F(3:5), n), F(6)]
       self%letter_F = [self%letter_F, temp]
     end associate
 
-    associate (p => self%letter_piles(3))
+    associate (F => self%letter_piles(13:18))
       point = self%letter_F(size(self%letter_F))
-      p%points = [ &
+      F = [ &
         & point_type(point%x, y(1, 3)), &
         & point_type(x(1, 3), y(1, 3)), &
         & point_type(x(2, 3), y(1, 3)), &
         & point_type(x(2, 3), y(2, 3)), &
         & point_type(x(2, 3), y(3, 3)), &
         & point_type(x(3, 3), y(3, 3))]
-      temp = [p%points(1), &
-        & bezier_curve(p%points(2:4), n), &
-        & p%points(5:6)]
+      temp = [F(1), bezier_curve(F(2:4), n), F(5:6)]
       self%letter_F = [self%letter_F, temp, &
         & mirror(temp, 2, .true., c%y), &
         & self%letter_F(1)]
@@ -157,12 +166,12 @@ subroutine compute(self, output)
         & point_type(+s/2 - r, -s/2)]
     end associate
 
-    associate (p => self%boundary_piles)
+    associate (B => self%boundary_piles)
       self%boundary = [ &
-        & bezier_curve(p(1:3), n), &
-        & bezier_curve(p(4:6), n), &
-        & bezier_curve(p(7:9), n), &
-        & bezier_curve(p(10:12), n), p(1)]
+        & bezier_curve(B(1:3), n), &
+        & bezier_curve(B(4:6), n), &
+        & bezier_curve(B(7:9), n), &
+        & bezier_curve(B(10:12), n), B(1)]
     end associate
   end associate
 
@@ -182,7 +191,7 @@ subroutine compute(self, output)
     open (newunit=unit, file='./data/letter_pile.dat')
     write (unit, "('#', a11, 1x, a12)") "x", "y"
     do i = 1, size(self%letter_piles)
-      write (unit, fmt) self%letter_piles(i)%points
+      write (unit, fmt) self%letter_piles
     end do
     write (unit, fmt) self%reference_point
     close (unit)
@@ -235,12 +244,13 @@ subroutine draw(self, size)
     & "set style line 2 lw 2 lc rgb fortran_white"//new_line("(a)"), &
     & set_output//""//size_//"x"//size_//".svg'", &
     & "plot './data/boundary.dat' with filledcurves ls 1, \", &
-    & "  './data/letter_F.dat' with filledcurves ls 2", &
+    & "     './data/letter_F.dat' with filledcurves ls 2", &
+    & "set style fill solid 0.90 border", &
     & set_output//"inverted_"//size_//"x"//size_//".svg'", &
     & "plot './data/letter_F.dat' with filledcurves ls 1", &
     & set_output//"trans_"//size_//"x"//size_//".svg'", &
     & "plot './data/boundary.dat' with lines ls 1, \", &
-    & "  './data/letter_F.dat' with filledcurves ls 1"]
+    & "     './data/letter_F.dat' with filledcurves ls 1"]
 
   open (newunit=unit, file='./data/.plot.plt')
   call write_strs(unit, messages)
@@ -256,8 +266,8 @@ subroutine blueprint(self, dark_mode)
   integer :: unit
   character(:), allocatable :: fmt(:)
   character(:), allocatable :: msg, ls
-  real :: bdy
-  integer :: i, j, k
+  real :: bdy, fac
+  integer :: i, j
   character(:), allocatable :: mode
 
   if (present(dark_mode)) then
@@ -271,38 +281,37 @@ subroutine blueprint(self, dark_mode)
   end if
 
   associate ( &
-    n => self%num_curves, c => self%reference_point, &
-    x => self%x, y => self%y)
+    c => self%reference_point, &
+    n => self%num_curves, &
+    x => self%x, &
+    y => self%y)
 
     open (newunit=unit, file='./data/.plot.plt')
 
-    call write_("set terminal svg size 900, 900 font 'Cascadia Mono, 15'")
+    call write_("set terminal svg size 900, 900 font ', 14'")
     call write_("set key noautotitle")
     call write_("light_color = '#6d5192'")
     call write_("dark_color = '#d79921'")
     call write_("color = "//mode//"_color")
     call write_("set xrange [-4.5:4.5]")
-    call write_("set yrange [-4.5:4.5]")
+    call write_("set yrange [-4.5:4.5]"//new_line("(a)"))
 
-    ls = 'set style line '
-    call write_(ls//"1 linewidth 2 linecolor rgb color")
-    call write_(ls//"2 linewidth 1 linecolor rgb color linetype 0")
-    call write_(ls//"3 linewidth 1.5 linecolor rgb color linetype 0")
-    call write_(ls//"4 linecolor rgb color pointtype 7 pointsize .75")
+    call write_("set style line 1 lw 2 lc rgb color")
+    call write_("set style line 2 lw 1 lc rgb color lt 0")
+    call write_("set style line 3 lw 1.5 lc rgb color lt 0")
+    call write_("set style line 4 lc rgb color pt 7 ps .75")
     call write_("set tics format ''")
     call write_("unset border")
-    call write_("set tics scale 0")
+    call write_("set tics scale 0"//new_line("(a)"))
     call write_("set output './data/blueprint_"//mode//".svg'")
 
     allocate (character(len=500) :: fmt(4))
-    fmt(1) = "('set label', a, 1x, 'at', f6.2, ',', f6.2, "// &
-       & "1x, 'center front textcolor rgb color')"
     fmt(2) = "('set arrow', 1x, "// &
-       & "2(a, 1x, f6.2, ',', f6.2, 1x), 'nohead linestyle 2')"
+       & "2(a, 1x, f6.2, ',', f6.2, 1x), 'nohead ls 2')"
     fmt(3) = "('set arrow', 1x, "// &
-       & "2(a, 1x, f6.2, ',', f6.2, 1x), 'nohead linestyle 3')"
+       & "2(a, 1x, f6.2, ',', f6.2, 1x), 'nohead ls 3')"
     fmt(4) = "(a, f6.2, ',', f6.2, "// &
-       & "' textcolor rgb color offset ', f6.2, ',', f6.2, ' center')"
+       & "' tc rgb color offset ', f6.2, ',', f6.2, 1x, a)"
 
     allocate (character(len=9) :: msg)
     do j = 1, 3
@@ -311,14 +320,25 @@ subroutine blueprint(self, dark_mode)
         bdy = self%side_length/2
         write (unit, trim(fmt(2))) 'from', x(i, j), -bdy, 'to', x(i, j), bdy
         write (unit, trim(fmt(2))) 'from', -bdy, y(i, j), 'to', bdy, y(i, j)
-        write (msg, "(a, i0, ',', i0, a)") '"X(', i, j, ')"'
 
-        bdy = merge(-3.85, 3.85, mod((j - 1)*3 + i, 2) == 1)
-        write (unit, trim(fmt(1))) msg, x(i, j), bdy
-        bdy = merge(-4.05, 4.05, mod((j - 1)*3 + i, 2) == 1)
-        msg(2:2) = 'Y'
-        write (unit, trim(fmt(1))) msg, bdy, y(i, j)
+        offset = [-1.4, 0.0]
+        msg = 'right'
+        write (unit, trim(fmt(4))) &
+          & "set label 'Y("//str(i)//","//str(j)//")' at ", &
+          & self%boundary_piles(2)%x, y(i, j), offset, msg
 
+        msg = 'right rotate by 90'
+        if (i == 3 .and. j == 3) then
+          offset = [1.4, -0.7]
+          write (unit, trim(fmt(4))) &
+            & "set label '=X("//str(i)//","//str(j)//")' at ", &
+            & x(i, j), self%boundary_piles(2)%y, offset, msg
+        else
+          offset = [0.0, -0.7]
+          write (unit, trim(fmt(4))) &
+            & "set label 'X("//str(i)//","//str(j)//")' at ", &
+            & x(i, j), self%boundary_piles(2)%y, offset, msg
+        end if
       end do
     end do
 
@@ -331,62 +351,51 @@ subroutine blueprint(self, dark_mode)
     write (unit, trim(fmt(3))) 'from', c%x, -bdy, 'to', c%x, bdy
     write (unit, trim(fmt(3))) 'from', -bdy, c%y, 'to', bdy, c%y
 
-    bdy = 3.85
-    msg = "'RX'"
-    write (unit, trim(fmt(1))) msg, c%x, -bdy
-    msg = "'RY'"
-    write (unit, trim(fmt(1))) msg, -bdy, c%y
+    fac = 0.7
+    write (unit, trim(fmt(4))) &
+      "set label '(RX, RY)' at", c, fac, -fac, 'left'
 
-    write (unit, fmt(4)) "set label 'R' at ", c, 1.2, -0.6
-    deallocate (msg)
-    allocate (character(len=20) :: msg)
+    do i = 1, size(self%letter_piles)
+      msg = 'left'
+      select case (i)
+      case (1:2)
+        offset = [+fac, -fac]
+      case (4, 13:16)
+        offset = [+fac, -fac]
+      case default
+        offset = [+fac, +fac]
+      end select
 
-    k = 1
-    do i = 1, 3
-      do j = 1, size(self%letter_piles(i)%points)
-
-        select case (k)
-        case (7)
-          offset = [-1.4, -0.6]
-        case (8)
-          offset = [-1.4, +0.6]
-        case (4:5, 13:16)
-          offset = [+1.4, -0.6]
-        case default
-          offset = [+1.4, +0.6]
-        end select
-
-        write (msg, "(a, i0, a)") "set label 'F", k, "' at "
-        write (unit, trim(fmt(4))) msg, &
-          & self%letter_piles(i)%points(j), offset
-        k = k + 1
-
-      end do
+      write (unit, trim(fmt(4))) &
+        & "set label 'B"//str(i)//"' at ", &
+        & self%letter_piles(i), offset, msg
     end do
 
     do i = 1, size(self%boundary_piles)
+      msg = 'left'
       select case (i)
       case (2)
-        offset = [-1.4, -0.6]
-      case (4:6)
-        offset = [-1.4, +0.6]
-      case (7, 9)
-        offset = [-1.4, -0.6]
-      case (10:12)
-        offset = [+1.8, -0.6]
+        offset = [+fac, -fac]
+      case (4)
+        offset = [+fac, -fac]
+      case (10:11)
+        offset = [+fac, -fac]
+      case (12)
+        offset = [-fac, +fac]
+        msg = 'right'
       case default
-        offset = [+1.4, +0.6]
+        offset = [+fac, +fac]
       end select
 
-      write (msg, "(a, i0, a)") "set label 'B", i, "' at "
-      write (unit, trim(fmt(4))) msg, &
-        & self%boundary_piles(i), offset
+      write (unit, trim(fmt(4))) &
+        & "set label 'B"//str(i)//"' at ", &
+        & self%boundary_piles(i), offset, msg
     end do
 
-    call write_("plot './data/letter_F.dat' with lines linestyle 1, \")
-    call write_("     './data/boundary.dat' with lines linestyle 1, \")
-    call write_("     './data/letter_pile.dat' using 1:2 with point linestyle 4, \")
-    call write_("     './data/boundary_pile.dat' using 1:2 with point linestyle 4")
+    call write_("plot './data/letter_F.dat' w lines ls 1, \")
+    call write_("     './data/boundary.dat' w lines ls 1, \")
+    call write_("     './data/letter_pile.dat' u 1:2 w point ls 4, \")
+    call write_("     './data/boundary_pile.dat' u 1:2 w point ls 4")
   end associate
 
   close (unit)
