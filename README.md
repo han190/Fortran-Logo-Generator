@@ -16,6 +16,11 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 
 ## Parameterization
 
+<p align="center">
+  <source media="(prefers-color-scheme: dark)" srcset="data/blueprint_dark.svg">
+  <img width="600" height="600" alt="Text changing depending on mode. Light: 'So light!' Dark: 'So dark!'" src="data/blueprint_light.svg">
+</p>
+
 The whole "F" letter could be parameterized by six parameters:
 
 * `num_curves`, the number of points used when drawing curves.
@@ -25,7 +30,4 @@ The whole "F" letter could be parameterized by six parameters:
 * `x`, a 3 x 3 matrix for horizontal coordinates.
 * `y`, a 3 x 3 matrix for vertical coordinates.
 
-As shown in the diagram below, these parameters are converted into 18 coordinates (`F1`-`F18`) and a reference point (`R`) for the letter "F" and 12 coordinates for the rounded-corner boundary (`B1`-`B12`). The "F" points can be further categorized into three groups: (1) F1 - F6, (2) F7 - F12, and (3) F13 - F18. The whole logo could be quickly drawn by mirroring group 1 with respect to `RX` and `RY`, and mirroring group 3 with respect to `RX`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve). The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
-
-![](data/blueprint_dark.svg#gh-dark-mode-only)
-![](data/blueprint_light.svg#gh-light-mode-only)
+As shown in the diagram above, these parameters are converted into 18 coordinates (`F1`-`F18`) and a reference point (`R`) for the letter "F" and 12 coordinates for the rounded-corner boundary (`B1`-`B12`). The "F" points can be further categorized into three groups: (1) F1 - F6, (2) F7 - F12, and (3) F13 - F18. The whole logo could be quickly drawn by mirroring group 1 with respect to `RX` and `RY`, and mirroring group 3 with respect to `RX`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve). The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
