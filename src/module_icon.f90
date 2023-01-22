@@ -219,14 +219,15 @@ subroutine compute(self, output)
   end if
 end subroutine compute
 
-subroutine draw(self, size)
+subroutine draw(self, size, ext)
   class(logo_type), intent(in) :: self
-  integer, intent(in), optional :: size
+  integer, intent(in) :: size
+  character(*), intent(in) :: ext
   integer :: unit
   type(point_type) :: center
   character(:), allocatable :: &
     & messages(:), size_, set_output, &
-    & xrange_(:), yrange_(:)
+    & xrange_(:), yrange_(:), set_terminal
 
   size_ = str(size)
   center = point_type( &
@@ -240,8 +241,19 @@ subroutine draw(self, size)
     & str(center%y + self%side_length/2)]
 
   set_output = "set output './data/fortran_logo_"
+  select case (ext)
+  case ('png')
+    set_terminal = "set terminal png size "// &
+      & size_//","//size_//" transparent truecolor"
+  case ('svg')
+    set_terminal = "set terminal svg size "// &
+      & size_//","//size_//" dynamic"
+  case default
+    error stop "Invalid extension."
+  end select
+
   messages = [character(len=80) :: &
-    & "set terminal svg size "//size_//","//size_//" dynamic", &
+    & set_terminal, &
     & "unset key", &
     & "fortran_purple1 = '#a07fda'", &
     & "fortran_purple2 = '#6d5192'", &
@@ -251,20 +263,20 @@ subroutine draw(self, size)
     & "unset border", &
     & "unset tics"//new_line("(a)"), &
     & "set style line 1 lw 2 lc rgb fortran_purple2", &
-    & "set style line 2 lw 1 lc rgb fortran_purple3", &
-    & "set style line 3 lw 1 lc rgb fortran_purple1"//new_line("(a)"), &
-    & set_output//""//size_//"x"//size_//".svg'", &
+    & "set style line 2 lw 2 lc rgb fortran_purple3", &
+    & "set style line 3 lw 2 lc rgb fortran_purple1"//new_line("(a)"), &
+    & set_output//""//size_//"x"//size_//"."//ext//"'", &
     & "plot './data/logo.dat' with filledcurves closed ls 1, \", &
     & "     './data/letter_F.dat' with lines ls 2, \", &
     & "     './data/boundary.dat' with lines ls 2", &
-    & set_output//"inverted_"//size_//"x"//size_//".svg'", &
+    & set_output//"inverted_"//size_//"x"//size_//"."//ext//"'", &
     & "plot './data/letter_F.dat' with filledcurves ls 1, \", &
     & "     './data/letter_F.dat' with lines ls 2", &
-    & set_output//""//size_//"x"//size_//"_dark.svg'", &
+    & set_output//""//size_//"x"//size_//"_dark."//ext//"'", &
     & "plot './data/logo.dat' with filledcurves closed ls 3, \", &
     & "     './data/letter_F.dat' with lines ls 2, \", &
     & "     './data/boundary.dat' with lines ls 2", &
-    & set_output//"inverted_"//size_//"x"//size_//"_dark.svg'", &
+    & set_output//"inverted_"//size_//"x"//size_//"_dark."//ext//"'", &
     & "plot './data/letter_F.dat' with filledcurves ls 3, \", &
     & "     './data/letter_F.dat' with lines ls 2"]
 
@@ -281,7 +293,7 @@ subroutine blueprint(self, dark_mode)
   real :: offset(2)
   integer :: unit
   character(:), allocatable :: fmt(:)
-  character(:), allocatable :: msg, ls
+  character(:), allocatable :: msg
   real :: bdy, fac
   integer :: i, j
   character(:), allocatable :: mode

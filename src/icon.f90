@@ -1,15 +1,11 @@
 program main
 
-use module_geometry
-use module_logo
+use module_driver
 implicit none
 
-type(logo_type) :: logo
-
-call logo%initialize('parameters.nml')
-call logo%compute()
-call logo%blueprint()
-call logo%blueprint(dark_mode=.false.)
-call logo%draw(256)
+call get_blueprint(.false.)
+call get_blueprint(.true.)
+call get_logo(256, 'svg')
+call get_logo(256, 'png')
 
 end program main

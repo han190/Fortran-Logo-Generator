@@ -247,9 +247,7 @@
 		L142.91,197.37 L107.18,180.93  '/></g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>'./data/letter_F.dat'</title>
-<g fill="none" color="white" stroke="rgb(109,  81, 146)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 66,  53,  91)'  d='M107.18,180.93 L107.18,181.26 L107.18,181.58 L107.19,181.90 L107.20,182.22 L107.21,182.53 L107.22,182.84 L107.23,183.15
 		L107.25,183.45 L107.27,183.75 L107.29,184.05 L107.32,184.35 L107.34,184.64 L107.37,184.93 L107.40,185.21 L107.43,185.49
 		L107.47,185.77 L107.51,186.04 L107.55,186.31 L107.59,186.58 L107.63,186.85 L107.68,187.11 L107.73,187.37 L107.78,187.62
@@ -331,7 +329,7 @@
 		L107.18,180.93  '/></g>
 	</g>
 	<g id="gnuplot_plot_3" ><title>'./data/boundary.dat'</title>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 66,  53,  91)'  d='M40.82,239.22 L40.43,239.22 L40.03,239.21 L39.65,239.20 L39.26,239.19 L38.89,239.17 L38.51,239.14 L38.14,239.12
 		L37.77,239.09 L37.41,239.05 L37.05,239.01 L36.69,238.97 L36.34,238.92 L35.99,238.87 L35.65,238.81 L35.31,238.75
 		L34.98,238.68 L34.65,238.62 L34.32,238.54 L33.99,238.46 L33.67,238.38 L33.36,238.30 L33.05,238.21 L32.74,238.11
@@ -384,8 +382,6 @@
 		L215.10,238.97 L214.74,239.01 L214.38,239.05 L214.02,239.09 L213.65,239.12 L213.28,239.14 L212.90,239.17 L212.53,239.19
 		L212.14,239.20 L211.76,239.21 L211.36,239.22 L210.97,239.22 L40.82,239.22  '/></g>
 	</g>
-<g fill="none" color="white" stroke="rgb( 66,  53,  91)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="black" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">

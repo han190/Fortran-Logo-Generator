@@ -171,9 +171,7 @@
 		L107.18,180.93  '/></g>
 	</g>
 	<g id="gnuplot_plot_2" ><title>'./data/letter_F.dat'</title>
-<g fill="none" color="white" stroke="rgb(109,  81, 146)" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
-<g fill="none" color="black" stroke="currentColor" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
+<g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 	<path stroke='rgb( 66,  53,  91)'  d='M107.18,180.93 L107.18,181.26 L107.18,181.58 L107.19,181.90 L107.20,182.22 L107.21,182.53 L107.22,182.84 L107.23,183.15
 		L107.25,183.45 L107.27,183.75 L107.29,184.05 L107.32,184.35 L107.34,184.64 L107.37,184.93 L107.40,185.21 L107.43,185.49
 		L107.47,185.77 L107.51,186.04 L107.55,186.31 L107.59,186.58 L107.63,186.85 L107.68,187.11 L107.73,187.37 L107.78,187.62
@@ -254,8 +252,6 @@
 		L127.88,134.72 L127.55,134.69 L127.23,134.66 L126.90,134.64 L126.57,134.62 L126.23,134.61 L125.90,134.61 L107.18,134.61
 		L107.18,180.93  '/></g>
 	</g>
-<g fill="none" color="white" stroke="rgb( 66,  53,  91)" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
-</g>
 <g fill="none" color="black" stroke="currentColor" stroke-width="2.00" stroke-linecap="butt" stroke-linejoin="miter">
 </g>
 <g fill="none" color="black" stroke="black" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter">
