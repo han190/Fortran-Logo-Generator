@@ -12,10 +12,10 @@ call logo%compute()
 call logo%blueprint()
 call logo%blueprint(dark_mode=.false.)
 
-! i = 160
-! do while (i <= 1000)
-!   call logo%draw(i)
-!   i = i*2
-! end do
+i = 160
+do while (i <= 1000)
+  call logo%draw(i)
+  i = i*2
+end do
 
 end program main

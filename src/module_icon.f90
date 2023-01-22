@@ -185,7 +185,7 @@ subroutine compute(self, output)
     fmt = "(2(f12.6, 1x))"
     open (newunit=unit, file='./data/logo.dat')
     write (unit, "('#', a11, 1x, a12)") "x", "y"
-    write (unit, fmt) self%letter_F
+    write (unit, fmt) self%letter_F(2:size(self%letter_F))
     write (unit, fmt) self%x(2, 3), self%y(2, 1)
     write (unit, fmt) self%x(2, 3), self%y(1, 1)
     write (unit, fmt) self%boundary(size(self%boundary):1:-1)
@@ -247,20 +247,21 @@ subroutine draw(self, size)
     & "set key noautotitle", &
     & "fortran_purple = '#6d5192'", &
     & "fortran_white  = '#FFFFFF'", &
+    & "fortran_edge   = '#42355b'", &
     & "set xrange ["//xrange_(1)//":"//xrange_(2)//"]", &
     & "set yrange ["//yrange_(1)//":"//yrange_(2)//"]", &
     & "unset border", &
     & "unset tics"//new_line("(a)"), &
     & "set style line 1 lw 2 lc rgb fortran_purple", &
+    & "set style line 3 lw 1 lc rgb fortran_edge", &
     & "set style line 2 lw 2 lc rgb fortran_white"//new_line("(a)"), &
     & set_output//""//size_//"x"//size_//".svg'", &
-    & "plot './data/logo.dat' with filledcurves ls 1", &
-    & "set style fill solid 0.90 border", &
+    & "plot './data/logo.dat' with filledcurves closed ls 1, \", &
+    & "     './data/letter_F.dat' with lines ls 3, \", &
+    & "     './data/boundary.dat' with lines ls 3", &
     & set_output//"inverted_"//size_//"x"//size_//".svg'", &
-    & "plot './data/letter_F.dat' with filledcurves ls 1", &
-    & set_output//"trans_"//size_//"x"//size_//".svg'", &
-    & "plot './data/boundary.dat' with lines ls 1, \", &
-    & "     './data/letter_F.dat' with filledcurves ls 1"]
+    & "plot './data/letter_F.dat' with filledcurves ls 1, \", &
+    & "     './data/letter_F.dat' with lines ls 3"]
 
   open (newunit=unit, file='./data/.plot.plt')
   call write_strs(unit, messages)
