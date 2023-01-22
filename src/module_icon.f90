@@ -309,13 +309,13 @@ subroutine blueprint(self, dark_mode)
 
     open (newunit=unit, file='./data/.plot.plt')
 
-    call write_("set terminal svg size 900, 900 font ', 14'")
+    call write_("set terminal svg size 600, 600 font ', 12'")
     call write_("set key noautotitle")
     call write_("light_color = '#6d5192'")
     call write_("dark_color = '#d79921'")
     call write_("color = "//mode//"_color")
-    call write_("set xrange [-4.5:4.5]")
-    call write_("set yrange [-4.5:4.5]"//new_line("(a)"))
+    call write_("set xrange [-4.2:4.2]")
+    call write_("set yrange [-4.2:4.2]"//new_line("(a)"))
 
     call write_("set style line 1 lw 2 lc rgb color")
     call write_("set style line 2 lw 1 lc rgb color lt 0")
