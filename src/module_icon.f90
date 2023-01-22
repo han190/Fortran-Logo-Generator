@@ -240,7 +240,7 @@ subroutine draw(self, size, ext)
     & str(center%y - self%side_length/2), &
     & str(center%y + self%side_length/2)]
 
-  set_output = "set output './data/fortran_logo_"
+  set_output = "set output './data/fortran_logo"
   select case (ext)
   case ('png')
     set_terminal = "set terminal png size "// &
@@ -262,23 +262,16 @@ subroutine draw(self, size, ext)
     & "set yrange ["//yrange_(1)//":"//yrange_(2)//"]", &
     & "unset border", &
     & "unset tics"//new_line("(a)"), &
-    & "set style line 1 lw 2 lc rgb fortran_purple2", &
-    & "set style line 2 lw 2 lc rgb fortran_purple3", &
-    & "set style line 3 lw 2 lc rgb fortran_purple1"//new_line("(a)"), &
-    & set_output//""//size_//"x"//size_//"."//ext//"'", &
-    & "plot './data/logo.dat' with filledcurves closed ls 1, \", &
-    & "     './data/letter_F.dat' with lines ls 2, \", &
-    & "     './data/boundary.dat' with lines ls 2", &
-    & set_output//"inverted_"//size_//"x"//size_//"."//ext//"'", &
-    & "plot './data/letter_F.dat' with filledcurves ls 1, \", &
-    & "     './data/letter_F.dat' with lines ls 2", &
-    & set_output//""//size_//"x"//size_//"_dark."//ext//"'", &
-    & "plot './data/logo.dat' with filledcurves closed ls 3, \", &
-    & "     './data/letter_F.dat' with lines ls 2, \", &
-    & "     './data/boundary.dat' with lines ls 2", &
-    & set_output//"inverted_"//size_//"x"//size_//"_dark."//ext//"'", &
-    & "plot './data/letter_F.dat' with filledcurves ls 3, \", &
-    & "     './data/letter_F.dat' with lines ls 2"]
+    & "set style line 1 lw 2 lc rgb fortran_purple1", &
+    & "set style line 2 lw 2 lc rgb fortran_purple2", &
+    & "set style line 3 lw 2 lc rgb fortran_purple3"//new_line("(a)"), &
+    & set_output//"."//ext//"'", &
+    & "plot './data/logo.dat' with filledcurves closed ls 2, \", &
+    & "     './data/letter_F.dat' with lines ls 3, \", &
+    & "     './data/boundary.dat' with lines ls 3", &
+    & set_output//"_inverted."//ext//"'", &
+    & "plot './data/letter_F.dat' with filledcurves ls 2, \", &
+    & "     './data/letter_F.dat' with lines ls 3"]
 
   open (newunit=unit, file='./data/.plot.plt')
   call write_strs(unit, messages)
