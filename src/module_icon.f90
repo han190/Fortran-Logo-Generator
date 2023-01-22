@@ -183,12 +183,23 @@ subroutine compute(self, output)
 
   if (output_) then
     fmt = "(2(f12.6, 1x))"
+    open (newunit=unit, file='./data/logo.dat')
+    write (unit, "('#', a11, 1x, a12)") "x", "y"
+    write (unit, fmt) self%letter_F
+    write (unit, fmt) self%x(2, 3), self%y(2, 1)
+    write (unit, fmt) self%x(2, 3), self%y(1, 1)
+    write (unit, fmt) self%boundary(size(self%boundary):1:-1)
+    write (unit, fmt) self%x(2, 3), self%y(1, 1)
+    write (unit, fmt) self%x(2, 3), self%y(2, 1)
+    write (unit, fmt) self%letter_F(size(self%letter_F))
+    close (unit)
+
     open (newunit=unit, file='./data/letter_F.dat')
     write (unit, "('#', a11, 1x, a12)") "x", "y"
     write (unit, fmt) self%letter_F
     close (unit)
 
-    open (newunit=unit, file='./data/letter_pile.dat')
+    open (newunit=unit, file='./data/letter_piles.dat')
     write (unit, "('#', a11, 1x, a12)") "x", "y"
     do i = 1, size(self%letter_piles)
       write (unit, fmt) self%letter_piles
@@ -196,7 +207,7 @@ subroutine compute(self, output)
     write (unit, fmt) self%reference_point
     close (unit)
 
-    open (newunit=unit, file='./data/boundary_pile.dat')
+    open (newunit=unit, file='./data/boundary_piles.dat')
     write (unit, "('#', a11, 1x, a12)") "x", "y"
     write (unit, fmt) self%boundary_piles
     close (unit)
@@ -243,8 +254,7 @@ subroutine draw(self, size)
     & "set style line 1 lw 2 lc rgb fortran_purple", &
     & "set style line 2 lw 2 lc rgb fortran_white"//new_line("(a)"), &
     & set_output//""//size_//"x"//size_//".svg'", &
-    & "plot './data/boundary.dat' with filledcurves ls 1, \", &
-    & "     './data/letter_F.dat' with filledcurves ls 2", &
+    & "plot './data/logo.dat' with filledcurves ls 1", &
     & "set style fill solid 0.90 border", &
     & set_output//"inverted_"//size_//"x"//size_//".svg'", &
     & "plot './data/letter_F.dat' with filledcurves ls 1", &
@@ -394,8 +404,8 @@ subroutine blueprint(self, dark_mode)
 
     call write_("plot './data/letter_F.dat' w lines ls 1, \")
     call write_("     './data/boundary.dat' w lines ls 1, \")
-    call write_("     './data/letter_pile.dat' u 1:2 w point ls 4, \")
-    call write_("     './data/boundary_pile.dat' u 1:2 w point ls 4")
+    call write_("     './data/letter_piles.dat' u 1:2 w point ls 4, \")
+    call write_("     './data/boundary_piles.dat' u 1:2 w point ls 4")
   end associate
 
   close (unit)
