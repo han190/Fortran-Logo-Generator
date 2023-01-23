@@ -16,10 +16,10 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 
 ## Parameterization
 
-<p align="center">
-  <source media="(prefers-color-scheme: dark)" src="data/blueprint_dark.svg">
-  <img width="600" height="600" alt="Text changing depending on mode. Light: 'So light!' Dark: 'So dark!'" src="data/blueprint_light.svg">
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="data/blueprint_dark.svg">
+  <image alt="" width=600 height=600 src="data/blueprint_light.svg" align="center">
+</picture>
 
 The whole "F" letter could be parameterized by six parameters:
 
