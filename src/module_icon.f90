@@ -331,8 +331,8 @@ subroutine blueprint(self, dark_mode)
     call write_("unset border")
     call write_("set tics scale 0"//new_line("(a)"))
     call write_("set output './data/blueprint_"//mode//".svg'")
-    call write_("set pixmap 1 './data/F1954.png' "// &
-      & "at first -69, -75 size 138, 150 back")
+    ! call write_("set pixmap 1 './data/F1954.png' "// &
+    !   & "at first -69, -75 size 138, 150 back")
 
     allocate (character(len=500) :: fmt(4))
     fmt(2) = "('set arrow', 1x, "// &
