@@ -16,6 +16,8 @@ type :: logo_type
   real :: corner_radius
   !> A reference point
   type(point_type) :: reference_point
+  !> Offset for hook of "F"
+  real :: hook_offset
   !> Essential horiozntal coordinates.
   real, allocatable :: x(:, :)
   !> Essential vertical coordinates
@@ -47,10 +49,10 @@ subroutine initialize(self, filename)
   class(logo_type), intent(inout) :: self
   character(*), intent(in), optional :: filename
   real :: reference_point(2), x(3, 3), y(3, 3)
-  real :: side_length, corner_radius
+  real :: side_length, corner_radius, hook_offset
   integer :: num_curves
   namelist /parameters/ num_curves, side_length, &
-    & corner_radius, reference_point, x, y
+    & corner_radius, hook_offset, reference_point, x, y
   integer :: unit
   logical :: exist
 
@@ -66,6 +68,7 @@ subroutine initialize(self, filename)
     self%num_curves = num_curves
     self%side_length = side_length
     self%corner_radius = corner_radius
+    self%hook_offset = hook_offset
     self%reference_point = reference_point
     self%x = x
     self%y = y
@@ -74,19 +77,20 @@ subroutine initialize(self, filename)
 
     !> IF namelist is not provided, use
     !> use default a parameter set.
-    self%num_curves = 50
-    self%side_length = 7.4
-    self%corner_radius = 0.7
-    self%reference_point = [-1.2800, +0.1247]
+    self%num_curves = 100
+    self%side_length = 185
+    self%corner_radius = 36
+    self%hook_offset = 2.5
+    self%reference_point = [-29.45, +3.15]
     self%x = reshape([ &
-       & -3.00, -2.30, -1.90, &
-       & +3.00, +2.30, +1.25, &
-       & +0.00, +0.60, +1.25], [3, 3])
+       & -69.00, -53.00, -43.7, &
+       & +69.00, +53.00, +28.75, &
+       & +00.00, +13.80, +28.75], [3, 3])
 
     self%y = reshape([ &
-       & -3.00, -2.30, -1.75, &
-       & +3.00, +0.60, +2.30, &
-       & +0.45, +1.50, +1.75], [3, 3])
+       & -75.00, -57.50, -43.75, &
+       & +75.00, +15.00, +57.50, &
+       & +11.25, +37.50, +43.75], [3, 3])
 
   end if
 end subroutine initialize
@@ -142,9 +146,11 @@ subroutine compute(self, output)
         & point_type(x(2, 3), y(3, 3)), &
         & point_type(x(3, 3), y(3, 3))]
       temp = [F(1), bezier_curve(F(2:4), n), F(5:6)]
-      self%letter_F = [self%letter_F, temp, &
-        & mirror(temp, 2, .true., c%y), &
+      temp = [temp, mirror(temp, 2, .true., c%y), &
         & self%letter_F(1)]
+      temp(n + 3)%y = temp(n + 3)%y - self%hook_offset
+      temp(n + 4)%y = temp(n + 4)%y - self%hook_offset
+      self%letter_F = [self%letter_F, temp]
     end associate
 
     associate ( &
@@ -314,8 +320,8 @@ subroutine blueprint(self, dark_mode)
     call write_("light_color = '#6d5192'")
     call write_("dark_color = '#d79921'")
     call write_("color = "//mode//"_color")
-    call write_("set xrange [-4.2:4.2]")
-    call write_("set yrange [-4.2:4.2]"//new_line("(a)"))
+    call write_("set xrange [-110:110]")
+    call write_("set yrange [-110:110]"//new_line("(a)"))
 
     call write_("set style line 1 lw 2 lc rgb color")
     call write_("set style line 2 lw 1 lc rgb color lt 0")
@@ -325,6 +331,8 @@ subroutine blueprint(self, dark_mode)
     call write_("unset border")
     call write_("set tics scale 0"//new_line("(a)"))
     call write_("set output './data/blueprint_"//mode//".svg'")
+    call write_("set pixmap 1 './data/F1954.png' "// &
+      & "at first -69, -75 size 138, 150 back")
 
     allocate (character(len=500) :: fmt(4))
     fmt(2) = "('set arrow', 1x, "// &
