@@ -12,7 +12,7 @@ fpm build
 fpm run -- --blueprint # to print a blueprint
 fpm run -- --logo 300 svg # to print the "F" logo
 ```
-The program is tested under WSL only but it should also work on all linux/mac. Please raise an issue if you spotted one, and pull requests are welcome too!
+The program is tested under WSL only but it should also work on all linux/mac. Please report an issue if you spotted one, and pull requests are welcome too!
 
 ## Parameterization
 
