@@ -15,8 +15,10 @@ type :: logo_type
   !> Side length of the logo.
   !> (Assuming square canvas)
   real :: width, height
-  !> Radius of rounded corners.
-  real :: frame_paras(4)
+  !> Margin
+  real :: margin(4)
+  !> Corner
+  real :: corner(2)
   !> A reference point
   type(point_type) :: reference_point
   !> Offset for hook of "F"
@@ -65,12 +67,13 @@ subroutine initialize(self, filename)
   integer :: num_points(2)
   real :: rad_corners
   real :: width, height
+  real :: margin(4), corner(2)
   real :: frame_paras(4)
   real :: bracket_offset
   real :: reference_point(2)
   real :: hori_anchors(3, 3), vert_anchors(3, 3)
   namelist /parameters/ &
-    & num_points, width, height, frame_paras
+    & num_points, width, height, margin, corner, frame_paras
 
   namelist /letter_paras/ &
     & rad_corners, bracket_offset, &
@@ -86,7 +89,6 @@ subroutine initialize(self, filename)
     & circle_radius, line_width, dash_width
 
   !> Local variables
-  real :: factor(2)
   integer :: unit
   logical :: exist
 
@@ -105,15 +107,23 @@ subroutine initialize(self, filename)
   self%height = height
   ! self%rad_corners = rad_corners*width
 
-  factor = [width, height]/(1.+2.*frame_paras(3:4))
-  self%frame_paras = [width, height, factor]*frame_paras
+  self%corner = corner
 
-  factor = [width, height]/(1.+2.*frame_paras(1:2))
-  self%rad_corners = rad_corners*0.5*(factor(1) + factor(2))
-  self%bracket_offset = bracket_offset*factor(2)
-  self%reference_point = (reference_point - 0.5)*factor
-  self%hori_anchors = (hori_anchors - 0.5)*factor(1)
-  self%vert_anchors = (vert_anchors - 0.5)*factor(2)
+  associate ( &
+    w => width, h => height, m => margin, &
+    r => reference_point, &
+    x => hori_anchors, y => vert_anchors)
+
+    self%rad_corners = 0.5*((h - sum(m(3:4))) + (w - sum(m(1:2))))*rad_corners
+    self%bracket_offset = (h - sum(m(3:4)))*bracket_offset
+
+    self%reference_point = [ &
+      & (-w/2. + m(1)) + (w - sum(m(1:2)))*r(1), &
+      & (-h/2. + m(3)) + (h - sum(m(3:4)))*r(2)]
+
+    self%hori_anchors = (-w/2. + m(1)) + (w - sum(m(1:2)))*x
+    self%vert_anchors = (-h/2. + m(3)) + (h - sum(m(3:4)))*y
+  end associate
 
   self%color = trim(color)
   self%font_family = trim(font_family)
@@ -130,6 +140,7 @@ subroutine compute(self)
   !> Local variables
   type(point_type), allocatable :: temp1(:), temp2(:)
   type(point_type) :: point
+  integer :: i
 
   allocate (self%letter_piles(18))
   allocate (self%boundary_piles(12))
@@ -137,7 +148,7 @@ subroutine compute(self)
     ref => self%reference_point, &
     num => self%num_points, &
     rad => self%rad_corners, &
-    r => self%frame_paras, &
+    c => self%corner, &
     x => self%hori_anchors, &
     y => self%vert_anchors, &
     w => self%width, &
@@ -200,29 +211,24 @@ subroutine compute(self)
       & bezier_curve(F(14:16), num(1)), &
       & rounded_corner(F(17), rad, [+1, -1], num(2), .true.), &
       & rounded_corner(F(18), rad, [-1, -1], num(2), .true.)]
-    temp1 = [temp2, mirror(temp1, 2, .true., ref%y), &
-      & self%letter_F(1)]
+    temp1 = [temp2, mirror(temp1, 2, .true., ref%y)]
     self%letter_F = [self%letter_F, temp1]
 
     self%boundary_piles = [ &
-      & point_type(-w/2 + r(3), -h/2), &
+      & point_type(-w/2 + c(1), -h/2), &
       & point_type(-w/2, -h/2), &
-      & point_type(-w/2, -h/2 + r(4)), &
-      & point_type(-w/2, +h/2 - r(4)), &
+      & point_type(-w/2, -h/2 + c(2)), &
+      & point_type(-w/2, +h/2 - c(2)), &
       & point_type(-w/2, +h/2), &
-      & point_type(-w/2 + r(3), +h/2), &
-      & point_type(+w/2 - r(3), +h/2), &
+      & point_type(-w/2 + c(1), +h/2), &
+      & point_type(+w/2 - c(1), +h/2), &
       & point_type(+w/2, +h/2), &
-      & point_type(+w/2, +h/2 - r(4)), &
-      & point_type(+w/2, -h/2 + r(4)), &
+      & point_type(+w/2, +h/2 - c(2)), &
+      & point_type(+w/2, -h/2 + c(2)), &
       & point_type(+w/2, -h/2), &
-      & point_type(+w/2 - r(3), -h/2)]
+      & point_type(+w/2 - c(1), -h/2)]
 
-    self%boundary = [ &
-      & bezier_curve(B(1:3), num(1)), &
-      & bezier_curve(B(4:6), num(1)), &
-      & bezier_curve(B(7:9), num(1)), &
-      & bezier_curve(B(10:12), num(1)), B(1)]
+    self%boundary = [(bezier_curve(B(i:i + 2), num(1)), i=1, 10, 3)]
   end associate
 end subroutine compute
 

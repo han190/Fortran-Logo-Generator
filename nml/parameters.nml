@@ -5,17 +5,17 @@
   width = 500
   !> Height in pixel
   height = 540          
-  !> Frame parameters
-  !> TODO: change the name to 'margin'
-  !> and 'frame_corner'
-  frame_paras = 0.108, 0.1, 0.108, 0.1 
+  !> Margin <left, right, bottom, top>
+  margin = 25, 25, 27, 27
+  !> corners
+  corner = 25, 27
 /
 
 &letter_paras ! (0. <= para <= 1.)
   !> Radius of rounded corners (suggested: < 0.05)
   rad_corners = 0.01
   !> Bracket offset
-  bracket_offset = 0.04              
+  bracket_offset = 0.02             
   !> Reference point
   reference_point = 0.2875, 0.5235
   !> Horizontal anchors         
@@ -31,8 +31,8 @@
 /
 
 &blueprint
-  ! color = '#6d5192' ! Purple
-  color = '#ca9b3d' ! Yellow
+  color = '#6d5192' ! Purple
+  ! color = '#ca9b3d' ! Yellow
   font_family = 'Arial'
   font_size = '0'
   ! circle_radius = 5
