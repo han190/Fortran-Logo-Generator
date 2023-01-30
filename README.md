@@ -1,16 +1,19 @@
-# Fortran Logo Refined
+# Fortran Logo Generator (Experimental branch)
 
 ## Motivation
 
-The "F" logo designed by Jacobs William (@jacobwilliams) and Milan Curcic (@milancurcic) is based on the F letter shown on the cover of the original IBM Fortran programmer's reference manual in 1956. The idea is brilliant, but the [logo](https://github.com/fortran-lang/assets) uses Clarendon BT font, which, if you look carefully, is not the font used by the [original reference manual](https://en.wikipedia.org/wiki/Programming_language_reference#/media/File:Fortran_acs_cover.jpeg). Therefore, I did some research and figured out a method to parameterize the "F" letter. Since this is a logo refinement for the Fortran programming language, naturally we want to do everything with Fortran:)
+This project has two driving factors:
+
+* To provide a portable Fortran Logo Generator written in modern Fortran, and through the generator
+* To design an "F" letter that closely resembles the "F" on the cover of the [programmer's reference manual](http://bitsavers.informatik.uni-stuttgart.de/pdf/ibm/704/704_FortranProgRefMan_Oct56.pdf).
 
 ## Quick start
 
-The only dependence of the project is gnuplot. To build it
+To compile and execute the program, navigate to the project directory and type
 ```bash
 fpm build
-fpm run -- --blueprint # to print a blueprint
-fpm run -- --logo 300 svg # to print the "F" logo
+fpm run -- --blueprint
+fpm run -- --logo
 ```
 The program is tested under WSL only but it should also work on all linux/mac. Please report an issue if you spotted one, and pull requests are welcome too!
 
@@ -21,13 +24,32 @@ The program is tested under WSL only but it should also work on all linux/mac. P
   <image alt="" width=600 height=600 src="data/blueprint_light.svg" align="center">
 </picture>
 
-The whole "F" letter could be parameterized by six parameters:
+An example of `parameters.nml`
 
-* `num_curves`, the number of points used when drawing curves.
-* `side_length`, the side length of the logo.
-* `corner_radius`, the radius of the rounded corner.
-* `reference_point`, the reference point for mirroring usage.
-* `x`, a 3 x 3 matrix for horizontal coordinates.
-* `y`, a 3 x 3 matrix for vertical coordinates.
+```
+&parameters
+  num_curves        = 20
+  num_rounded       = 10
+  side_length       = 500, 535
+  rounded_radius    = 0.009
+  corner            = 0.107, 0.1, 0.107, 0.1
+  hook_offset       = 0.04
+  reference_point   = -0.43, +0.04
+  x                 = -1.00, -0.8, -0.633333, 
+                      +1.00, +0.766666, +0.416666, 
+                      +0.00, +0.2, +0.416666
+  y                 = -1.00, -0.766666, -0.6, 
+                      +1.00, +0.2, +0.766666, 
+                      +0.15, +0.5, +0.583333
+/
 
-As shown in the diagram above, these parameters are converted into 18 coordinates (`F1`-`F18`) and a reference point (`R`) for the letter "F" and 12 coordinates for the rounded-corner boundary (`B1`-`B12`). The "F" points can be further categorized into three groups: (1) F1 - F6, (2) F7 - F12, and (3) F13 - F18. The whole logo could be quickly drawn by mirroring group 1 with respect to `RX` and `RY`, and mirroring group 3 with respect to `RX`. Notice that all curves are [quadratic bezier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve). The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
+&blueprint
+  ! color             = '#6d5192' ! Purple
+  color             = '#ca9b3d' ! Yellow
+  font_family       = 'Cascadia Mono'
+  font_size         = '80%'
+  circle_radius     = 5.0
+  line_width        = 2.0
+  dash_width        = 1.2
+/
+```

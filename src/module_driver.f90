@@ -11,27 +11,15 @@ contains
 subroutine get_blueprint()
   type(logo_type) :: logo
 
-  call logo%initialize()
+  call logo%initialize('./nml/parameters.nml')
   call logo%compute()
-  call logo%blueprint(.true.)
-  call logo%blueprint(.false.)
+  call logo%blueprint()
 end subroutine get_blueprint
-
-subroutine get_logo(size, ext)
-  integer, intent(in) :: size
-  type(logo_type) :: logo
-  character(*), intent(in) :: ext
-  character(*), parameter :: file = 'parameters.nml'
-
-  call logo%initialize(file)
-  call logo%compute()
-  call logo%draw(size, ext)
-end subroutine
 
 subroutine get_arguments()
   character(len=500), allocatable :: args(:)
-  character(:), allocatable :: ext
-  integer :: num_args, logo_size, i
+  integer :: num_args, i
+  type(logo_type) :: logo
 
   num_args = command_argument_count()
   if (num_args >= 9 .or. num_args < 1) then
@@ -49,13 +37,12 @@ subroutine get_arguments()
     call get_blueprint()
     return
   case ("-l", "--logo")
-    read (args(i + 1), *) logo_size
-    allocate (character(len=10) :: ext)
-    read (args(i + 2), *) ext
-    call get_logo(logo_size, trim(ext))
+    call logo%initialize('./nml/parameters.nml')
+    call logo%compute()
+    call logo%draw()
     return
   end select
-  
+
 end subroutine get_arguments
 
 end module module_driver

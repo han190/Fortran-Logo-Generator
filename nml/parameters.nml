@@ -1,0 +1,25 @@
+&parameters
+  num_curves        = 20
+  num_rounded       = 10
+  side_length       = 500, 535
+  rounded_radius    = 0.009
+  corner            = 0.107, 0.1, 0.107, 0.1
+  hook_offset       = 0.04
+  reference_point   = -0.43, +0.04
+  x                 = -1.00, -0.8, -0.633333, 
+                      +1.00, +0.766666, +0.416666, 
+                      +0.00, +0.2, +0.416666
+  y                 = -1.00, -0.766666, -0.6, 
+                      +1.00, +0.2, +0.766666, 
+                      +0.15, +0.5, +0.583333
+/
+
+&blueprint
+  ! color             = '#6d5192' ! Purple
+  color             = '#ca9b3d' ! Yellow
+  font_family       = 'Cascadia Mono'
+  font_size         = '80%'
+  circle_radius     = 5.0
+  line_width        = 2.0
+  dash_width        = 1.2
+/
