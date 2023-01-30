@@ -1,18 +1,33 @@
 &parameters
-  num_points = 30, 10                        ! Number of points used for curves.
-  side_length = 600, 642                     ! Side lengths of frame.
-  rad_corners = 0.01                         ! Radius of rounded corners
-  frame_paras = 0.0749, 0.07, 0.0749, 0.07   ! Frame parameters
-  bracket_offset = 0.04                      ! Bracket offset
-  reference_point = -0.43, +0.04             ! Reference point
+  !> Number of points used for curves.
+  num_points = 30, 10                        
+  !> Width in pixel
+  width = 500
+  !> Height in pixel
+  height = 540          
+  !> Frame parameters
+  !> TODO: change the name to 'margin'
+  !> and 'frame_corner'
+  frame_paras = 0.108, 0.1, 0.108, 0.1 
+/
+
+&letter_paras ! (0. <= para <= 1.)
+  !> Radius of rounded corners (suggested: < 0.05)
+  rad_corners = 0.01
+  !> Bracket offset
+  bracket_offset = 0.04              
+  !> Reference point
+  reference_point = 0.2875, 0.5235
+  !> Horizontal anchors         
   hori_anchors = 
-    -1.000000, -0.800000, -0.633333, 
-    +1.000000, +0.766666, +0.416666, 
-    +0.000000, +0.200000, +0.45          ! Horizontal anchors
+    0.       , 0.1      , 0.1833   , 
+    1.       , 0.875    , 0.72     ,
+    0.485    , 0.595    , 0.7075
+  !> Vertical anchors
   vert_anchors = 
-    -1.000000, -0.766666, -0.600000, 
-    +1.000000, +0.200000, +0.766666, 
-    +0.150000, +0.500000, +0.583333          ! Vertical anchors
+    0.       , 0.116667 , 0.225    , 
+    1.       , 0.6      , 0.883333 ,
+    0.5785   , 0.73     , 0.7916665 
 /
 
 &blueprint
@@ -20,7 +35,9 @@
   color = '#ca9b3d' ! Yellow
   font_family = 'Arial'
   font_size = '0'
+  ! circle_radius = 5
   circle_radius = 5
-  line_width = 2.0
-  dash_width = 0.5
+  line_width = 3.0
+  ! dash_width = 0.5
+  dash_width = 1.0
 /

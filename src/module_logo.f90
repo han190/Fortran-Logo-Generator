@@ -14,7 +14,7 @@ type :: logo_type
   real :: rad_corners
   !> Side length of the logo.
   !> (Assuming square canvas)
-  real :: side_length(2)
+  real :: width, height
   !> Radius of rounded corners.
   real :: frame_paras(4)
   !> A reference point
@@ -64,14 +64,16 @@ subroutine initialize(self, filename)
   !> Namelist variables.
   integer :: num_points(2)
   real :: rad_corners
-  real :: side_length(2)
+  real :: width, height
   real :: frame_paras(4)
   real :: bracket_offset
   real :: reference_point(2)
   real :: hori_anchors(3, 3), vert_anchors(3, 3)
   namelist /parameters/ &
-    & num_points, side_length, rad_corners, &
-    & frame_paras, bracket_offset, &
+    & num_points, width, height, frame_paras
+
+  namelist /letter_paras/ &
+    & rad_corners, bracket_offset, &
     & reference_point, hori_anchors, vert_anchors
 
   character(len=7) :: color
@@ -94,19 +96,24 @@ subroutine initialize(self, filename)
 
   open (newunit=unit, file=filename)
   read (unit=unit, nml=parameters)
+  read (unit=unit, nml=letter_paras)
   read (unit=unit, nml=blueprint)
   close (unit)
 
-  factor = (side_length/2.)/(1.+2.*frame_paras(1:2))
   self%num_points = num_points
-  self%side_length = side_length
-  self%rad_corners = rad_corners*side_length(1)
-  self%frame_paras = [side_length*frame_paras(1:2), &
-    & side_length/(1.+2.*frame_paras(3:4))*frame_paras(3:4)]
+  self%width = width
+  self%height = height
+  ! self%rad_corners = rad_corners*width
+
+  factor = [width, height]/(1.+2.*frame_paras(3:4))
+  self%frame_paras = [width, height, factor]*frame_paras
+
+  factor = [width, height]/(1.+2.*frame_paras(1:2))
+  self%rad_corners = rad_corners*0.5*(factor(1) + factor(2))
   self%bracket_offset = bracket_offset*factor(2)
-  self%reference_point = reference_point*factor
-  self%hori_anchors = hori_anchors*factor(1)
-  self%vert_anchors = vert_anchors*factor(2)
+  self%reference_point = (reference_point - 0.5)*factor
+  self%hori_anchors = (hori_anchors - 0.5)*factor(1)
+  self%vert_anchors = (vert_anchors - 0.5)*factor(2)
 
   self%color = trim(color)
   self%font_family = trim(font_family)
@@ -121,42 +128,40 @@ subroutine compute(self)
   !> Type-bound variable
   class(logo_type), intent(inout) :: self
   !> Local variables
-  type(point_type), allocatable :: temp(:), temp2(:)
+  type(point_type), allocatable :: temp1(:), temp2(:)
   type(point_type) :: point
 
   allocate (self%letter_piles(18))
   allocate (self%boundary_piles(12))
   associate ( &
-    c => self%reference_point, &
-    n => self%num_points(1), &
-    m => self%num_points(2), &
+    ref => self%reference_point, &
+    num => self%num_points, &
+    rad => self%rad_corners, &
+    r => self%frame_paras, &
     x => self%hori_anchors, &
     y => self%vert_anchors, &
-    s => self%side_length, &
-    r => self%frame_paras, &
-    F1 => self%letter_piles(1:6), &
-    F2 => self%letter_piles(7:12), &
-    F3 => self%letter_piles(13:18), &
-    B => self%boundary_piles, &
-    rr => self%rad_corners)
+    w => self%width, &
+    h => self%height, &
+    F => self%letter_piles, &
+    B => self%boundary_piles)
 
-    F1 = [ &
+    F(1:6) = [ &
       & point_type(x(3, 1), y(1, 1)), &
       & point_type(x(1, 1), y(1, 1)), &
       & point_type(x(1, 1), y(2, 1)), &
       & point_type(x(2, 1), y(2, 1)), &
       & point_type(x(3, 1), y(2, 1)), &
       & point_type(x(3, 1), y(3, 1))]
-    temp = [F1(1), &
-      & rounded_corner(F1(2), rr, [+1, +1], m, .true.), &
-      & rounded_corner(F1(3), rr, [+1, -1], m, .true.), &
-      & bezier_curve(F1(4:6), n)]
+    temp1 = [F(1), &
+      & rounded_corner(F(2), rad, [+1, +1], num(2), .true.), &
+      & rounded_corner(F(3), rad, [+1, -1], num(2), .true.), &
+      & bezier_curve(F(4:6), num(1))]
     self%letter_F = [ &
-      & mirror(temp, 1, .true., c%x), &
-      & temp, mirror(temp, 2, .true., 0.0)]
+      & mirror(temp1, 1, .true., ref%x), &
+      & temp1, mirror(temp1, 2, .true., 0.0)]
 
     point = self%letter_F(1)
-    F2 = [ &
+    F(7:12) = [ &
       & point_type(x(1, 2), y(1, 2)), &
       & point_type(x(1, 2), y(2, 2)), &
       & point_type(x(2, 2), y(2, 2)), &
@@ -164,17 +169,17 @@ subroutine compute(self)
       & point_type(x(3, 2), y(3, 2)), &
       & point_type(point%x, y(3, 2))]
 
-    temp2 = rounded_corner(F2(3), rr, [+1, +1], m, .true.)
-    temp = [ &
-      & rounded_corner(F2(1), rr, [-1, -1], m, .true.), &
-      & rounded_corner(F2(2), rr, [-1, +1], m, .true.), &
+    temp2 = rounded_corner(F(9), rad, [+1, +1], num(2), .true.)
+    temp1 = [ &
+      & rounded_corner(F(7), rad, [-1, -1], num(2), .true.), &
+      & rounded_corner(F(8), rad, [-1, +1], num(2), .true.), &
       & temp2, &
-      & bezier_curve([temp2(size(temp2)), F2(4:5)], n), &
-      & rounded_corner(F2(6), rr, [+1, -1], m, .false.)]
-    self%letter_F = [self%letter_F, temp]
+      & bezier_curve([temp2(size(temp2)), F(10:11)], num(1)), &
+      & rounded_corner(F(12), rad, [+1, -1], num(2), .false.)]
+    self%letter_F = [self%letter_F, temp1]
 
     point = self%letter_F(size(self%letter_F))
-    F3 = [ &
+    F(13:18) = [ &
       & point_type(point%x, y(1, 3)), &
       & point_type(x(1, 3), y(1, 3)), &
       & point_type(x(2, 3), y(1, 3)), &
@@ -183,41 +188,41 @@ subroutine compute(self)
       & point_type(x(3, 3), y(3, 3))]
 
     temp2 = [ &
-      & rounded_corner(F3(1), rr, [+1, +1], m, .false.), &
-      & bezier_curve(F3(2:4), n), &
-      & rounded_corner(F3(5), rr, [+1, -1], m, .true.) - &
+      & rounded_corner(F(13), rad, [+1, +1], num(2), .false.), &
+      & bezier_curve(F(14:16), num(1)), &
+      & rounded_corner(F(17), rad, [+1, -1], num(2), .true.) - &
       & [0., self%bracket_offset], &
-      & rounded_corner(F3(6), rr, [-1, -1], m, .true.) - &
+      & rounded_corner(F(18), rad, [-1, -1], num(2), .true.) - &
       & [0., self%bracket_offset]]
 
-    temp = [ &
-      & rounded_corner(F3(1), rr, [+1, +1], m, .false.), &
-      & bezier_curve(F3(2:4), n), &
-      & rounded_corner(F3(5), rr, [+1, -1], m, .true.), &
-      & rounded_corner(F3(6), rr, [-1, -1], m, .true.)]
-    temp = [temp2, mirror(temp, 2, .true., c%y), &
+    temp1 = [ &
+      & rounded_corner(F(13), rad, [+1, +1], num(2), .false.), &
+      & bezier_curve(F(14:16), num(1)), &
+      & rounded_corner(F(17), rad, [+1, -1], num(2), .true.), &
+      & rounded_corner(F(18), rad, [-1, -1], num(2), .true.)]
+    temp1 = [temp2, mirror(temp1, 2, .true., ref%y), &
       & self%letter_F(1)]
-    self%letter_F = [self%letter_F, temp]
+    self%letter_F = [self%letter_F, temp1]
 
     self%boundary_piles = [ &
-      & point_type(-s(1)/2 + r(3), -s(2)/2), &
-      & point_type(-s(1)/2, -s(2)/2), &
-      & point_type(-s(1)/2, -s(2)/2 + r(4)), &
-      & point_type(-s(1)/2, +s(2)/2 - r(4)), &
-      & point_type(-s(1)/2, +s(2)/2), &
-      & point_type(-s(1)/2 + r(3), +s(2)/2), &
-      & point_type(+s(1)/2 - r(3), +s(2)/2), &
-      & point_type(+s(1)/2, +s(2)/2), &
-      & point_type(+s(1)/2, +s(2)/2 - r(4)), &
-      & point_type(+s(1)/2, -s(2)/2 + r(4)), &
-      & point_type(+s(1)/2, -s(2)/2), &
-      & point_type(+s(1)/2 - r(3), -s(2)/2)]
+      & point_type(-w/2 + r(3), -h/2), &
+      & point_type(-w/2, -h/2), &
+      & point_type(-w/2, -h/2 + r(4)), &
+      & point_type(-w/2, +h/2 - r(4)), &
+      & point_type(-w/2, +h/2), &
+      & point_type(-w/2 + r(3), +h/2), &
+      & point_type(+w/2 - r(3), +h/2), &
+      & point_type(+w/2, +h/2), &
+      & point_type(+w/2, +h/2 - r(4)), &
+      & point_type(+w/2, -h/2 + r(4)), &
+      & point_type(+w/2, -h/2), &
+      & point_type(+w/2 - r(3), -h/2)]
 
     self%boundary = [ &
-      & bezier_curve(B(1:3), n), &
-      & bezier_curve(B(4:6), n), &
-      & bezier_curve(B(7:9), n), &
-      & bezier_curve(B(10:12), n), B(1)]
+      & bezier_curve(B(1:3), num(1)), &
+      & bezier_curve(B(4:6), num(1)), &
+      & bezier_curve(B(7:9), num(1)), &
+      & bezier_curve(B(10:12), num(1)), B(1)]
   end associate
 end subroutine compute
 
@@ -233,7 +238,7 @@ subroutine draw(self)
   line_width = 1.0
   ! color = '#796e58'
   color = '#6d5192'
-  offset = 0.5*self%side_length*canvas_ratio
+  offset = 0.5*[self%width, self%height]*canvas_ratio
 
   call svg%open('./data/logo.svg')
   attributes = [ &
@@ -242,14 +247,14 @@ subroutine draw(self)
     & 'standalone'.pair.'no']
   call svg%write_prolog(attributes)
 
-  width = str(self%side_length(1)*canvas_ratio)
-  height = str(self%side_length(2)*canvas_ratio)
+  width = str(self%width*canvas_ratio)
+  height = str(self%height*canvas_ratio)
   attributes = [ &
     & 'xmlns'.pair.'http://www.w3.org/2000/svg', &
     & 'width'.pair.width, 'height'.pair.height]
 
   call svg%write_attribute( &
-    & 'svg', attributes, inline=.false., line_break=.false.)
+    & 'svg', attributes, inline=.false.)
   call svg%write_element('title', 'Fortran Logo')
   call svg%write_element('desc', 'Generated by Fortran Logo Generator')
 
@@ -325,7 +330,7 @@ subroutine blueprint(self)
   real :: dash_width
   real :: line_width
   real :: circle_radius
-  real, parameter :: ampli_factor = 1.2
+  real, parameter :: ampli_factor = 1.1
 
   color = self%color
   font_family = self%font_family
@@ -341,34 +346,46 @@ subroutine blueprint(self)
     & 'standalone'.pair.'no']
   call svg%write_prolog(attributes)
 
-  width = str(self%side_length(1)*ampli_factor)
-  height = str(self%side_length(2)*ampli_factor)
+  width = str(self%width*ampli_factor)
+  height = str(self%height*ampli_factor)
+  offset = 0.5*[self%width, self%height]*ampli_factor
   attributes = [ &
     & 'xmlns'.pair.'http://www.w3.org/2000/svg', &
     & 'width'.pair.width, 'height'.pair.height]
 
   call svg%write_attribute( &
-    & 'svg', attributes, inline=.false., line_break=.false.)
+    & 'svg', attributes, inline=.false.)
   call svg%write_element('title', 'Fortran Logo')
   call svg%write_element('desc', 'Generated by Fortran Logo Generator')
 
+  !> Fill Pattern
   attributes = [ &
     & 'id'.pair.'diagonalFill', &
-    & 'width'.pair.2, &
+    & 'width'.pair.9, &
     & 'height'.pair.2, &
     & 'patternUnits'.pair.'userSpaceOnUse', &
     & 'patternTransform'.pair.'rotate(45)']
   call svg%write_attribute('pattern', attributes, &
     & inline=.false.)
-
   attributes = [ &
     & 'x'.pair.0., 'y'.pair.0., 'width'.pair.1., &
     & 'height'.pair.1., 'fill'.pair.color]
-
   call svg%write_attribute('rect', attributes)
   call svg%close_attribute('pattern')
 
-  offset = 0.5*self%side_length*ampli_factor
+  !> Image
+  ! attributes = [ &
+  !   & 'transform'.pair.'translate('// &
+  !   & str(self%hori_anchors(1, 1) + offset(1))//","// &
+  !   & str(self%vert_anchors(1, 1) + offset(2))//")"]
+  ! call svg%write_attribute('g', attributes, inline=.false.)
+  ! attributes = [ &
+  !   & 'href'.pair.'F1954.png', &
+  !   & 'width'.pair.abs(self%hori_anchors(1, 2) - self%hori_anchors(1, 1)), &
+  !   & 'height'.pair.abs(self%vert_anchors(1, 2) - self%vert_anchors(1, 1))]
+  ! call svg%write_attribute('image', attributes, inline=.true.)
+  ! call svg%close_attribute('g')
+
   associate ( &
     F => self%letter_F, &
     B => self%boundary, &
@@ -404,6 +421,7 @@ subroutine blueprint(self)
     call dashed_line(BP(11), BP(2))
 
     call path_fill(F, B)
+    ! call path_fill(F)
 
     do i = 1, size(FP)
       call circle(FP(i))
@@ -417,6 +435,15 @@ subroutine blueprint(self)
 
     call circle(R)
     call text(R, "R")
+
+    !> Uncomment to draw origin and
+    !> centroid of "F"
+
+    ! call circle(point_type(0., 0.))
+    ! call text(point_type(0., 0.), "O")
+
+    ! call circle(centroid(F))
+    ! call text(centroid(F), "G")
   end associate
 
   call svg%close_attribute('svg')
@@ -424,12 +451,18 @@ subroutine blueprint(self)
 
 contains
   subroutine path_fill(ps1, ps2)
-    type(point_type), intent(in) :: ps1(:), ps2(:)
+    type(point_type), intent(in) :: ps1(:)
+    type(point_type), intent(in), optional :: ps2(:)
     type(characters_type) :: message
     character(len=80), allocatable :: strings(:)
     integer :: i_, j_
 
-    allocate (strings(size(ps1) + size(ps2)))
+    if (present(ps2)) then
+      allocate (strings(size(ps1) + size(ps2)))
+    else
+      allocate (strings(size(ps1)))
+    end if
+
     do i_ = 1, size(ps1)
       j_ = size(ps1) - i_ + 1
       write (strings(i_), "('L', 2(1x, f12.6))") &
@@ -438,17 +471,20 @@ contains
     strings(1) (1:1) = 'M'
     strings(size(ps1)) (29:29) = 'z'
 
-    do i_ = size(ps1) + 1, size(ps1) + size(ps2)
-      j_ = i_ - size(ps1)
-      write (strings(i_), "('L', 2(1x, f12.6))") &
-        & ps2(j_)%x + offset(1), -ps2(j_)%y + offset(2)
-    end do
-    strings(size(ps1) + 1) (1:1) = 'M'
-    strings(size(ps1) + size(ps2)) (29:29) = 'z'
+    if (present(ps2)) then
+      do i_ = size(ps1) + 1, size(ps1) + size(ps2)
+        j_ = i_ - size(ps1)
+        write (strings(i_), "('L', 2(1x, f12.6))") &
+          & ps2(j_)%x + offset(1), -ps2(j_)%y + offset(2)
+      end do
+      strings(size(ps1) + 1) (1:1) = 'M'
+      strings(size(ps1) + size(ps2)) (29:29) = 'z'
+    end if
 
     message = strings
     attributes = [ &
       & 'fill'.pair.'url(#diagonalFill)', &
+      ! & 'fill'.pair.'none', &
       & 'stroke'.pair.color, &
       & 'stroke-width'.pair.line_width, &
       & 'd'.pair.message]
@@ -481,7 +517,7 @@ contains
       & 'font-family'.pair.font_family]
 
     call svg%write_attribute('text', attributes, &
-      & inline=.false., line_break=.true.)
+      & inline=.false.)
     write (svg%unit, "(a)") message
     call svg%close_attribute('text')
   end subroutine text
