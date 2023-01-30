@@ -410,13 +410,16 @@ subroutine blueprint(self)
 
     do i = 1, size(FP)
       call circle(FP(i))
+      call text(FP(i), str(i))
     end do
 
     do i = 1, size(BP)
       call circle(BP(i))
+      call text(BP(i), achar(64 + i))
     end do
 
     call circle(R)
+    call text(R, "R")
   end associate
 
   call svg%close_attribute('svg')
@@ -456,33 +459,11 @@ contains
     call svg%write_attribute('path', attributes)
   end subroutine path_fill
 
-  subroutine path(ps)
-    type(point_type), intent(in) :: ps(:)
-    type(characters_type) :: message
-    character(len=80), allocatable :: strings(:)
-    integer :: i_
-
-    allocate (strings(size(ps)))
-    do i_ = 1, size(ps)
-      write (strings(i_), "('L', 2(1x, f12.6))") &
-        & ps(i_)%x + offset(1), -ps(i_)%y + offset(2)
-    end do
-    strings(1) (1:1) = 'M'
-    message = strings
-
-    attributes = [ &
-      & 'fill'.pair.'none', &
-      & 'stroke'.pair.color, &
-      & 'stroke-width'.pair.line_width, &
-      & 'd'.pair.message]
-    call svg%write_attribute('path', attributes)
-  end subroutine path
-
   subroutine circle(p)
     type(point_type), intent(in) :: p
 
     attributes = [ &
-      & 'fill'.pair.'none', &
+      & 'fill'.pair.'white', &
       & 'stroke'.pair.color, &
       & 'cx'.pair.p%x + offset(1), &
       & 'cy'.pair.-p%y + offset(2), &
@@ -490,14 +471,15 @@ contains
     call svg%write_attribute('circle', attributes)
   end subroutine circle
 
-  subroutine text(p, message, tuned)
+  subroutine text(p, message)
     type(point_type), intent(in) :: p
     character(*), intent(in) :: message
-    real, intent(in) :: tuned(:)
 
     attributes = [ &
-      & 'x'.pair.p%x + offset(1) + tuned(1), &
-      & 'y'.pair.-p%y + offset(2) + tuned(2), &
+      & 'x'.pair.p%x + offset(1), &
+      & 'y'.pair.-p%y + offset(2), &
+      & 'text-anchor'.pair.'middle', &
+      & 'alignment-baseline'.pair.'central', &
       & 'fill'.pair.color, &
       & 'font-size'.pair.font_size, &
       & 'font-family'.pair.font_family]

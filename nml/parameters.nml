@@ -15,11 +15,11 @@
 /
 
 &blueprint
-  ! color             = '#6d5192' ! Purple
-  color             = '#ca9b3d' ! Yellow
+  color             = '#6d5192' ! Purple
+  ! color             = '#ca9b3d' ! Yellow
   font_family       = 'Cascadia Mono'
-  font_size         = '80%'
-  circle_radius     = 5.0
+  font_size         = '60%'
+  circle_radius     = 8.0
   line_width        = 2.0
   dash_width        = 1.2
 /
