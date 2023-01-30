@@ -19,10 +19,8 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 
 ## Parameterization
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="data/blueprint_dark.svg">
-  <image alt="" width=600 height=600 src="data/blueprint_light.svg" align="center">
-</picture>
+![Dark Logo](./data/blueprint_dark.svg#gh-dark-mode-only)
+![Light Logo](./data/blueprint_light.svg#gh-light-mode-only)
 
 An example of `parameters.nml`
 
