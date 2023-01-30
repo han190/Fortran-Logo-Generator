@@ -9,29 +9,29 @@ implicit none
 type :: logo_type
   !> Number of points used when
   !> drawing curves.
-  integer :: num_curves
-  integer :: num_rounded
-  real :: rounded_radius
+  integer :: num_points(2)
+  !> Radius of rounded corners
+  real :: rad_corners
   !> Side length of the logo.
   !> (Assuming square canvas)
   real :: side_length(2)
   !> Radius of rounded corners.
-  real :: corner(4)
+  real :: frame_paras(4)
   !> A reference point
   type(point_type) :: reference_point
   !> Offset for hook of "F"
-  real :: hook_offset
+  real :: bracket_offset
   !> Essential horiozntal coordinates.
-  real, allocatable :: x(:, :)
+  real, allocatable :: hori_anchors(:, :)
   !> Essential vertical coordinates
-  real, allocatable :: y(:, :)
+  real, allocatable :: vert_anchors(:, :)
   !> Piles for letter "F"
   type(point_type), allocatable :: letter_piles(:)
   !> The letter "F"
   type(point_type), allocatable :: letter_F(:)
-  !> Piles for the rounded corner square
+  !> Piles for the frame
   type(point_type), allocatable :: boundary_piles(:)
-  !> The rounded corner square
+  !> Frame
   type(point_type), allocatable :: boundary(:)
   !> Blueprint parameters
   character(:), allocatable :: color
@@ -62,19 +62,17 @@ subroutine initialize(self, filename)
   character(*), intent(in), optional :: filename
 
   !> Namelist variables.
-  integer :: num_curves
-  integer :: num_rounded
-  real :: rounded_radius
+  integer :: num_points(2)
+  real :: rad_corners
   real :: side_length(2)
-  real :: corner(4)
-  real :: hook_offset
+  real :: frame_paras(4)
+  real :: bracket_offset
   real :: reference_point(2)
-  real :: x(3, 3), y(3, 3)
+  real :: hori_anchors(3, 3), vert_anchors(3, 3)
   namelist /parameters/ &
-    & num_curves, num_rounded, &
-    & side_length, rounded_radius, &
-    & corner, hook_offset, &
-    & reference_point, x, y
+    & num_points, side_length, rad_corners, &
+    & frame_paras, bracket_offset, &
+    & reference_point, hori_anchors, vert_anchors
 
   character(len=7) :: color
   character(len=80) :: font_family, font_size
@@ -99,17 +97,16 @@ subroutine initialize(self, filename)
   read (unit=unit, nml=blueprint)
   close (unit)
 
-  factor = (side_length/2.)/(1.+2.*corner(1:2))
-  self%num_curves = num_curves
-  self%num_rounded = num_rounded
+  factor = (side_length/2.)/(1.+2.*frame_paras(1:2))
+  self%num_points = num_points
   self%side_length = side_length
-  self%rounded_radius = rounded_radius*side_length(1)
-  self%corner = [side_length*corner(1:2), &
-    & side_length/(1.+2.*corner(3:4))*corner(3:4)]
-  self%hook_offset = hook_offset*factor(2)
+  self%rad_corners = rad_corners*side_length(1)
+  self%frame_paras = [side_length*frame_paras(1:2), &
+    & side_length/(1.+2.*frame_paras(3:4))*frame_paras(3:4)]
+  self%bracket_offset = bracket_offset*factor(2)
   self%reference_point = reference_point*factor
-  self%x = x*factor(1)
-  self%y = y*factor(2)
+  self%hori_anchors = hori_anchors*factor(1)
+  self%vert_anchors = vert_anchors*factor(2)
 
   self%color = trim(color)
   self%font_family = trim(font_family)
@@ -131,17 +128,17 @@ subroutine compute(self)
   allocate (self%boundary_piles(12))
   associate ( &
     c => self%reference_point, &
-    n => self%num_curves, &
-    x => self%x, &
-    y => self%y, &
+    n => self%num_points(1), &
+    m => self%num_points(2), &
+    x => self%hori_anchors, &
+    y => self%vert_anchors, &
     s => self%side_length, &
-    r => self%corner, &
+    r => self%frame_paras, &
     F1 => self%letter_piles(1:6), &
     F2 => self%letter_piles(7:12), &
     F3 => self%letter_piles(13:18), &
     B => self%boundary_piles, &
-    m => self%num_rounded, &
-    rr => self%rounded_radius)
+    rr => self%rad_corners)
 
     F1 = [ &
       & point_type(x(3, 1), y(1, 1)), &
@@ -189,9 +186,9 @@ subroutine compute(self)
       & rounded_corner(F3(1), rr, [+1, +1], m, .false.), &
       & bezier_curve(F3(2:4), n), &
       & rounded_corner(F3(5), rr, [+1, -1], m, .true.) - &
-      & [0., self%hook_offset], &
+      & [0., self%bracket_offset], &
       & rounded_corner(F3(6), rr, [-1, -1], m, .true.) - &
-      & [0., self%hook_offset]]
+      & [0., self%bracket_offset]]
 
     temp = [ &
       & rounded_corner(F3(1), rr, [+1, +1], m, .false.), &
@@ -357,7 +354,7 @@ subroutine blueprint(self)
 
   attributes = [ &
     & 'id'.pair.'diagonalFill', &
-    & 'width'.pair.9, &
+    & 'width'.pair.2, &
     & 'height'.pair.2, &
     & 'patternUnits'.pair.'userSpaceOnUse', &
     & 'patternTransform'.pair.'rotate(45)']
@@ -383,13 +380,13 @@ subroutine blueprint(self)
     do j = 1, 3
       do i = 1, 3
 
-        pt(1) = point_type(self%x(i, j), BP(2)%y)
-        pt(2) = point_type(self%x(i, j), BP(5)%y)
+        pt(1) = point_type(self%hori_anchors(i, j), BP(2)%y)
+        pt(2) = point_type(self%hori_anchors(i, j), BP(5)%y)
         call dashed_line(pt(1), pt(2))
 
         call dashed_line( &
-          & point_type(BP(2)%x, self%y(i, j)), &
-          & point_type(BP(8)%x, self%y(i, j)))
+          & point_type(BP(2)%x, self%vert_anchors(i, j)), &
+          & point_type(BP(8)%x, self%vert_anchors(i, j)))
       end do
     end do
 
@@ -452,7 +449,6 @@ contains
     message = strings
     attributes = [ &
       & 'fill'.pair.'url(#diagonalFill)', &
-      ! & 'fill-rule'.pair.'url(#diagonalFill)', &
       & 'stroke'.pair.color, &
       & 'stroke-width'.pair.line_width, &
       & 'd'.pair.message]
@@ -463,7 +459,7 @@ contains
     type(point_type), intent(in) :: p
 
     attributes = [ &
-      & 'fill'.pair.'white', &
+      & 'fill'.pair.'none', &
       & 'stroke'.pair.color, &
       & 'cx'.pair.p%x + offset(1), &
       & 'cy'.pair.-p%y + offset(2), &

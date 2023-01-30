@@ -1,25 +1,26 @@
 &parameters
-  num_curves        = 20
-  num_rounded       = 10
-  side_length       = 500, 535
-  rounded_radius    = 0.009
-  corner            = 0.107, 0.1, 0.107, 0.1
-  hook_offset       = 0.04
-  reference_point   = -0.43, +0.04
-  x                 = -1.00, -0.8, -0.633333, 
-                      +1.00, +0.766666, +0.416666, 
-                      +0.00, +0.2, +0.416666
-  y                 = -1.00, -0.766666, -0.6, 
-                      +1.00, +0.2, +0.766666, 
-                      +0.15, +0.5, +0.583333
+  num_points = 30, 10                        ! Number of points used for curves.
+  side_length = 600, 642                     ! Side lengths of frame.
+  rad_corners = 0.01                         ! Radius of rounded corners
+  frame_paras = 0.0749, 0.07, 0.0749, 0.07   ! Frame parameters
+  bracket_offset = 0.04                      ! Bracket offset
+  reference_point = -0.43, +0.04             ! Reference point
+  hori_anchors = 
+    -1.000000, -0.800000, -0.633333, 
+    +1.000000, +0.766666, +0.416666, 
+    +0.000000, +0.200000, +0.45          ! Horizontal anchors
+  vert_anchors = 
+    -1.000000, -0.766666, -0.600000, 
+    +1.000000, +0.200000, +0.766666, 
+    +0.150000, +0.500000, +0.583333          ! Vertical anchors
 /
 
 &blueprint
-  color             = '#6d5192' ! Purple
-  ! color             = '#ca9b3d' ! Yellow
-  font_family       = 'Cascadia Mono'
-  font_size         = '60%'
-  circle_radius     = 8.0
-  line_width        = 2.0
-  dash_width        = 1.2
+  ! color = '#6d5192' ! Purple
+  color = '#ca9b3d' ! Yellow
+  font_family = 'Arial'
+  font_size = '0'
+  circle_radius = 5
+  line_width = 2.0
+  dash_width = 0.5
 /
