@@ -4,8 +4,8 @@
 
 This project has two driving factors:
 
-* To provide a portable Fortran Logo Generator written in modern Fortran, and through the generator
-* To design an "F" letter that closely resembles the "F" on the cover of the [programmer's reference manual](http://bitsavers.informatik.uni-stuttgart.de/pdf/ibm/704/704_FortranProgRefMan_Oct56.pdf).
+* To provide a portable Fortran Logo Generator written in modern Fortran,
+* To polish the current Fortran logo.
 
 ## Quick start
 

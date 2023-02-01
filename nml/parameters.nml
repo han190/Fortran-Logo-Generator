@@ -1,43 +1,32 @@
 &parameters
-  !> Number of points used for curves.
-  num_points = 100, 10                        
-  !> Width in pixel
-  width = 500
-  !> Height in pixel
-  height = 540          
-  !> Margin <left, right, bottom, top>
-  margin = 25, 25, 27, 27
-  !> corners
-  corner = 25, 27
-/
-
-&letter_paras ! (0. <= para <= 1.)
-  !> Radius of rounded corners (suggested: < 0.05)
-  rad_corners = 0.01
-  !> Bracket offset
+  num_points = 100, 10
+  rad_corners = 0.01                        
+  width = 236.111111
+  height = 255
+  margin = 20, 20, 20, 20
+  corner = 30, 30
+  reference_point = 0.283, 0.524
   bracket_offset = 0.015, -0.025    
-  !> Reference point
-  reference_point = 0.285, 0.522
-  !> Horizontal anchors         
   hori_anchors = 
-    0.       , 0.125    , 0.17   , 
+    0.       , 0.10    , 0.17   , 
     1.       , 0.87     , 0.67    ,
     0.44     , 0.593    , 0.72
-  !> Vertical anchors
   vert_anchors = 
-    0.       , 0.115    , 0.225    , 
+    0.       , 0.115    , 0.18   , 
     1.       , 0.585    , 0.885,
-    0.585    , 0.74     , 0.7916665 
-/
-
-&blueprint
-  ! color = '#6d5192' ! Purple
-  color = '#ca9b3d' ! Yellow
-  font_family = 'Arial'
+    0.585    , 0.74     , 0.79
+  file = 'logo.svg'
+  canvas_ratio = 1.1
+  color = '#6d5192' ! Purple
+  ! color = '#ca9b3d' ! Yellow
+  font_family = 'Cascadia Code'
   font_size = '0'
-  ! circle_radius = 5
-  circle_radius = 5
-  line_width = 3.0
+  pile_radius = 0
+  line_width = 1.0
   ! dash_width = 0.5
-  dash_width = 1.0
+  dash_width = 0.0
+  dash_array = '2 2'
+  fill_pattern = 5., 2., 1., 1. 
+  compare = .false.
+  compare_image = './data/Clarendon_BT_Roman.png'
 /
