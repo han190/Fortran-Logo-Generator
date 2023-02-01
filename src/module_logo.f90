@@ -386,7 +386,7 @@ subroutine blueprint(self)
   !   & str(self%vert_anchors(1, 1) + offset(2))//")"]
   ! call svg%write_attribute('g', attributes, inline=.false.)
   ! attributes = [ &
-  !   & 'href'.pair.'F1954.png', &
+  !   & 'href'.pair.'Clarendon_BT_Roman.png', &
   !   & 'width'.pair.abs(self%hori_anchors(1, 2) - self%hori_anchors(1, 1)), &
   !   & 'height'.pair.abs(self%vert_anchors(1, 2) - self%vert_anchors(1, 1))]
   ! call svg%write_attribute('image', attributes, inline=.true.)
