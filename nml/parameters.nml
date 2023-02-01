@@ -1,6 +1,6 @@
 &parameters
   !> Number of points used for curves.
-  num_points = 30, 10                        
+  num_points = 100, 10                        
   !> Width in pixel
   width = 500
   !> Height in pixel
@@ -15,14 +15,14 @@
   !> Radius of rounded corners (suggested: < 0.05)
   rad_corners = 0.01
   !> Bracket offset
-  bracket_offset = 0.025       
+  bracket_offset = 0.015, -0.025    
   !> Reference point
-  reference_point = 0.285, 0.5235
+  reference_point = 0.285, 0.522
   !> Horizontal anchors         
   hori_anchors = 
-    0.       , 0.125    , 0.175   , 
-    1.       , 0.87     , 0.68    ,
-    0.45     , 0.593    , 0.72
+    0.       , 0.125    , 0.17   , 
+    1.       , 0.87     , 0.67    ,
+    0.44     , 0.593    , 0.72
   !> Vertical anchors
   vert_anchors = 
     0.       , 0.115    , 0.225    , 
@@ -31,8 +31,8 @@
 /
 
 &blueprint
-  color = '#6d5192' ! Purple
-  ! color = '#ca9b3d' ! Yellow
+  ! color = '#6d5192' ! Purple
+  color = '#ca9b3d' ! Yellow
   font_family = 'Arial'
   font_size = '0'
   ! circle_radius = 5

@@ -22,7 +22,7 @@ type :: logo_type
   !> A reference point
   type(point_type) :: reference_point
   !> Offset for hook of "F"
-  real :: bracket_offset
+  real :: bracket_offset(2)
   !> Essential horiozntal coordinates.
   real, allocatable :: hori_anchors(:, :)
   !> Essential vertical coordinates
@@ -69,7 +69,7 @@ subroutine initialize(self, filename)
   real :: width, height
   real :: margin(4), corner(2)
   real :: frame_paras(4)
-  real :: bracket_offset
+  real :: bracket_offset(2)
   real :: reference_point(2)
   real :: hori_anchors(3, 3), vert_anchors(3, 3)
   namelist /parameters/ &
@@ -167,8 +167,14 @@ subroutine compute(self)
       & rounded_corner(F(2), rad, [+1, +1], num(2), .true.), &
       & rounded_corner(F(3), rad, [+1, -1], num(2), .true.), &
       & bezier_curve(F(4:6), num(1))]
+    temp2 = [F(1), &
+      & rounded_corner(F(2), rad, [+1, +1], num(2), .true.) + &
+      & point_type(-self%bracket_offset(1), 0.), &
+      & rounded_corner(F(3), rad, [+1, -1], num(2), .true.) + &
+      & point_type(-self%bracket_offset(1), 0.), &
+      & bezier_curve(F(4:6), num(1))]
     self%letter_F = [ &
-      & mirror(temp1, 1, .true., ref%x), &
+      & mirror(temp2, 1, .true., ref%x), &
       & temp1, mirror(temp1, 2, .true., 0.0)]
 
     point = self%letter_F(1)
@@ -201,10 +207,10 @@ subroutine compute(self)
     temp2 = [ &
       & rounded_corner(F(13), rad, [+1, +1], num(2), .false.), &
       & bezier_curve(F(14:16), num(1)), &
-      & rounded_corner(F(17), rad, [+1, -1], num(2), .true.) - &
-      & [0., self%bracket_offset], &
-      & rounded_corner(F(18), rad, [-1, -1], num(2), .true.) - &
-      & [0., self%bracket_offset]]
+      & rounded_corner(F(17), rad, [+1, -1], num(2), .true.) + &
+      & point_type(0., self%bracket_offset(2)), &
+      & rounded_corner(F(18), rad, [-1, -1], num(2), .true.) + &
+      & point_type(0., self%bracket_offset(2))]
 
     temp1 = [ &
       & rounded_corner(F(13), rad, [+1, +1], num(2), .false.), &
