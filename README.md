@@ -1,13 +1,13 @@
-<div class="column">
+<p align="center">
   <img src="./data/logo_green_letter.svg" style="width:20%">
   <img src="./data/logo_red_rounded.svg" style="width:20%">
   <img src="./data/logo_blue_chobby.svg" style="width:20%">
   <img src="./data/logo_purple_regular.svg" style="width:20%">
-</div>
+</p>
 
-# Fortran Logo Generator (Experimental branch)
-
-## Motivation
+<h1 align="center">
+  Fortran Logo Generator
+</h1>
 
 This project has two driving factors:
 
