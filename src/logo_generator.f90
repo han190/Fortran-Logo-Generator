@@ -7,7 +7,7 @@ call dirver()
 contains
 
 subroutine dirver()
-  character(len=500), allocatable :: arg
+  character(len=500) :: arg
   integer :: num_args
   type(logo_type) :: logo
   integer :: unit
@@ -19,11 +19,11 @@ subroutine dirver()
   if (num_args == 0) then
     file = './nml/parameters.nml'
   else
-    call get_command_argument(1, arg)
+    call get_command_argument(number=1, value=arg)
     file = trim(arg)
   end if
 
-  open (newunit=unit, file='./nml/parameters.nml')
+  open (newunit=unit, file=file)
   read (unit, *) logo
   close (unit)
   call draw(logo)

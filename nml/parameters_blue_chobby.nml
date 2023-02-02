@@ -1,26 +1,24 @@
 &parameters
   num_points = 20, 5
-  rad_corners = 0.01
+  rad_corners = 0.06
   width = 255
   height = 255
   margin = 35, 35, 28, 28
   corner = 55, 55
-  reference_point = 0.278, 0.525
-  bracket_offset = 0.016, -0.028
+  reference_point = 0.30, 0.50
+  bracket_offset = 0.00, 0
   hori_anchors = 
     0.       , 0.10    , 0.16   , 
     1.       , 0.875   , 0.695    ,
     0.465    , 0.590    , 0.715
   vert_anchors = 
     0.       , 0.115    , 0.165   , 
-    1.       , 0.585    , 0.885,
+    1.       , 0.70    , 0.885,
     0.585    , 0.74     , 0.79
-  file = 'logo.svg'
-  letter_only = .false.
+  file = 'logo_blue_chobby.svg'
+  letter_only = .true.
   canvas_ratio = 1.0
-  color = '#B48EAD' ! Purple
-  ! color = '#ca9b3d' ! Yellow
-  ! color = '#000000'
+  color = '#5E81AC'
   font_family = 'Cascadia Code'
   font_size = '0'
   pile_radius = 0

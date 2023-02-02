@@ -1,3 +1,10 @@
+<div class="column">
+  <img src="./data/logo_green_letter.svg" style="width:20%">
+  <img src="./data/logo_red_rounded.svg" style="width:20%">
+  <img src="./data/logo_blue_chobby.svg" style="width:20%">
+  <img src="./data/logo_purple_regular.svg" style="width:20%">
+</div>
+
 # Fortran Logo Generator (Experimental branch)
 
 ## Motivation
@@ -18,12 +25,6 @@ fpm run -- --logo
 The program is tested under WSL only but it should also work on all linux/mac. Please report an issue if you spotted one, and pull requests are welcome too!
 
 ## Parameterization
-
-![Dark Logo](logo_letter_only.svg#gh-dark-mode-only)
-![Dark Logo](logo.svg#gh-dark-mode-only)
-![Dark Logo](logo_rounded.svg#gh-dark-mode-only)
-![Dark Logo](logo_rounded_letter_only.svg#gh-dark-mode-only)
-![Light Logo](./data/blueprint_light.svg#gh-light-mode-only)
 
 An example of `parameters.nml`
 
