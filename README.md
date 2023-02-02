@@ -19,7 +19,10 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 
 ## Parameterization
 
-![Dark Logo](./data/blueprint_dark.svg#gh-dark-mode-only)
+![Dark Logo](logo_letter_only.svg#gh-dark-mode-only)
+![Dark Logo](logo.svg#gh-dark-mode-only)
+![Dark Logo](logo_rounded.svg#gh-dark-mode-only)
+![Dark Logo](logo_rounded_letter_only.svg#gh-dark-mode-only)
 ![Light Logo](./data/blueprint_light.svg#gh-light-mode-only)
 
 An example of `parameters.nml`

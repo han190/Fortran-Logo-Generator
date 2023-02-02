@@ -41,6 +41,8 @@ type :: logo_type
   type(point_type), allocatable :: boundary(:)
   !> Output filename
   character(:), allocatable :: file
+  !> Logo without frame
+  logical :: letter_only
   !> Ratio of canvas (> 1)
   real :: canvas_ratio
   !> Color of the logo
@@ -90,6 +92,7 @@ subroutine read_namelist(unit, logo)
   real :: hori_anchors(3, 3)
   real :: vert_anchors(3, 3)
   character(len=len_) :: file
+  logical :: letter_only
   real :: canvas_ratio
   character(len=len_) :: color
   character(len=len_) :: font_family
@@ -114,6 +117,7 @@ subroutine read_namelist(unit, logo)
     & hori_anchors, &
     & vert_anchors, &
     & file, &
+    & letter_only, &
     & canvas_ratio, &
     & color, &
     & font_family, &
@@ -161,6 +165,7 @@ subroutine read_namelist(unit, logo)
   call compute_piles(logo)
 
   logo%file = trim(file)
+  logo%letter_only = letter_only
   logo%canvas_ratio = canvas_ratio
   logo%color = trim(color)
   logo%font_family = trim(font_family)
@@ -321,6 +326,7 @@ subroutine draw(logo)
   offset = 0.5*[logo%width, logo%height]*logo%canvas_ratio
   attrs = [ &
     & 'xmlns'.pair.'http://www.w3.org/2000/svg', &
+    & 'x'.pair.0., 'y'.pair.0., &
     & 'width'.pair.logo%width*logo%canvas_ratio, &
     & 'height'.pair.logo%height*logo%canvas_ratio]
 
@@ -349,15 +355,13 @@ subroutine draw(logo)
   if (logo%compare) then
     attrs = [ &
       & 'transform'.pair.'translate('// &
-      & str(logo%hori_anchors(1, 1) + offset(1))//","// &
-      & str(logo%vert_anchors(1, 1) + offset(2))//")"]
+      & str(0.+0.5*logo%width*(logo%canvas_ratio - 1))//","// &
+      & str(0.+0.5*logo%height*(logo%canvas_ratio - 1))//")"]
     call svg%write_attribute('g', attrs, inline=.false.)
     attrs = [ &
       & 'href'.pair.logo%compare_image, &
-      & 'width'.pair.abs(logo%hori_anchors(1, 2) - &
-        & logo%hori_anchors(1, 1)), &
-      & 'height'.pair.abs(logo%vert_anchors(1, 2) - &
-        & logo%vert_anchors(1, 1))]
+      & 'width'.pair.logo%width, &
+      & 'height'.pair.logo%height]
     call svg%write_attribute('image', attrs, inline=.true.)
     call svg%close_attribute('g')
   end if
@@ -371,54 +375,68 @@ subroutine draw(logo)
     X => logo%hori_anchors, &
     Y => logo%vert_anchors)
 
-    do j = 1, 3
-      do i = 1, 3
-        call dashed( &
-          & point_type(X(i, j), BP(2)%y), &
-          & point_type(X(i, j), BP(5)%y))
+    if (logo%dash_width > 0.) then
+      do j = 1, 3
+        do i = 1, 3
+          call dashed( &
+            & point_type(X(i, j), BP(2)%y), &
+            & point_type(X(i, j), BP(5)%y))
 
-        call dashed( &
-          & point_type(BP(2)%x, Y(i, j)), &
-          & point_type(BP(8)%x, Y(i, j)))
+          call dashed( &
+            & point_type(BP(2)%x, Y(i, j)), &
+            & point_type(BP(8)%x, Y(i, j)))
+        end do
       end do
-    end do
 
-    call dashed( &
-      & point_type(R%x, BP(2)%y), &
-      & point_type(R%x, BP(5)%y))
+      call dashed( &
+        & point_type(R%x, BP(2)%y), &
+        & point_type(R%x, BP(5)%y))
 
-    call dashed( &
-      & point_type(BP(2)%x, R%y), &
-      & point_type(BP(8)%x, R%y))
+      call dashed( &
+        & point_type(BP(2)%x, R%y), &
+        & point_type(BP(8)%x, R%y))
 
-    call dashed(BP(2), BP(5))
-    call dashed(BP(5), BP(8))
-    call dashed(BP(8), BP(11))
-    call dashed(BP(11), BP(2))
+      call dashed(BP(2), BP(5))
+      call dashed(BP(5), BP(8))
+      call dashed(BP(8), BP(11))
+      call dashed(BP(11), BP(2))
+    end if
 
-    call path_fill(F, B)
+    if (logo%letter_only) then
+      call path_fill(F)
+    else
+      call path_fill(F, B)
+    end if
 
-    do i = 1, size(FP)
-      call circle(FP(i))
-      call text(FP(i), str(i))
-    end do
+    if (logo%pile_radius > 0.) then
+      do i = 1, size(FP)
+        call circle(FP(i))
+      end do
 
-    do i = 1, size(BP)
-      call circle(BP(i))
-      call text(BP(i), achar(64 + i))
-    end do
+      do i = 1, size(BP)
+        call circle(BP(i))
+      end do
 
-    call circle(R)
-    call text(R, "R")
+      call circle(R)
+      call circle(point_type(0., 0.))
+      call circle(centroid(F))
+    end if
 
-    !> Uncomment to draw origin and
-    !> centroid of "F"
+    select case (logo%font_size)
+    case ("0", "0%")
+    case default
+      do i = 1, size(FP)
+        call text(FP(i), str(i))
+      end do
 
-    ! call circle(point_type(0., 0.))
-    ! call text(point_type(0., 0.), "O")
+      do i = 1, size(BP)
+        call text(BP(i), achar(64 + i))
+      end do
 
-    ! call circle(centroid(F))
-    ! call text(centroid(F), "G")
+      call text(R, "R")
+      call text(point_type(0., 0.), "O")
+      call text(centroid(F), "G")
+    end select
   end associate
 
   call svg%close_attribute('svg')
