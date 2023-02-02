@@ -34,7 +34,7 @@ As shown in the diagram above, parameters `hori_anchors` and `vert_anchors` are 
 
 ## Parameters
 
-| Parameter Name | Example |
+| Parameter Name | |
 |:-----|:-------|
 | num_points | `integer, dimension(2) ::` Number of points used to draw (1) curves and (2) smoothed corners |
 | rad_corners | `real ::` Radius of smoothed corners (suggested: < 0.05) |
