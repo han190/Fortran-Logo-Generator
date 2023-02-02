@@ -417,8 +417,8 @@ subroutine draw(logo)
       end do
 
       call circle(R)
-      call circle(point_type(0., 0.))
-      call circle(centroid(F))
+      ! call circle(point_type(0., 0.))
+      ! call circle(centroid(F))
     end if
 
     select case (logo%font_size)
@@ -433,8 +433,8 @@ subroutine draw(logo)
       end do
 
       call text(R, "R")
-      call text(point_type(0., 0.), "O")
-      call text(centroid(F), "G")
+      ! call text(point_type(0., 0.), "O")
+      ! call text(centroid(F), "G")
     end select
   end associate
 
@@ -504,20 +504,31 @@ contains
     call svg%write_attribute('circle', attrs)
   end subroutine circle
 
-  subroutine text(point, message)
+  subroutine text(point, message, rotate)
     type(point_type), intent(in) :: point
     character(*), intent(in) :: message
+    real, intent(in), optional :: rotate
     type(point_type) :: converted
+    real :: tuned(2), rot
 
+    if (present(rotate)) then
+      rot = rotate
+    else
+      rot = 0.
+    end if
+
+    tuned(1) = logo%width*logo%canvas_ratio/70.
+    tuned(2) = -logo%height*logo%canvas_ratio/70.
     converted = svg_coordinate(point)
     attrs = [ &
-      & 'x'.pair.point%x + offset(1), &
-      & 'y'.pair.-point%y + offset(2), &
-      & 'text-anchor'.pair.'middle', &
+      & 'x'.pair.point%x + offset(1) + tuned(1), &
+      & 'y'.pair.-point%y + offset(2) + tuned(2), &
+      & 'text-anchor'.pair.'start', &
       & 'alignment-baseline'.pair.'central', &
       & 'fill'.pair.logo%color, &
       & 'font-size'.pair.logo%font_size, &
-      & 'font-family'.pair.logo%font_family]
+      & 'font-family'.pair.logo%font_family, &
+      & 'transform'.pair."rotate("//str(rot)//")"]
 
     call svg%write_attribute('text', attrs, &
       & inline=.false.)

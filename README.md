@@ -27,10 +27,10 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 ## Parameterization
 
 <p align="center">
-  <img src="data/blueprint_dark.svg">
+  <img src="./data/logo_blueprint.svg">
 </p>
 
-As shown in the diagram above, these parameters are converted into 18 coordinates (1-18) and a reference point (R) for the letter "F" and 12 coordinates for the rounded-corner boundary ((A-L)). The "F" points can be further categorized into three groups: (1) 1 - 6, (2) 7 - 12, and (3) 13 - 18. The whole logo could be quickly drawn by mirroring group 1 with respect to RX and RY, and mirroring group 3 with respect to RX. Other parameters like `bracket_offset` are used to fine tune the brackets. Notice that all curves are quadratic bezier curves. The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
+As shown in the diagram above, parameters `hori_anchors` and `vert_anchors` are converted into 18 coordinates (1-18) and a reference point (R) for the letter "F" and 12 coordinates for the rounded-corner boundary (A-L). They are called "piles" in the source code (empty circles). The "F" points can be further categorized into three groups: (1) 1 - 6, (2) 7 - 12, and (3) 13 - 18. The whole logo could be quickly drawn by mirroring group 1 with respect to RX and RY, and mirroring group 3 with respect to RX. `bracket_offset` are used to fine tune the brackets. Notice that all curves are quadratic bezier curves. The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
 
 | Parameter Name | Example | Comment |
 |:-----|:-------|:---------|

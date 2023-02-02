@@ -1,0 +1,33 @@
+&parameters
+  num_points = 20, 5
+  rad_corners = 0.01
+  width = 512
+  height = 512
+  margin = 70, 70, 56, 56
+  corner = 110, 110
+  reference_point = 0.278, 0.525
+  bracket_offset = 0.016, -0.028
+  hori_anchors = 
+    0.       , 0.10    , 0.16   , 
+    1.       , 0.875   , 0.695    ,
+    0.465    , 0.590    , 0.715
+  vert_anchors = 
+    0.       , 0.115    , 0.165   , 
+    1.       , 0.585    , 0.885,
+    0.585    , 0.74     , 0.79
+  file = 'logo_blueprint.svg'
+  letter_only = .false.
+  canvas_ratio = 1.1
+  color = '#6d5192' ! Purple
+  ! color = '#ca9b3d' ! Yellow
+  ! color = '#000000'
+  font_family = 'Cascadia Code'
+  font_size = '100%'
+  pile_radius = 5
+  line_width = 2.0
+  dash_width = 1
+  dash_array = '2 2'
+  fill_pattern = 9., 0., 4., 1. 
+  compare = .false.
+  compare_image = './data/fortran_logo_512x512.png'
+/
