@@ -22,10 +22,10 @@
   font_family = 'Cascadia Code'
   font_size = '0'
   pile_radius = 0
-  line_width = 1.0
+  line_width = 1.
   dash_width = 0.0
   dash_array = '2 2'
-  fill_pattern = 1., 1., 1., 1. 
+  fill_pattern = 5., 1., 2., 1. 
   compare = .false.
   compare_image = './data/fortran_logo_512x512.png'
 /

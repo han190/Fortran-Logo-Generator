@@ -19,8 +19,8 @@ This project has two driving factors:
 To compile and execute the program, navigate to the project directory and type
 ```bash
 fpm build
-fpm run -- --blueprint
-fpm run -- --logo
+fpm run # Use default parameters.nml
+fpm run -- /your/own/namelist/parameters.nml
 ```
 The program is tested under WSL only but it should also work on all linux/mac. Please report an issue if you spotted one, and pull requests are welcome too!
 
