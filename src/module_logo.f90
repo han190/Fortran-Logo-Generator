@@ -67,10 +67,6 @@ type :: logo_type
   logical :: compare
   !> The image to be compared.
   character(:), allocatable :: compare_image
-  !>
-  character(:), allocatable :: external_file
-  !> Percentage
-  real :: external_geometry(4)
 end type logo_type
 
 interface read (formatted)
@@ -109,8 +105,6 @@ subroutine read_namelist(unit, logo)
   real :: fill_pattern(4)
   logical :: compare
   character(len=len_) :: compare_image
-  character(len=len_) :: external_file
-  real :: external_geometry(4)
 
   namelist /parameters/ &
     & num_points, &
@@ -135,10 +129,7 @@ subroutine read_namelist(unit, logo)
     & dash_array, &
     & fill_pattern, &
     & compare, &
-    & compare_image, &
-    & external_file, &
-    & external_geometry
-
+    & compare_image
   read (unit=unit, nml=parameters)
 
   logo%num_points = num_points
@@ -185,8 +176,6 @@ subroutine read_namelist(unit, logo)
   logo%fill_pattern = fill_pattern
   logo%compare = compare
   logo%compare_image = trim(compare_image)
-  logo%external_file = trim(external_file)
-  logo%external_geometry = external_geometry
 end subroutine read_namelist
 
 !> Compute all "Points" required.
@@ -448,16 +437,6 @@ subroutine draw(logo)
       call text(centroid(F), "G")
     end select
   end associate
-
-  if (logo%external_file /= '') then
-    attrs = [ &
-      & 'x'.pair.str(logo%external_geometry(1))//'%', &
-      & 'y'.pair.str(logo%external_geometry(2))//'%', &
-      & 'width'.pair.str(logo%external_geometry(3))//'%', &
-      & 'height'.pair.str(logo%external_geometry(1))//'%', &
-      & 'href'.pair.logo%external_file]
-    call svg%write_attribute('image', attrs, inline=.true.)
-  end if
 
   call svg%close_attribute('svg')
   call svg%close()
