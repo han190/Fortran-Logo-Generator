@@ -15,7 +15,7 @@
     0.       , 0.115    , 0.165   , 
     1.       , 0.585    , 0.885,
     0.585    , 0.74     , 0.79
-  file = 'logo.svg'
+  file = 'logo_compass_ruler.svg'
   letter_only = .false.
   canvas_ratio = 1.5
   color = '#6d5192' ! Purple
@@ -30,6 +30,6 @@
   fill_pattern = 9., 1., 4., 1. 
   compare = .false.
   compare_image = './data/fortran_logo_512x512.png'
-  external_file = './data/test.png'
+  external_file = './data/compass_ruler.svg'
   external_geometry = 55., 45., 40., 40.
 /
