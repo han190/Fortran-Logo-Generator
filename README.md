@@ -36,26 +36,26 @@ As shown in the diagram above, parameters `hori_anchors` and `vert_anchors` are 
 
 | Parameter Name | |
 |:-----|:-------|
-| num_points | `integer, dimension(2) ::` Number of points used to draw (1) curves and (2) smoothed corners |
-| rad_corners | `real ::` Radius of smoothed corners (suggested: < 0.05) |
-| width | `real ::` Width (px) |
-| height | `real ::` Height (px) |
-| margin | `real, dimension(4) ::` <left, right, bottom, top> margin (px) from letter "F" to the boundary|
-| corner | `real, dimension(2) ::` Radius (px) of the rounded boundary |
-| reference_point | `real, dimension(2) ::` The reference point (from 0 to 1) |
-| bracket_offset | `real, dimension(2) ::` The bracket offset (from 0 to 1) |
-| hori_anchors | `real, dimension(3, 3) ::` Horizontal anchors (from 0 to 1) |
-| vert_anchors | `real, dimension(3, 3) ::` Vertical anchors (from 0 to 1) |
-| file | `character(len=80) ::` Ouptut filename |
-| letter_only | `logical` Draw "F" only|
-| canvas_ratio | `real ::` Width of canvas/width of boundary (so the actual size of the svg file is 382.5px x 382.5px) |
-| color | `character(len=80) ::` Color of the logo |
-| font_family | `character(len=80) ::` Font of lables (debug) |
-| font_size | `character(len=80) ::` Font size of labels (debug) |
-| pile_radius | `real ::` Radius of piles (debug) |
-| line_width | `real ::` Line width of logo |
-| dash_width | `real ::` Line width of dashed lines (debug) |
-| dash_array | `character(len=80) ::` Dashed type (debug) |
-| fill_pattern | `real, dimension(4) ::` Fill pattern |
-| compare | `logical ::` Compare with another image (debug) |
-| compare_image | `character(len=80) ::` The image to be compared (debug) |
+| `integer :: num_points(2)` | Number of points used to draw (1) curves and (2) smoothed corners |
+| `real :: rad_corners` | Radius of smoothed corners (suggested: < 0.05) |
+| `real :: width` | Width (px) |
+| `real :: height` | Height (px) |
+| `real :: margin(4)` | <left, right, bottom, top> margin (px) from letter "F" to the boundary|
+| `real :: corner(2)` | Radius (px) of the rounded boundary |
+| `real :: reference_point(2)` | The reference point (from 0 to 1) |
+| `real :: bracket_offset(2)` | The bracket offset (from 0 to 1) |
+| `real :: hori_anchors(3, 3)` | Horizontal anchors (from 0 to 1) |
+| `real :: vert_anchors(3, 3)` | Vertical anchors (from 0 to 1) |
+| `character(len=80) :: file` | Ouptut filename |
+| `logical :: letter_only` | Draw "F" only|
+| `real :: canvas_ratio` | Width of canvas/width of boundary (so the actual size of the svg file is 382.5px x 382.5px) |
+| `character(len=80) :: color` | Color of the logo |
+| `character(len=80) :: font_family` | Font of lables (debug) |
+| `character(len=80) :: font_size` | Font size of labels (debug) |
+| `real :: pile_radius` | Radius of piles (debug) |
+| `real :: line_width` | Line width of logo |
+| `real :: dash_width` | Line width of dashed lines (debug) |
+| `character(len=80) :: dash_array` | Dashed type (debug) |
+| `real :: fill_pattern(4)` | Fill pattern |
+| `logical :: compare` | Compare with another image (debug) |
+| `character(len=80) :: compare_image` | The image to be compared (debug) |
