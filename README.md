@@ -37,21 +37,21 @@ As shown in the diagram above, parameters `hori_anchors` and `vert_anchors` are 
 | Parameter Name | |
 |:-----|:-------|
 | `integer :: num_points(2)` | Number of points used to draw (1) curves and (2) smoothed corners |
-| `real :: rad_corners` | Radius of smoothed corners (suggested: < 0.05) |
-| `real :: width` | Width (px) |
-| `real :: height` | Height (px) |
-| `real :: margin(4)` | <left, right, bottom, top> margin (px) from letter "F" to the boundary|
-| `real :: corner(2)` | Radius (px) of the rounded boundary |
-| `real :: reference_point(2)` | The reference point (from 0 to 1) |
-| `real :: bracket_offset(2)` | The bracket offset (from 0 to 1) |
-| `real :: hori_anchors(3, 3)` | Horizontal anchors (from 0 to 1) |
-| `real :: vert_anchors(3, 3)` | Vertical anchors (from 0 to 1) |
+| `real :: rad_corners` | Radius of smoothed corners (element &#8712; (0, &#x221E;), suggested: < 0.05) |
+| `real :: width` | Width (px) (element &#8712; (0, &#x221E;)) |
+| `real :: height` | Height (px) (element &#8712; (0, &#x221E;)) |
+| `real :: margin(4)` | <left, right, bottom, top> margin (px) from letter "F" to the boundary (element &#8712; (0, &#x221E;))|
+| `real :: corner(2)` | Radius (px) of the rounded boundary (element &#8712; (0, &#x221E;)) |
+| `real :: reference_point(2)` | The reference point (element &#8712; [0, 1]) |
+| `real :: bracket_offset(2)` | The bracket offset (element &#8712; [0, 1]) |
+| `real :: hori_anchors(3, 3)` | Horizontal anchors (element &#8712; [0, 1]) |
+| `real :: vert_anchors(3, 3)` | Vertical anchors (element &#8712; [0, 1]) |
 | `character(len=80) :: file` | Ouptut filename |
-| `logical :: letter_only` | Draw "F" only|
-| `real :: canvas_ratio` | Width of canvas/width of boundary (so the actual size of the svg file is 382.5px x 382.5px) |
-| `character(len=80) :: color` | Color of the logo |
-| `character(len=80) :: font_family` | Font of lables (debug) |
-| `character(len=80) :: font_size` | Font size of labels (debug) |
+| `logical :: letter_only` | If `.true.`, draw the letter "F" only, otherwise draw the frame with an empty "F". |
+| `real :: canvas_ratio` | canvas ratio = width of canvas/width of boundary (so the actual size of the svg file is 382.5px x 382.5px) |
+| `character(len=80) :: color` | The color of the logo |
+| `character(len=80) :: font_family` | The font of labels (debug) |
+| `character(len=80) :: font_size` | The font size of labels (debug) |
 | `real :: pile_radius` | Radius of piles (debug) |
 | `real :: line_width` | Line width of logo |
 | `real :: dash_width` | Line width of dashed lines (debug) |
