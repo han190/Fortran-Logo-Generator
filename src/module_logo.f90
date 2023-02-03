@@ -352,17 +352,19 @@ subroutine draw(logo)
   call svg%close_attribute('pattern')
 
   if (logo%compare) then
-    attrs = [ &
-      & 'transform'.pair.'translate('// &
-      & str(0.+0.5*logo%width*(logo%canvas_ratio - 1))//","// &
-      & str(0.+0.5*logo%height*(logo%canvas_ratio - 1))//")"]
-    call svg%write_attribute('g', attrs, inline=.false.)
+    ! attrs = [ &
+    !   & 'transform'.pair.'translate('// &
+    !   & str(0.+0.5*logo%width*(logo%canvas_ratio - 1))//","// &
+    !   & str(0.+0.5*logo%height*(logo%canvas_ratio - 1))//")"]
+    ! call svg%write_attribute('g', attrs, inline=.false.)
     attrs = [ &
       & 'href'.pair.logo%compare_image, &
+      & 'x'.pair.str(0.5*logo%width*(logo%canvas_ratio - 1)), &
+      & 'y'.pair.str(0.5*logo%height*(logo%canvas_ratio - 1)), &
       & 'width'.pair.logo%width, &
       & 'height'.pair.logo%height]
     call svg%write_attribute('image', attrs, inline=.true.)
-    call svg%close_attribute('g')
+    ! call svg%close_attribute('g')
   end if
 
   associate ( &
@@ -417,8 +419,8 @@ subroutine draw(logo)
       end do
 
       call circle(R)
-      ! call circle(point_type(0., 0.))
-      ! call circle(centroid(F))
+      call circle(point_type(0., 0.))
+      call circle(centroid(F))
     end if
 
     select case (logo%font_size)
