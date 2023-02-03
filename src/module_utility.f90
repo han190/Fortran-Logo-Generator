@@ -1,7 +1,6 @@
 module module_utility
 
 public :: str
-public :: write_strs
 private
 
 contains
@@ -99,15 +98,5 @@ pure function str(value, width, decimal) result(ret)
   end select
 
 end function str
-
-subroutine write_strs(unit, messages)
-  integer, intent(in) :: unit
-  character(*), intent(in) :: messages(:)
-  integer :: i
-
-  do i = 1, size(messages)
-    write (unit, "(a)") trim(messages(i))
-  end do
-end subroutine write_strs
 
 end module module_utility

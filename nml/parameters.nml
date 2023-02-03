@@ -15,8 +15,8 @@
     0.       , 0.115    , 0.165   , 
     1.       , 0.585    , 0.885,
     0.585    , 0.74     , 0.79
-  file = 'logo.svg'
-  letter_only = .false.
+  file = 'logo_letter.svg'
+  letter_only = .true.
   canvas_ratio = 1.05
   color = '#6d5192' ! Purple
   ! color = '#ca9b3d' ! Yellow

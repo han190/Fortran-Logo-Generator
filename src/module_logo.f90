@@ -352,11 +352,6 @@ subroutine draw(logo)
   call svg%close_attribute('pattern')
 
   if (logo%compare) then
-    ! attrs = [ &
-    !   & 'transform'.pair.'translate('// &
-    !   & str(0.+0.5*logo%width*(logo%canvas_ratio - 1))//","// &
-    !   & str(0.+0.5*logo%height*(logo%canvas_ratio - 1))//")"]
-    ! call svg%write_attribute('g', attrs, inline=.false.)
     attrs = [ &
       & 'href'.pair.logo%compare_image, &
       & 'x'.pair.str(0.5*logo%width*(logo%canvas_ratio - 1)), &
@@ -364,7 +359,6 @@ subroutine draw(logo)
       & 'width'.pair.logo%width, &
       & 'height'.pair.logo%height]
     call svg%write_attribute('image', attrs, inline=.true.)
-    ! call svg%close_attribute('g')
   end if
 
   associate ( &
