@@ -1,48 +1,102 @@
 module module_utility
 
 public :: str
-public :: write_strs
 private
-
-interface str
-  module procedure :: real_to_str
-  module procedure :: int_to_str
-end interface str
 
 contains
 
-subroutine write_strs(unit, messages)
-  integer, intent(in) :: unit
-  character(*), intent(in) :: messages(:)
-  integer :: i
-
-  do i = 1, size(messages)
-    write (unit, "(a)") trim(messages(i))
-  end do
-end subroutine write_strs
-
-elemental function num_digits(val) result(ret)
-  integer, intent(in) :: val
+elemental function num_digits(value) result(ret)
+  integer, intent(in) :: value
   integer :: ret
 
-  ret = floor(log10(real(val))) + 1
+  ret = floor(log10(real(value))) + 1
 end function num_digits
 
-pure function int_to_str(val) result(ret)
-  integer, intent(in) :: val
+pure function int2char(value) result(ret)
+  integer, intent(in) :: value
   character(:), allocatable :: ret
 
-  allocate (character(len=num_digits(val)) :: ret)
-  write (ret, "(i0)") val
-end function int_to_str
+  allocate (character(len=num_digits(value)) :: ret)
+  write (ret, "(i0)") value
+end function int2char
 
-pure function real_to_str(val) result(ret)
-  real, intent(in) :: val
+pure function str(value, width, decimal) result(ret)
+  class(*), intent(in) :: value
+  integer, intent(in), optional :: width
+  integer, intent(in), optional :: decimal
   character(:), allocatable :: ret
+  integer :: length_
+  character(:), allocatable :: format_
+  character(:), allocatable :: width_
+  character(:), allocatable :: decimal_
 
-  allocate (character(len=100) :: ret)
-  write (ret, "(f0.6)") val
-  ret = trim(ret)
-end function real_to_str
+  select type (value_ => value)
+  type is (integer)
+
+    if (present(width) .and. &
+      & present(decimal)) then
+
+      width_ = int2char(width)
+      decimal_ = int2char(decimal)
+      format_ = "(i"//width_//"."//decimal_//")"
+      length_ = width
+
+    else if (present(width) .and. &
+      & .not. present(decimal)) then
+
+      width_ = int2char(width)
+      format_ = "(i"//width_//")"
+      length_ = width
+
+    else if (.not. present(width) .and. &
+      & .not. present(decimal)) then
+
+      format_ = "(i0)"
+      length_ = num_digits(value_)
+
+    else
+      error stop "Invalid width."
+    end if
+
+    allocate (character(len=length_) :: ret)
+    write (ret, format_) value_
+
+  type is (real)
+
+    if (present(width) .and. &
+      & present(decimal)) then
+
+      width_ = int2char(width)
+      decimal_ = int2char(decimal)
+      format_ = "(f"//width_//"."//decimal_//")"
+      length_ = width
+
+    else if (.not. present(width) .and. &
+      & present(decimal)) then
+
+      decimal_ = int2char(decimal)
+      format_ = "(f0."//decimal_//")"
+      length_ = 80
+
+    else if (.not. present(width) .and. &
+      & .not. present(decimal)) then
+
+      decimal_ = int2char(6)
+      format_ = "(f0."//decimal_//")"
+      length_ = 80
+
+    else
+      error stop "Invalid width."
+    end if
+
+    allocate (character(len=length_) :: ret)
+    write (ret, format_) value_
+    ret = trim(ret)
+
+  class default
+    error stop "Invalid type"
+  end select
+
+end function str
 
 end module module_utility

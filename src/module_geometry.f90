@@ -1,5 +1,6 @@
 module module_geometry
 
+use module_utility, only: str
 implicit none
 
 public :: point_type
@@ -9,8 +10,9 @@ public :: operator(+)
 public :: operator(-)
 public :: operator(*)
 public :: bezier_curve
-public :: shift, mirror
+public :: mirror
 public :: centroid
+public :: rounded_corner
 private
 
 !> Point type
@@ -35,6 +37,7 @@ end interface operator(+)
 
 interface operator(-)
   module procedure :: subtract_point
+  module procedure :: subtract_points
 end interface operator(-)
 
 interface operator(*)
@@ -47,11 +50,6 @@ end interface operator(*)
 interface mirror
   module procedure :: mirror_xy
 end interface mirror
-
-interface shift
-  module procedure :: shift_curve
-  module procedure :: shift_point
-end interface shift
 
 !> An abstract interface for Bezier curves
 abstract interface
@@ -131,27 +129,6 @@ elemental function multiply_point_integer_re(a, point1) result(point)
 
   point = multiply_point_integer(point1, a)
 end function multiply_point_integer_re
-
-pure function shift_point(point, delta_x, delta_y) result(shifted)
-  type(point_type), intent(in) :: point
-  real, intent(in), optional :: delta_x, delta_y
-  type(point_type) :: shifted
-  real :: dx, dy
-
-  if (present(delta_x)) then
-    dx = delta_x
-  else
-    dx = 0.0
-  end if
-
-  if (present(delta_y)) then
-    dy = delta_y
-  else
-    dy = 0.0
-  end if
-
-  shifted = [point%x + dx, point%y + dy]
-end function shift_point
 
 pure function linear_bezier(p, t) result(b)
   type(point_type), intent(in) :: p(0:)
@@ -245,32 +222,6 @@ pure function bezier_curve(control_points, num, end_point) result(curve)
   if (end_point_) curve = curve(:num - 1)
 end function bezier_curve
 
-pure function shift_curve(points, delta_x, delta_y) result(shifted)
-  type(point_type), intent(in) :: points(:)
-  real, intent(in), optional :: delta_x, delta_y
-  type(point_type), allocatable :: shifted(:)
-  integer :: i
-  real :: dx, dy
-
-  if (present(delta_x)) then
-    dx = delta_x
-  else
-    dx = 0.0
-  end if
-
-  if (present(delta_y)) then
-    dy = delta_y
-  else
-    dy = 0.0
-  end if
-
-  allocate (shifted, mold=points)
-  do i = 1, size(shifted)
-    shifted(i)%x = points(i)%x + dx
-    shifted(i)%y = points(i)%y + dy
-  end do
-end function shift_curve
-
 pure function mirror_xy(points, dim, reverse, level) result(mirrored)
   type(point_type), intent(in) :: points(:)
   integer, intent(in) :: dim
@@ -349,5 +300,76 @@ pure function centroid(points) result(center)
     end associate
   end associate
 end function centroid
+
+pure function rounded_corner(point, radius, quadrant, &
+  & num_points, clockwise) result(points)
+
+  type(point_type), intent(in) :: point
+  real, intent(in) :: radius
+  integer, intent(in) :: quadrant(:)
+  integer, intent(in) :: num_points
+  logical, intent(in) :: clockwise
+  type(point_type), allocatable :: points(:)
+  type(point_type) :: init, finl
+
+  if (all(quadrant == [+1, +1])) then
+
+    if (clockwise) then
+      init = point_type(point%x + radius, point%y)
+      finl = point_type(point%x, point%y + radius)
+    else
+      init = point_type(point%x, point%y + radius)
+      finl = point_type(point%x + radius, point%y)
+    end if
+
+  else if (all(quadrant == [-1, +1])) then
+
+    if (clockwise) then
+      init = point_type(point%x, point%y + radius)
+      finl = point_type(point%x - radius, point%y)
+    else
+      init = point_type(point%x - radius, point%y)
+      finl = point_type(point%x, point%y + radius)
+    end if
+
+  else if (all(quadrant == [-1, -1])) then
+
+    if (clockwise) then
+      init = point_type(point%x - radius, point%y)
+      finl = point_type(point%x, point%y - radius)
+    else
+      init = point_type(point%x, point%y - radius)
+      finl = point_type(point%x - radius, point%y)
+    end if
+
+  else if (all(quadrant == [+1, -1])) then
+
+    if (clockwise) then
+      init = point_type(point%x, point%y - radius)
+      finl = point_type(point%x + radius, point%y)
+    else
+      init = point_type(point%x + radius, point%y)
+      finl = point_type(point%x, point%y - radius)
+    end if
+
+  else
+    error stop "Invalid quadrant"
+  end if
+  points = bezier_curve([init, point, finl], num_points)
+end function rounded_corner
+
+pure function subtract_points(points, offset) result(subtracted)
+  type(point_type), intent(in) :: points(:)
+  real, intent(in) :: offset(:)
+  type(point_type), allocatable :: subtracted(:)
+  integer :: i
+
+  if (allocated(subtracted)) deallocate (subtracted)
+  allocate (subtracted(size(points)))
+  do i = 1, size(points)
+    subtracted(i)%x = points(i)%x - offset(1)
+    subtracted(i)%y = points(i)%y - offset(2)
+  end do
+end function subtract_points
 
 end module module_geometry

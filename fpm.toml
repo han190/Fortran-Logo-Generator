@@ -11,7 +11,7 @@ keywords = ["Fortran", "Logo"]
 [ library ]
 source-dir = "src"
 
-[[ executable ]]
-name = "icon"
+[[executable]]
+name = "fortran_logo_generator"
 source-dir = "src"
-main = "icon.f90"
+main = "logo_generator.f90"

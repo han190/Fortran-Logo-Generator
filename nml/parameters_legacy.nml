@@ -1,0 +1,31 @@
+&parameters
+  num_points = 20, 5
+  rad_corners = 0.01
+  width = 255
+  height = 255
+  margin = 35, 35, 28, 28
+  corner = 55, 55
+  reference_point = 0.278, 0.525
+  bracket_offset = 0.016, -0.028
+  hori_anchors = 
+    0.       , 0.1      , 0.1833   , 
+    1.       , 0.875    , 0.72     ,
+    0.485    , 0.595    , 0.7075
+  vert_anchors = 
+    0.       , 0.116667 , 0.225    , 
+    1.       , 0.6      , 0.883333 ,
+    0.5785   , 0.73     , 0.7916665 
+  file = 'logo_legacy_letter.svg'
+  letter_only = .true.
+  canvas_ratio = 1.01
+  color = '#b5a586'
+  font_family = 'Cascadia Code'
+  font_size = '0'
+  pile_radius = 0
+  line_width = 1.0
+  dash_width = 0.0
+  dash_array = '2 2'
+  fill_pattern = 1., 1., 4., 1. 
+  compare = .false.
+  compare_image = './data/fortran_logo_512x512.png'
+/
