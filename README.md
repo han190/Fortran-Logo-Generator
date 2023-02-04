@@ -27,7 +27,7 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 ## Parameterization
 
 <p align="center">
-  <img width="95%" src="./data/logo_showcase.svg">
+  <img width="80%" src="./data/logo_showcase.svg">
 </p>
 
 As shown in the diagram above, horizontal anchors `X` and vertical anchors `Y` are converted into 18 coordinates (`1`-`18`) for the letter "F" and 12 coordinates for the rounded-corner boundary (`A`-`L`). They are called "piles" in the source code (empty circles). The 18 coordinates can be further categorized into three groups: (1) 1 - 6, (2) 7 - 12, and (3) 13 - 18. The whole logo could be quickly drawn by mirroring group 1 with respect to RX and RY, and mirroring group 3 with respect to RX. `bracket_offset` are used to fine tune the brackets. Notice that all curves are quadratic bezier curves. The advantage of the parameterization is that, by changing parameters, users could create their own varient of the "F" logo.
