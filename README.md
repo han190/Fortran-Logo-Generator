@@ -32,7 +32,7 @@ The program is tested under WSL only but it should also work on all linux/mac. P
 
 The diagram displays the conversion of horizontal anchors "X" and vertical anchors "Y" into 18 coordinates (labeled 1-18) for the letter "F" and 12 coordinates for the boundary (labeled A-L), referred to as "piles" in the code (represented as empty circles). These 18 coordinates can be separated into three groups: 1-6, 7-12, and 13-18. The logo is easily created by mirroring group 1 with respect to RX and RY and mirroring group 3 with respect to RX. Fine-tuning can be achieved through the "bracket_offset" parameter (referred to as OFFSET in the diagram). Other parameters can be found in the table below.
 
-## Namelist Parameters
+## Namelist parameters
 
 | Parameter Name | |
 |:-----|:-------|
