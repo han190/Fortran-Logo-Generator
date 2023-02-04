@@ -208,44 +208,46 @@ pure function xml_prolog(attributes) result(ret)
 end function xml_prolog
 
 !> XML attribute
-pure function xml_attribute(tag, attributes, inline) result(message)
+pure function xml_attribute(tag, inline, attributes) result(message)
   character(*), intent(in) :: tag
-  type(attribute_type), intent(in) :: attributes(:)
   logical, intent(in) :: inline
+  type(attribute_type), intent(in), optional :: attributes(:)
   type(characters_type) :: message
   type(characters_type) :: temp
   integer :: i, n
 
-  select case (size(attributes))
-  case (0)
-
+  if (.not. present(attributes)) then
     if (inline) then
       message = ["<"//tag//"/>"]
     else
       message = ["<"//tag//">"]
     end if
+  else
+    select case (size(attributes))
+    case (1:)
 
-  case (1:)
+      temp = attributes_to_characters(attributes)
+      n = size(temp%array)
+      allocate (message%array(n + 2))
 
-    temp = attributes_to_characters(attributes)
-    n = size(temp%array)
-    allocate (message%array(n + 2))
+      message%array(1) = "<"//tag
+      do i = 2, n + 1
+        message%array(i) = temp%array(i - 1)
+      end do
 
-    message%array(1) = "<"//tag
-    do i = 2, n + 1
-      message%array(i) = temp%array(i - 1)
-    end do
+      if (inline) then
+        message%array(n + 2) = "/>"
+      else
+        message%array(n + 2) = ">"
+      end if
 
-    if (inline) then
-      message%array(n + 2) = "/>"
-    else
-      message%array(n + 2) = ">"
-    end if
-
-    message%length = temp%length + &
-      & message%array(1)%length + &
-      & message%array(n + 2)%length
-  end select
+      message%length = temp%length + &
+        & message%array(1)%length + &
+        & message%array(n + 2)%length
+    case default
+      error stop "Invalid attributes."
+    end select
+  end if
 end function xml_attribute
 
 subroutine open_xml(self, file)
@@ -274,7 +276,7 @@ end subroutine write_element
 subroutine write_attribute(self, tag, attributes, inline, line_break)
   class(xml_type), intent(inout) :: self
   character(*), intent(in) :: tag
-  type(attribute_type), intent(in) :: attributes(:)
+  type(attribute_type), intent(in), optional :: attributes(:)
   logical, intent(in), optional :: inline
   logical, intent(in), optional :: line_break
   type(characters_type) :: message
@@ -293,7 +295,12 @@ subroutine write_attribute(self, tag, attributes, inline, line_break)
     break_ = .true.
   end if
 
-  message = xml_attribute(tag, attributes, inline_)
+  if (.not. present(attributes)) then
+    message = xml_attribute(tag, inline_)
+  else
+    message = xml_attribute(tag, inline_, attributes)
+  end if
+
   if (break_) then
     do i = 1, size(message%array)
       write (self%unit, "(a)") &
@@ -303,6 +310,7 @@ subroutine write_attribute(self, tag, attributes, inline, line_break)
     write (self%unit, "(a)") &
       characters_to_character(message)
   end if
+  ! end if
 end subroutine write_attribute
 
 subroutine close_attribute(self, tag)

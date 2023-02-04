@@ -1,0 +1,172 @@
+    text_labels: block
+      select case (logo%font_size)
+      case ("0", "0%")
+      case default
+
+        call svg%write_attribute('defs', inline=.false.)
+        attrs = [ &
+          & 'id'.pair.'arrow', &
+          & 'fill'.pair.logo%color, &
+          & 'viewBox'.pair."0 0 10 12", &
+          & 'refX'.pair."10", &
+          & 'refY'.pair."5", &
+          & 'markerWidth'.pair."6", &
+          & 'markerHeight'.pair."6", &
+          & 'orient'.pair."auto-start-reverse"]
+        call svg%write_attribute('marker', attrs, inline=.false.)
+        call svg%write_attribute('path', &
+          & ['d'.pair."M 0 2 L 10 4.5 L 10 5.5 L 0 8 z"])
+        call svg%write_attribute('line', &
+          & ['x1'.pair."10", 'x2'.pair."10", &
+          & 'y1'.pair."0", 'y2'.pair."10", &
+          & "stroke".pair.logo%color, "stroke-width".pair.2.])
+        call svg%close_attribute('marker')
+        call svg%close_attribute('defs')
+
+        do i = 1, size(FP)
+          select case (i)
+          case (1:2, 9, 17:18)
+            call text(FP(i), str(i), &
+              & shift=[4.5, -4.5])
+          case (7, 13)
+            call text(FP(i), str(i), &
+              & shift=[-4.5, 4.5])
+          case (8, 11:12)
+            call text(FP(i), str(i), &
+              & shift=[-4.5, -4.5])
+          case default
+            call text(FP(i), str(i), &
+              & shift=[4.5, 4.5])
+          end select
+        end do
+
+        do i = 1, size(BP)
+          select case (i)
+          case (2)
+            call text(BP(i), achar(64 + i), &
+              & shift=[-4.5, 4.5])
+          case (5:6)
+            call text(BP(i), achar(64 + i), &
+              & shift=[-4.5, -4.5])
+          case (1, 3, 7:9)
+            call text(BP(i), achar(64 + i), &
+              & shift=[4.5, -4.5])
+          case (4, 10:12)
+            call text(BP(i), achar(64 + i), &
+              & shift=[4.5, 4.5])
+          end select
+        end do
+
+        do j = 1, 3
+          do i = 1, 3
+            if (all([i, j] == [3, 2])) then
+              call text( &
+                & point_type(X(i, j), BP(1)%y), &
+                & "X("//str(i)//","//str(j)//")", &
+                & -90., [-3., 14.5])
+            else
+              call text( &
+                & point_type(X(i, j), BP(1)%y), &
+                & "X("//str(i)//","//str(j)//")", &
+                & -90., [0., 14.5])
+            end if
+
+            if (all([i, j] == [1, 3])) then
+              call text( &
+                & point_type(BP(2)%x, Y(i, j)), &
+                & "Y("//str(i)//","//str(j)//")", &
+                & 0., [-14.5, -7.5])
+            else if (all([i, j] == [2, 2])) then
+              call text( &
+                & point_type(BP(2)%x, Y(i, j)), &
+                & "=Y("//str(i)//","//str(j)//")", &
+                & 0., [-16.5, 0.])
+            else
+              call text( &
+                  & point_type(BP(2)%x, Y(i, j)), &
+                  & "Y("//str(i)//","//str(j)//")", &
+                  & 0., [-14.5, 0.])
+            end if
+          end do
+        end do
+
+        call text(R, "REF", shift=[7.5, 4.5])
+        ! call text(point_type(0., 0.), "CEN", shift=[7.5, 4.5])
+        ! call text(point_type(0., 0.), "O")
+        ! call text(centroid(F), "G")
+
+        call arrow( &
+          & point_type(BP(7)%x, BP(7)%y + 13.), &
+          & point_type(BP(8)%x, BP(8)%y + 13.))
+        call text( &
+          & point_type((BP(7)%x + BP(8)%x)/2., &
+          & BP(7)%y + 19.), "CORNER(1)")
+
+        call arrow( &
+          & point_type(BP(8)%x + 13., BP(8)%y), &
+          & point_type(BP(9)%x + 13., BP(9)%y))
+        call text( &
+          & point_type(BP(8)%x + 19., &
+          & (BP(8)%y + BP(9)%y)/2.), "CORNER(2)", -90.)
+
+        call arrow( &
+          & point_type(BP(2)%x, BP(2)%y + logo%height/2.), &
+          & point_type(X(1, 1), BP(2)%y + logo%height/2.))
+        call text( &
+          & point_type((X(1, 1) + BP(2)%x)/2., &
+          & BP(2)%y + logo%height/2.), &
+          & "MAR(1)", shift=[0., 7.5])
+
+        call arrow( &
+          & point_type(BP(11)%x, BP(11)%y + logo%height/2.), &
+          & point_type(X(1, 2), BP(11)%y + logo%height/2.))
+        call text( &
+          & point_type((X(1, 2) + BP(11)%x)/2., &
+          & BP(11)%y + logo%height/2.), &
+          & "MAR(2)", shift=[0., 7.5])
+
+        call arrow( &
+          & point_type(BP(5)%x + logo%width/2., BP(5)%y), &
+          & point_type(BP(5)%x + logo%width/2., Y(1, 2)))
+        call text( &
+          & point_type(BP(5)%x + logo%width/2, &
+          & (BP(5)%y + Y(1, 2))/2.), &
+          & "MAR(4)", rotate=-90., shift=[7.5, 0.])
+
+        call arrow( &
+          & point_type(BP(2)%x + logo%width/2., BP(2)%y), &
+          & point_type(BP(2)%x + logo%width/2., Y(1, 1)))
+        call text( &
+          & point_type(BP(2)%x + logo%width/2, &
+          & (BP(2)%y + Y(1, 1))/2.), &
+          & "MAR(3)", rotate=-90., shift=[7.5, 0.])
+
+        call arrow( &
+          & point_type(BP(2)%x + logo%width/2 + 7.5, Y(3, 3) + 9.), &
+          & point_type(BP(2)%x + logo%width/2 + 7.5, Y(3, 3)), .true.)
+        call arrow( &
+          & point_type(BP(2)%x + logo%width/2 + 7.5, &
+          & Y(3, 3) + logo%bracket_offset(2) - 9.), &
+          & point_type(BP(2)%x + logo%width/2 + 7.5, &
+          & Y(3, 3) + logo%bracket_offset(2)), .true.)
+        call text ( &
+          & point_type(BP(2)%x + logo%width/2 + 6.0, &
+          & Y(3, 3) + logo%bracket_offset(2)/2.), &
+          & "OFFSET(2)", -90., [-6.0, 0.])
+
+        call arrow ( &
+          & point_type(2.*R%x - X(1, 1) - 9.0, Y(3, 1)), &
+          & point_type(2.*R%x - X(1, 1), Y(3, 1)), .true.)
+        call arrow ( &
+          & point_type(2.*R%x - X(1, 1) + &
+          & logo%bracket_offset(1) + 9.0, Y(3, 1)), &
+          & point_type(2.*R%x - X(1, 1) + &
+          & logo%bracket_offset(1), Y(3, 1)), .true.)
+        call text ( &
+          & point_type(2.*R%x - X(1, 1) + logo%bracket_offset(1)/2., &
+          & Y(3, 1)), "OFFSET(1)", shift=[0., -7.5])
+
+        ! call text ( &
+        !   & point_type((X(1, 1) + BP(2)%x)/2., &
+        !   & BP(2)%y + logo%width/2.), &
+        !   & "MARGIN(1)", shift=[0., 7.5])

@@ -486,6 +486,39 @@ contains
     call svg%write_attribute('path', attrs)
   end subroutine path_fill
 
+  subroutine arrow(point1, point2, single_head)
+    type(point_type), intent(in) :: point1, point2
+    logical, intent(in), optional :: single_head
+    type(point_type) :: conv1, conv2
+
+    conv1 = svg_coordinate(point1)
+    conv2 = svg_coordinate(point2)
+
+    if (present(single_head)) then
+      if (single_head) then
+        attrs = [ &
+      & 'x1'.pair.conv1%x, &
+      & 'x2'.pair.conv2%x, &
+      & 'y1'.pair.conv1%y, &
+      & 'y2'.pair.conv2%y, &
+      & 'stroke'.pair.logo%color, &
+      & 'marker-end'.pair."url(#arrow)"]
+        call svg%write_attribute('line', attrs)
+        return
+      end if
+    end if
+
+    attrs = [ &
+    & 'x1'.pair.conv1%x, &
+    & 'x2'.pair.conv2%x, &
+    & 'y1'.pair.conv1%y, &
+    & 'y2'.pair.conv2%y, &
+    & 'stroke'.pair.logo%color, &
+    & 'marker-start'.pair."url(#arrow)", &
+    & 'marker-end'.pair."url(#arrow)"]
+    call svg%write_attribute('line', attrs)
+  end subroutine arrow
+
   subroutine circle(point)
     type(point_type), intent(in) :: point
     type(point_type) :: converted
@@ -500,31 +533,41 @@ contains
     call svg%write_attribute('circle', attrs)
   end subroutine circle
 
-  subroutine text(point, message, rotate)
+  subroutine text(point, message, rotate, shift)
     type(point_type), intent(in) :: point
     character(*), intent(in) :: message
     real, intent(in), optional :: rotate
+    real, intent(in), optional :: shift(2)
     type(point_type) :: converted
-    real :: tuned(2), rot
+    real :: rotate_, shift_(2)
+    character(:), allocatable :: x_, y_, r_
 
     if (present(rotate)) then
-      rot = rotate
+      rotate_ = rotate
     else
-      rot = 0.
+      rotate_ = 0.
     end if
 
-    tuned(1) = logo%width*logo%canvas_ratio/70.
-    tuned(2) = -logo%height*logo%canvas_ratio/70.
+    if (present(shift)) then
+      shift_ = shift
+    else
+      shift_ = 0.
+    end if
+
     converted = svg_coordinate(point)
+    x_ = str(converted%x + shift_(1))
+    y_ = str(converted%y + shift_(2))
+    r_ = str(rotate_)
+
     attrs = [ &
-      & 'x'.pair.point%x + offset(1) + tuned(1), &
-      & 'y'.pair.-point%y + offset(2) + tuned(2), &
-      & 'text-anchor'.pair.'start', &
+      & 'x'.pair.x_, &
+      & 'y'.pair.y_, &
+      & 'text-anchor'.pair.'middle', &
       & 'alignment-baseline'.pair.'central', &
       & 'fill'.pair.logo%color, &
       & 'font-size'.pair.logo%font_size, &
       & 'font-family'.pair.logo%font_family, &
-      & 'transform'.pair."rotate("//str(rot)//")"]
+      & 'transform'.pair."rotate("//r_//","//x_//","//y_//")"]
 
     call svg%write_attribute('text', attrs, &
       & inline=.false.)
